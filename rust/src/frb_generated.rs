@@ -1754,6 +1754,7 @@ fn wire__crate__api__wallet__wallet_build_payjoin_tx_impl(
     asset: impl CstDecode<String>,
     network: impl CstDecode<crate::api::types::Network>,
     base_url: impl CstDecode<Option<String>>,
+    deduct_fee: impl CstDecode<Option<u32>>,
 ) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
@@ -1768,6 +1769,7 @@ fn wire__crate__api__wallet__wallet_build_payjoin_tx_impl(
             let api_asset = asset.cst_decode();
             let api_network = network.cst_decode();
             let api_base_url = base_url.cst_decode();
+            let api_deduct_fee = deduct_fee.cst_decode();
             move |context| {
                 transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
                     let output_ok = crate::api::wallet::Wallet::build_payjoin_tx(
@@ -1777,6 +1779,7 @@ fn wire__crate__api__wallet__wallet_build_payjoin_tx_impl(
                         api_asset,
                         api_network,
                         api_base_url,
+                        api_deduct_fee,
                     )?;
                     Ok(output_ok)
                 })())
@@ -4654,6 +4657,7 @@ mod io {
         asset: *mut wire_cst_list_prim_u_8_strict,
         network: i32,
         base_url: *mut wire_cst_list_prim_u_8_strict,
+        deduct_fee: *mut u32,
     ) {
         wire__crate__api__wallet__wallet_build_payjoin_tx_impl(
             port_,
@@ -4663,6 +4667,7 @@ mod io {
             asset,
             network,
             base_url,
+            deduct_fee,
         )
     }
 
@@ -6288,6 +6293,7 @@ mod web {
         asset: String,
         network: i32,
         base_url: Option<String>,
+        deduct_fee: Option<u32>,
     ) {
         wire__crate__api__wallet__wallet_build_payjoin_tx_impl(
             port_,
@@ -6297,6 +6303,7 @@ mod web {
             asset,
             network,
             base_url,
+            deduct_fee,
         )
     }
 

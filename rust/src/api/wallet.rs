@@ -219,6 +219,7 @@ impl Wallet {
         asset: String,
         network: Network,
         base_url: Option<String>,
+        deduct_fee: Option<u32>,
     ) -> anyhow::Result<super::types::PayjoinTx, LwkError> {
         let wallet = self.get_wallet()?;
 
@@ -283,7 +284,7 @@ impl Wallet {
                     asset_id: asset,
                     amount: sats,
                 }],
-                deduct_fee: None,
+                deduct_fee: deduct_fee.map(|v| v as usize),
                 fee_asset: asset,
             },
         )
@@ -598,7 +599,7 @@ mod tests {
         );
 
         let payjoin = wallet
-            .build_payjoin_tx(10000, out_address, asset.to_owned(), network, None)
+            .build_payjoin_tx(10000, out_address, asset.to_owned(), network, None, None)
             .unwrap();
         println!("asset_fee: {}", payjoin.asset_fee);
 

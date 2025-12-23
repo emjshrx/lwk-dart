@@ -1388,9 +1388,10 @@ class LwkCoreWire implements BaseWire {
           String out_address,
           String asset,
           int network,
-          String? base_url) =>
+          String? base_url,
+          JSAny? deduct_fee) =>
       wasmModule.wire__crate__api__wallet__wallet_build_payjoin_tx(
-          port_, that, sats, out_address, asset, network, base_url);
+          port_, that, sats, out_address, asset, network, base_url, deduct_fee);
 
   void wire__crate__api__wallet__wallet_decode_tx(
           NativePortType port_, JSAny that, String pset) =>
@@ -1675,7 +1676,8 @@ extension type LwkCoreWasmModule._(JSObject _) implements JSObject {
       String out_address,
       String asset,
       int network,
-      String? base_url);
+      String? base_url,
+      JSAny? deduct_fee);
 
   external void wire__crate__api__wallet__wallet_decode_tx(
       NativePortType port_, JSAny that, String pset);
