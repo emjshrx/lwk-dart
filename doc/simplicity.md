@@ -1,68 +1,73 @@
 # Simplicity Smart-Contract Primitives (Internal Rust)
 
-This document describes the **internal** Simplicity covenant APIs in `rust/src/contracts/simplicity/`. These primitives support building stateful Simplicity contracts (P2PK, lending, DEX, etc.) inside this repo. They are **not** exposed via `package:lwk/lwk.dart` — only Rust tests and future contract modules use them directly.
+This document describes the **internal** generic Simplicity covenant APIs in `rust/src/contracts/`. These primitives support building stateful Simplicity contracts (P2PK, lending, DEX, etc.) inside this repo. They are **not** exposed via `package:lwk/lwk.dart` — only Rust tests and future contract modules use them directly.
 
-For the public lending API built on these primitives, see **`docs/lending.md`**.
+Dart examples below illustrate the intended API shape when a thin public contract layer is added later.
 
 ## Overview
 
 | Primitive | Purpose |
 |-----------|---------|
-| `SimplicityProgram` | Compile `.simf` sources; sighash, finalize, run, P2PK sign |
-| `StateTaprootBuilder` / `StateTaprootSpendInfo` | Stateful Taproot addresses (program + data leaves) |
-| `SimplicityRunResult` | Program/witness byte split from an offline `run` |
-| `lwk_wollet::ExternalUtxo` | Describe covenant UTXOs not tracked by the LWK wallet |
-| `elements::pset::*` | PSET / transaction construction (upstream) |
-
-Typed program parameters and witnesses use upstream `simplicityhl::{Arguments, WitnessValues, Value}` directly (no local wrappers).
+| `SimplicityProgram` | Compile and run `.simf` sources |
+| `SimplicityArguments` / `SimplicityWitnessValues` | Typed program parameters and witnesses |
+| `SimplicityTypedValue` / `SimplicityType` | Build and parse typed Simplicity values |
+| `StateTaprootBuilder` | Stateful Taproot addresses (program + data leaves) |
+| `ExternalUtxo` | Describe covenant UTXOs not owned by the wallet |
+| `PsetBuilder` | PSET / transaction construction |
 
 ## 1. Compiling a Program
 
-Example P2PK program (same source as `integration_test.rs`):
+```dart
+final pubkey = await simplicityDeriveXonlyPubkey(
+  signer: signer,
+  derivationPath: "m/86'/1'/0'/0/0",
+);
 
+final args = SimplicityArguments()
+    .addValue(
+      name: 'ALICE_PUBLIC_KEY',
+      value: SimplicityTypedValue.u256(bytes: pubkey.toBytes()),
+    );
+
+final program = await SimplicityProgram.loadWithArguments(
+  source: p2pkSource,
+  arguments: args,
+);
+
+final cmr = program.cmr();
 ```
-fn main() {
-    jet::bip_0340_verify(
-        (param::ALICE_PUBLIC_KEY, jet::sig_all_hash()),
-        witness::ALICE_SIGNATURE)
-}
-```
+
+In Rust:
 
 ```rust
-use std::collections::HashMap;
-use lwk_simplicity::simplicityhl::{Arguments, Value};
-use lwk_simplicity::simplicityhl::num::U256;
-use lwk_simplicity::simplicityhl::parse::ParseFromStr;
-use lwk_simplicity::simplicityhl::str::WitnessName;
-use lwk_simplicity::simplicityhl::value::ValueConstructible;
-
-let mut map = HashMap::new();
-map.insert(
-    WitnessName::parse_from_str("ALICE_PUBLIC_KEY").unwrap(),
-    Value::u256(U256::from_byte_array(pubkey_bytes)),
-);
-let args = Arguments::from(map);
-
-let program = SimplicityProgram::load_with_arguments(P2PK_SOURCE.to_string(), &args)?;
-let cmr = program.cmr();
+let program = SimplicityProgram::load_with_arguments(
+    P2PK_SOURCE.to_string(),
+    &SimplicityArguments::new().add_value(
+        "ALICE_PUBLIC_KEY".into(),
+        SimplicityTypedValue::u256(pubkey_bytes).unwrap(),
+    ),
+)?;
 ```
 
 ## 2. Building Stateful Taproot Addresses
 
 For covenants that store on-chain state, build a Taproot tree with a **program leaf** and optional **data leaves** (32-byte storage slots):
 
-```rust
-let spend = StateTaprootBuilder::new()
-    .add_simplicity_leaf(1, program.cmr())?
-    .add_data_leaf(1, state_bytes)? // 32 bytes
-    .finalize(&internal_key)?;
+```dart
+final builder = StateTaprootBuilder()
+    .addSimplicityLeaf(depth: 1, cmr: program.cmr())
+    .addDataLeaf(depth: 1, data: stateBytes); // 32 bytes
 
-let script = spend.script_pubkey();
+final spendInfo = builder.finalize(internalKey: internalKey);
+
+// Address / script for receiving funds
+final script = spendInfo.scriptPubkey();
+
 // IMPORTANT: use output_key for signing and finalization
-let program_public_key = spend.output_key();
+final programPublicKey = spendInfo.outputKey();
 ```
 
-For a simple single-leaf P2PK covenant (no state slot), use depth `0` with only a program leaf, or `SimplicityProgram::create_p2tr_address()`.
+For a simple single-leaf P2PK covenant (no state slot), use depth `0` with only a program leaf, or `SimplicityProgram.createP2trAddress()`.
 
 ### Unspendable internal key
 
@@ -72,106 +77,134 @@ Many protocols use the standard unspendable internal key (BIP-341 NUMS point):
 50929b74c1a04954b78b4b6035e97a5e078a5a0f28ec96d547bfee9ace803ac0
 ```
 
-Available as `UNSPENDABLE_TAPROOT_PUBKEY`.
+In Rust this is `UNSPENDABLE_TAPROOT_PUBKEY`; in Dart pass it to `XOnlyPublicKey.fromString`.
 
-## 3. Which Public Key to Use
+## 3. Deriving Covenant Script Hashes
 
-Taproot addresses have two related keys:
+When a contract references another program's script hash (e.g. for cross-covenant checks):
 
-| Key | Meaning |
-|-----|---------|
-| **Internal key** | The key passed to `StateTaprootBuilder::finalize` (or to `create_p2tr_address`). Often a NUMS / unspendable point when only script-path spends are intended. |
-| **Output key** (`Q`) | The tweaked key committed in the on-chain `scriptPubKey` after the Merkle tree tweak. |
-
-| Scenario | Key for `get_sighash_all` / `finalize_transaction` |
-|----------|-----------------------------------------------------|
-| Simple P2TR (`create_p2tr_address`) | Internal x-only key passed when creating the address |
-| Stateful taproot (`StateTaprootBuilder`) | **`StateTaprootSpendInfo::output_key()`** — not the internal key |
-
-Using the wrong key produces invalid signatures or witness rejection.
-
-## 4. Building and Spending a Covenant Transaction
-
-Covenant outputs are typically **not tracked by the LWK wallet**. Build the spend with Elements PSET types (see `integration_test.rs`):
-
-```rust
-let mut input = Input::from_prevout(outpoint);
-input.witness_utxo = Some(funding_out);
-
-let mut pset = PartiallySignedTransaction::new_v2();
-pset.add_input(input);
-pset.add_output(recipient);
-pset.add_output(change);
-let tx_bytes = elements::encode::serialize(&pset.extract_tx()?);
+```dart
+final scriptHash = hashScript(script: spendInfo.scriptPubkey());
+// 32-byte SHA256 of the script consensus bytes
 ```
+
+## 4. Building Witness Values for `Either` Paths
+
+Parse witness expressions against a declared type:
+
+```dart
+final eitherType = SimplicityType.fromString(s: 'Either<u32, u32>');
+
+// Left branch
+final leftWitness = SimplicityTypedValue.parse(
+  valueStr: 'Left(42)',
+  ty: eitherType,
+);
+
+final witness = SimplicityWitnessValues()
+    .addValue(name: 'PATH', value: leftWitness);
+```
+
+Construct values programmatically:
+
+```dart
+final rightValue = SimplicityTypedValue.right(
+  leftType: SimplicityType.u32(),
+  value: SimplicityTypedValue.u32(value: 99),
+);
+```
+
+## 5. Building and Spending a Covenant Transaction
+
+Covenant outputs are typically **not** in your LWK wallet. Build the spend with `PsetBuilder` (see `integration_test.rs`):
+
+```dart
+final inputBuilder = PsetInputBuilder.fromPrevout(outpoint: fundingOutpoint);
+inputBuilder.witnessUtxo(utxo: fundingOutput);
+final input = inputBuilder.build();
+
+final pset = PsetBuilder.newV2();
+pset.addInput(input: input);
+pset.addOutput(output: recipient);
+pset.addOutput(output: change);
+final txBytes = await pset.build().extractTxBytes();
+```
+
+`ExternalUtxo` wraps outpoint + txout + unblinded secrets for future wallet/`TxBuilder` integration; the offline P2PK test builds directly from `PsetBuilder`.
 
 For P2PK covenants, sign with the program key:
 
-```rust
-let keypair = derive_keypair(mnemonic, network, path)?;
-let signature = program.create_p2pk_signature(
-    &keypair,
-    tx_bytes.clone(),
-    utxos_hex.clone(),
-    0,
-    network,
-)?;
+```dart
+final signature = await program.createP2pkSignature(
+  signer: signer,
+  derivationPath: path,
+  txBytes: txBytes,
+  utxosHex: [fundingOutputHex],
+  inputIndex: 0,
+  network: LiquidNetwork.testnet,
+);
 ```
 
-## 5. Finalizing vs Running
+## 6. Finalizing the Transaction
 
-**`finalize_transaction`** attaches the Simplicity witness stack to a transaction input and returns serialized tx bytes. The resulting input witness has **4 stack elements**:
+Attach the Simplicity witness stack:
+
+```dart
+final witness = SimplicityWitnessValues()
+    .addValue(
+      name: 'ALICE_SIGNATURE',
+      value: SimplicityTypedValue.byteArray(bytes: signature),
+    );
+
+final finalizedBytes = await program.finalizeTransactionWithValues(
+  txBytes: txBytes,
+  programPublicKeyHex: programPublicKey.toStringRepr(),
+  utxosHex: [fundingOutputHex],
+  inputIndex: 0,
+  witnessValues: witness,
+  network: LiquidNetwork.testnet,
+  logLevel: SimplicityLogLevel.none,
+);
+```
+
+The resulting input witness has **4 stack elements**:
 
 ```
 [witness_bytes, program_bytes, cmr_bytes, control_block]
 ```
 
-**`run`** executes the program offline in a transaction environment for verification / debugging. It does **not** mutate the transaction. Use `SimplicityRunResult` (and `simplicity_control_block`) to inspect or rebuild the witness stack.
+You can verify this with `program.run()` and `simplicityControlBlock()`.
 
-```rust
-let mut map = HashMap::new();
-map.insert(
-    WitnessName::parse_from_str("ALICE_SIGNATURE").unwrap(),
-    Value::byte_array(signature),
-);
-let witness = WitnessValues::from(map);
+## 7. Which Public Key to Use
 
-let finalized = program.finalize_transaction(
-    tx_bytes.clone(),
-    program_public_key.to_string(),
-    utxos_hex.clone(),
-    0,
-    &witness,
-    network,
-)?;
+| Scenario | Key for `getSighashAll` / `finalizeTransaction` |
+|----------|------------------------------------------------|
+| Simple P2TR (`createP2trAddress`) | Internal x-only key passed to `finalize()` |
+| Stateful taproot (`StateTaprootBuilder`) | **`StateTaprootSpendInfo.outputKey()`** — not the internal key |
 
-let run_result = program.run(
-    tx_bytes,
-    program_public_key.to_string(),
-    utxos_hex,
-    0,
-    &witness,
-    network,
-)?;
+Using the wrong key produces invalid signatures or witness rejection.
+
+## 8. PSET Building (Low-Level)
+
+When you need full control:
+
+```dart
+final pset = PsetBuilder.newV2();
+pset.addInput(input: inputBuilder.build());
+pset.addOutput(output: outputBuilder.build());
+pset.setFallbackLocktime(height: 1000);
+final built = pset.build();
 ```
+
+Sequence constants for PSET inputs (`ZERO`, `ENABLE_LOCKTIME_NO_RBF`, `MAX`) can be inlined where needed (see Bitcoin/Elements `nSequence` consensus rules).
 
 ## Example: Minimal P2PK Flow
 
-```rust
-// 1. Derive key and compile the P2PK program above with ALICE_PUBLIC_KEY
-let keypair = derive_keypair(mnemonic, LiquidNetwork::Testnet, "m/86'/1'/0'/0/0")?;
-let internal_key = keypair.x_only_public_key().0;
-let program = SimplicityProgram::load_with_arguments(P2PK_SOURCE.into(), &p2pk_args(&internal_key))?;
+1. Derive x-only pubkey from signer
+2. `SimplicityProgram.loadWithArguments` with pubkey parameter
+3. `StateTaprootBuilder` → `finalize` → fund the `scriptPubkey()`
+4. `PsetBuilder` to construct the spend tx
+5. `createP2pkSignature` → `SimplicityWitnessValues` → `finalizeTransactionWithValues`
+6. Broadcast finalized tx bytes
 
-// 2. Build a single-leaf Taproot address and fund its script_pubkey
-let spend = StateTaprootBuilder::new()
-    .add_simplicity_leaf(0, program.cmr())?
-    .finalize(&internal_key)?;
-
-// 3. Build a spend PSET with elements::pset, extract tx bytes
-// 4. Sign and finalize
-let signature = program.create_p2pk_signature(&keypair, tx_bytes.clone(), utxos_hex.clone(), 0, network)?;
-let finalized = program.finalize_transaction(tx_bytes, internal_key.to_string(), utxos_hex, 0, &witness, network)?;
-```
-
-See `rust/src/contracts/simplicity/integration_test.rs` for a complete offline Rust test of this flow.
+See `rust/src/contracts/simplicity/integration_test.rs` for a complete offline Rust test of steps 2–6.

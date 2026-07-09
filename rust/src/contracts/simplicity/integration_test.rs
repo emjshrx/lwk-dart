@@ -2,29 +2,19 @@
 
 #[cfg(test)]
 mod p2pk_e2e {
-    use std::collections::HashMap;
-    use std::str::FromStr;
-
-    use lwk_simplicity::simplicityhl::num::U256;
-    use lwk_simplicity::simplicityhl::parse::ParseFromStr;
-    use lwk_simplicity::simplicityhl::str::WitnessName;
-    use lwk_simplicity::simplicityhl::value::ValueConstructible;
-    use lwk_simplicity::simplicityhl::{Arguments, Value, WitnessValues};
-    use lwk_wollet::elements::bitcoin::XOnlyPublicKey;
-    use lwk_wollet::elements::confidential::{
-        Asset, AssetBlindingFactor, Nonce, Value as ConfValue, ValueBlindingFactor,
-    };
-    use lwk_wollet::elements::encode::serialize;
     use lwk_wollet::elements::pset::serialize::Deserialize;
-    use lwk_wollet::elements::pset::{Input, Output, PartiallySignedTransaction};
-    use lwk_wollet::elements::{
-        AssetId, OutPoint, Script, Transaction, TxOut, TxOutSecrets, TxOutWitness, Txid,
-    };
+    use lwk_wollet::elements::Transaction;
 
-    use crate::api::types::LiquidNetwork;
+    use crate::contracts::blockdata::{ElementsOutPoint, ElementsTxOut, ElementsTxOutSecrets};
+    use crate::contracts::external_utxo::ExternalUtxo;
+    use crate::contracts::pset::{PsetBuilder, PsetInputBuilder, PsetOutputBuilder};
+    use crate::contracts::signer::Signer;
     use crate::contracts::simplicity::{
-        derive_keypair, simplicity_control_block, SimplicityProgram, StateTaprootBuilder,
+        simplicity_control_block, simplicity_derive_xonly_pubkey, SimplicityArguments,
+        SimplicityLogLevel, SimplicityProgram, SimplicityTypedValue, SimplicityWitnessValues,
+        StateTaprootBuilder,
     };
+    use crate::api::types::LiquidNetwork;
 
     const P2PK_SOURCE: &str = concat!(
         "fn main() {\n",
@@ -41,47 +31,25 @@ mod p2pk_e2e {
     const MNEMONIC: &str =
         "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about";
 
-    fn explicit_txout(script: Script, asset_id: &str, satoshi: u64) -> TxOut {
-        TxOut {
-            script_pubkey: script,
-            asset: Asset::Explicit(AssetId::from_str(asset_id).unwrap()),
-            value: ConfValue::Explicit(satoshi),
-            nonce: Nonce::Null,
-            witness: TxOutWitness::default(),
-        }
-    }
-
-    fn p2pk_args(pubkey: &XOnlyPublicKey) -> Arguments {
-        let mut map = HashMap::new();
-        map.insert(
-            WitnessName::parse_from_str("ALICE_PUBLIC_KEY").unwrap(),
-            Value::u256(U256::from_byte_array(pubkey.serialize())),
-        );
-        Arguments::from(map)
-    }
-
-    fn witness_signature(signature: Vec<u8>) -> WitnessValues {
-        let mut map = HashMap::new();
-        map.insert(
-            WitnessName::parse_from_str("ALICE_SIGNATURE").unwrap(),
-            Value::byte_array(signature),
-        );
-        WitnessValues::from(map)
-    }
-
     #[test]
     fn test_p2pk_finalize_witness_shape() {
         let network = LiquidNetwork::Testnet;
-        let derivation_path = "m/86'/1'/0'/0/0";
-        let keypair = derive_keypair(MNEMONIC, network, derivation_path).unwrap();
-        let internal_key = keypair.x_only_public_key().0;
+        let signer = Signer::new(MNEMONIC.to_string(), network).unwrap();
+        let derivation_path = "m/86'/1'/0'/0/0".to_string();
+        let internal_key = simplicity_derive_xonly_pubkey(&signer, derivation_path.clone()).unwrap();
+        let pubkey_bytes = internal_key.to_bytes();
 
-        let program =
-            SimplicityProgram::load_with_arguments(P2PK_SOURCE.to_string(), &p2pk_args(&internal_key))
-                .unwrap();
+        let program = SimplicityProgram::load_with_arguments(
+            P2PK_SOURCE.to_string(),
+            &SimplicityArguments::new().add_value(
+                "ALICE_PUBLIC_KEY".into(),
+                SimplicityTypedValue::u256(pubkey_bytes).unwrap(),
+            ),
+        )
+        .unwrap();
 
         let spend = StateTaprootBuilder::new()
-            .add_simplicity_leaf(0, program.cmr())
+            .add_simplicity_leaf(0, &program.cmr())
             .unwrap()
             .finalize(&internal_key)
             .unwrap();
@@ -89,49 +57,64 @@ mod p2pk_e2e {
 
         let funded_sats = 100_000u64;
         let send_amount = 50_000u64;
-        let funding_out = explicit_txout(covenant_script.clone(), POLICY_ASSET, funded_sats);
+        let funding_out =
+            ElementsTxOut::from_explicit(covenant_script.to_hex(), POLICY_ASSET.into(), funded_sats)
+                .unwrap();
 
-        let funding_txid = Txid::from_str(&"ab".repeat(32)).unwrap();
-        let outpoint = OutPoint::new(funding_txid, 0);
+        let funding_txid = "ab".repeat(32);
+        let outpoint = ElementsOutPoint::from_parts(funding_txid.clone(), 0).unwrap();
 
-        let mut input = Input::from_prevout(outpoint);
-        input.witness_utxo = Some(funding_out.clone());
-
-        let recipient = Output::new_explicit(
-            Script::new_op_return(&[0x01]),
+        let recipient = PsetOutputBuilder::new_op_return(
+            vec![0x01],
             send_amount,
-            AssetId::from_str(POLICY_ASSET).unwrap(),
-            None,
-        );
-        let change = Output::new_explicit(
-            covenant_script,
-            funded_sats - send_amount,
-            AssetId::from_str(POLICY_ASSET).unwrap(),
-            None,
-        );
+            POLICY_ASSET.into(),
+        )
+        .unwrap()
+        .build()
+        .unwrap();
+        let change = PsetOutputBuilder::new_explicit(&covenant_script, funded_sats - send_amount, POLICY_ASSET.into())
+            .unwrap()
+            .build()
+            .unwrap();
 
-        let mut pset = PartiallySignedTransaction::new_v2();
-        pset.add_input(input);
-        pset.add_output(recipient);
-        pset.add_output(change);
-        let tx_bytes = serialize(&pset.extract_tx().unwrap());
+        let input_builder = PsetInputBuilder::from_prevout(&outpoint);
+        input_builder.witness_utxo(&funding_out).unwrap();
+        let input = input_builder.build().unwrap();
 
-        let utxos_hex = vec![hex::encode(serialize(&funding_out))];
-        let program_pk = internal_key.to_string();
+        let builder = PsetBuilder::new_v2();
+        builder.add_input(&input).unwrap();
+        builder.add_output(&recipient).unwrap();
+        builder.add_output(&change).unwrap();
+        let tx_bytes = builder.build().unwrap().extract_tx_bytes().unwrap();
+
+        let utxos_hex = vec![hex::encode(funding_out.to_bytes())];
+        let program_pk = internal_key.to_string_repr();
 
         let signature = program
-            .create_p2pk_signature(&keypair, tx_bytes.clone(), utxos_hex.clone(), 0, network)
+            .create_p2pk_signature(
+                &signer,
+                derivation_path.clone(),
+                tx_bytes.clone(),
+                utxos_hex.clone(),
+                0,
+                network,
+            )
             .unwrap();
-        let witness_values = witness_signature(signature);
+
+        let witness_values = SimplicityWitnessValues::new().add_value(
+            "ALICE_SIGNATURE".into(),
+            SimplicityTypedValue::byte_array(signature),
+        );
 
         let finalized = program
-            .finalize_transaction(
+            .finalize_transaction_with_values(
                 tx_bytes.clone(),
                 program_pk.clone(),
                 utxos_hex.clone(),
                 0,
                 &witness_values,
                 network,
+                SimplicityLogLevel::None,
             )
             .unwrap();
 
@@ -151,15 +134,16 @@ mod p2pk_e2e {
                 0,
                 &witness_values,
                 network,
+                SimplicityLogLevel::None,
             )
             .unwrap();
 
-        let control_block = simplicity_control_block(run_result.cmr(), &internal_key).unwrap();
+        let control_block = simplicity_control_block(&run_result.cmr(), &internal_key).unwrap();
         let manual_witness = vec![
             run_result.witness_bytes(),
             run_result.program_bytes(),
-            run_result.cmr().to_byte_array().to_vec(),
-            control_block.serialize(),
+            run_result.cmr().to_bytes(),
+            control_block.to_bytes(),
         ];
         assert_eq!(*script_witness, manual_witness);
     }
@@ -167,36 +151,42 @@ mod p2pk_e2e {
     #[test]
     fn test_external_utxo_construction() {
         let network = LiquidNetwork::Testnet;
-        let keypair = derive_keypair(MNEMONIC, network, "m/86'/1'/0'/0/0").unwrap();
-        let internal_key = keypair.x_only_public_key().0;
+        let signer = Signer::new(MNEMONIC.to_string(), network).unwrap();
+        let internal_key =
+            simplicity_derive_xonly_pubkey(&signer, "m/86'/1'/0'/0/0".into()).unwrap();
+        let pubkey_bytes = internal_key.to_bytes();
 
-        let program =
-            SimplicityProgram::load_with_arguments(P2PK_SOURCE.to_string(), &p2pk_args(&internal_key))
-                .unwrap();
+        let program = SimplicityProgram::load_with_arguments(
+            P2PK_SOURCE.to_string(),
+            &SimplicityArguments::new().add_value(
+                "ALICE_PUBLIC_KEY".into(),
+                SimplicityTypedValue::u256(pubkey_bytes).unwrap(),
+            ),
+        )
+        .unwrap();
 
         let spend = StateTaprootBuilder::new()
-            .add_simplicity_leaf(0, program.cmr())
+            .add_simplicity_leaf(0, &program.cmr())
             .unwrap()
             .finalize(&internal_key)
             .unwrap();
 
-        let txout = explicit_txout(spend.script_pubkey(), POLICY_ASSET, 100_000);
-        let outpoint = OutPoint::new(Txid::from_str(&"cd".repeat(32)).unwrap(), 0);
-        let asset = AssetId::from_str(POLICY_ASSET).unwrap();
-        let unblinded = TxOutSecrets::new(
-            asset,
-            AssetBlindingFactor::zero(),
+        let txout = ElementsTxOut::from_explicit(
+            spend.script_pubkey().to_hex(),
+            POLICY_ASSET.into(),
             100_000,
-            ValueBlindingFactor::zero(),
-        );
+        )
+        .unwrap();
+        let outpoint =
+            ElementsOutPoint::from_parts("cd".repeat(32), 0).unwrap();
+        let unblinded = ElementsTxOutSecrets::from_explicit(POLICY_ASSET.into(), 100_000).unwrap();
 
-        let external = lwk_wollet::ExternalUtxo {
-            outpoint,
-            txout,
-            tx: None,
-            unblinded,
-            max_weight_to_satisfy: 700,
-        };
-        assert_eq!(external.max_weight_to_satisfy, 700);
+        let external = ExternalUtxo::from_unchecked_data(
+            &outpoint,
+            &txout,
+            &unblinded,
+            700,
+        );
+        assert_eq!(external.inner.max_weight_to_satisfy, 700);
     }
 }

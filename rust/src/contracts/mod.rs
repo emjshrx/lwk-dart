@@ -1,6 +1,6 @@
-//! Internal Simplicity covenant primitives (not exposed via FRB / Dart).
-
 mod lwk_error;
+pub mod blockdata;
+pub mod external_utxo;
+pub mod pset;
+pub mod signer;
 pub mod simplicity;
-
-mod lending;

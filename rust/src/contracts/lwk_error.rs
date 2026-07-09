@@ -41,6 +41,14 @@ impl From<lwk_wollet::elements::bitcoin::secp256k1::Error> for LwkError {
     }
 }
 
+impl From<lwk_wollet::elements_miniscript::psbt::Error> for LwkError {
+    fn from(value: lwk_wollet::elements_miniscript::psbt::Error) -> Self {
+        LwkError {
+            msg: format!("{value:?}"),
+        }
+    }
+}
+
 impl From<std::array::TryFromSliceError> for LwkError {
     fn from(value: std::array::TryFromSliceError) -> Self {
         LwkError {

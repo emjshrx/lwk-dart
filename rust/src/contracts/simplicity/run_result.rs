@@ -1,14 +1,11 @@
 use lwk_simplicity::simplicityhl;
-use lwk_simplicity::simplicityhl::simplicity::Cmr;
+
+use crate::contracts::simplicity::Cmr;
 
 /// Result of running a Simplicity program in a transaction environment.
-///
-/// Separates the redeem-node encoding into program bytes and witness bytes so
-/// callers can rebuild or inspect the four-element Simplicity witness stack.
 pub struct SimplicityRunResult {
-    pub(crate) pruned: std::sync::Arc<
-        simplicityhl::simplicity::RedeemNode<simplicityhl::simplicity::jet::Elements>,
-    >,
+    pub(crate) pruned:
+        std::sync::Arc<simplicityhl::simplicity::RedeemNode<simplicityhl::simplicity::jet::Elements>>,
     pub(crate) value: simplicityhl::simplicity::Value,
 }
 
@@ -22,7 +19,7 @@ impl SimplicityRunResult {
     }
 
     pub fn cmr(&self) -> Cmr {
-        self.pruned.cmr()
+        self.pruned.cmr().into()
     }
 
     pub fn value(&self) -> String {
