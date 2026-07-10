@@ -1,7 +1,6 @@
 //! Simplicity lending port — orchestration over the internal Simplicity stack.
 //!
-//! Contract sources are vendored under `simf/` and pinned to the rev in
-//! `rust/LENDING_CONTRACTS_REV`.
+//! Contract sources live in the `vendor/simplicity-lending` git submodule.
 
 #![allow(dead_code, unused_imports)]
 
@@ -21,25 +20,13 @@ pub(crate) use offer::LendingOffer;
 pub(crate) use script_auth::ScriptAuth;
 pub(crate) use transaction::LendingTransaction;
 
-/// Upstream `simplicity-lending` git rev the vendored `.simf` sources were copied from.
-pub const LENDING_CONTRACTS_REV: &str =
-    include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/LENDING_CONTRACTS_REV"));
-
 #[cfg(test)]
 mod tests {
     use super::simf;
-    use super::LENDING_CONTRACTS_REV;
     use crate::contracts::simplicity::{SimplicityArguments, SimplicityProgram, SimplicityTypedValue};
 
     #[test]
-    fn lending_contracts_rev_is_pinned_git_sha() {
-        let rev = LENDING_CONTRACTS_REV.trim();
-        assert_eq!(rev.len(), 40);
-        assert!(rev.chars().all(|c| c.is_ascii_hexdigit()));
-    }
-
-    #[test]
-    fn vendored_simf_sources_are_present() {
+    fn submodule_simf_sources_are_present() {
         for source in [
             simf::LENDING,
             simf::ASSET_AUTH,

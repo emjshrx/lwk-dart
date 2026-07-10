@@ -1,0 +1,3 @@
+[submodule "vendor/simplicity-lending"]
+	path = vendor/simplicity-lending
+	url = https://github.com/BlockstreamResearch/simplicity-lending.git
