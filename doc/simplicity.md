@@ -2,6 +2,8 @@
 
 This document describes the **internal** Simplicity covenant APIs in `rust/src/contracts/simplicity/`. These primitives support building stateful Simplicity contracts (P2PK, lending, DEX, etc.) inside this repo. They are **not** exposed via `package:lwk/lwk.dart` — only Rust tests and future contract modules use them directly.
 
+For the public lending API built on these primitives, see **`docs/lending.md`**.
+
 ## Overview
 
 | Primitive | Purpose |
