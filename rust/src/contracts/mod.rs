@@ -4,3 +4,5 @@ pub mod external_utxo;
 pub mod pset;
 pub mod signer;
 pub mod simplicity;
+
+mod lending;
