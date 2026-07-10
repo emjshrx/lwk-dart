@@ -5,7 +5,7 @@ lwk-dart already ships internal Simplicity primitives (`SimplicityProgram`, `Sta
 **Considered options**
 
 - **Wrap `lending-contracts`** — add `lending-contracts` + `smplx-std` as dependencies and expose types through FRB. Canonical upstream logic, but introduces a second transaction-building stack alongside the one we built for this purpose.
-- **Port onto internal stack (chosen)** — reimplement `LendingOffer`, `IssuanceFactory`, and supporting orchestration using existing `rust/src/contracts/` primitives; vendor `.simf` sources with a pinned upstream rev.
+- **Port onto internal stack (chosen)** — reimplement `LendingOffer`, `IssuanceFactory`, and supporting orchestration using existing `rust/src/contracts/` primitives; source `.simf` files from a pinned `simplicity-lending` git submodule (see ADR-0003).
 - **Expose generic Simplicity API only** — publish `doc/simplicity.md` primitives to Dart and leave lending wiring to consumers. Too low-level for the target mobile-wallet use case.
 
 **Consequences**

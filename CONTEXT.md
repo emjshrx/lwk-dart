@@ -13,8 +13,8 @@ A lending covenant on-chain, progressing through pending (pre-lock) â†’ active â
 _Avoid_: Loan, contract
 
 **Protocol Version**:
-The `.simf` contract sources vendored in-repo, pinned to a specific `simplicity-lending` git rev recorded in the manifest. Upgrades are explicit: bump rev, re-copy sources, re-run integration tests.
-_Avoid_: Submodule, runtime fetch
+The `.simf` contract sources from [simplicity-lending](https://github.com/BlockstreamResearch/simplicity-lending), pinned via a git submodule at `vendor/simplicity-lending`. Upgrades are explicit: bump the submodule commit, re-run integration tests.
+_Avoid_: Manual file copies, runtime fetch, `lending-contracts` crate dependency
 
 **Network (lending)**:
 Liquid testnet is the supported and tested network for v1. Mainnet types compile but require explicit opt-in (`allowMainnet: true` or equivalent) before any lending or indexer call succeeds.

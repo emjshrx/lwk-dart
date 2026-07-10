@@ -94,9 +94,19 @@ Borrower creation follows the upstream CLI example (`crates/cli/examples/loan_re
 
 ## Contract sources
 
-`.simf` files are **vendored** under `rust/src/contracts/lending/simf/`, pinned to a specific `simplicity-lending` git rev recorded in the manifest (e.g. `rust/LENDING_CONTRACTS_REV`). Upgrades: bump rev, re-copy sources, re-run integration tests.
+`.simf` files live in the **`vendor/simplicity-lending` git submodule** (upstream path: `crates/contracts/simf/`). The pinned rev is the submodule commit recorded in the parent repo. Rust loads sources via `include_str!` in `rust/src/contracts/lending/simf/mod.rs`.
+
+After cloning, initialize submodules:
+
+```bash
+git submodule update --init --recursive
+```
+
+Upgrades: bump the submodule commit, re-run integration tests.
 
 Upstream programs: `lending.simf`, `asset_auth.simf`, `asset_auth_vault.simf`, `issuance_factory.simf`, `script_auth.simf`.
+
+See `docs/adr/0003-lending-contract-sources-submodule.md`.
 
 ## Indexer endpoints
 
@@ -122,7 +132,7 @@ Pattern matches existing `rust/src/contracts/simplicity/integration_test.rs` and
 
 ## Implementation phases
 
-1. Vendor `.simf` + module scaffold + `LendingTransaction`
+1. Submodule `.simf` + module scaffold + `LendingTransaction`
 2. `LendingOffer` — pending creation spike (`newPending`, `attachCreation`)
 3. `LendingOffer` — full lifecycle (accept, cancel, repay, liquidate, claim)
 4. `IssuanceFactory` + utility NFT setup flow
@@ -137,4 +147,4 @@ Track progress via GitHub issues on [`emjshrx/lwk-dart`](https://github.com/emjs
 - Upstream: https://github.com/BlockstreamResearch/simplicity-lending
 - Internal primitives: `doc/simplicity.md`
 - Glossary: `CONTEXT.md`
-- ADRs: `docs/adr/0001-*.md`, `docs/adr/0002-*.md`
+- ADRs: `docs/adr/0001-*.md`, `docs/adr/0002-*.md`, `docs/adr/0003-*.md`
