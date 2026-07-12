@@ -6,6 +6,9 @@
 import 'api/blockchain.dart';
 import 'api/descriptor.dart';
 import 'api/error.dart';
+import 'api/lending/factory.dart';
+import 'api/lending/transaction.dart';
+import 'api/lending/types.dart';
 import 'api/transaction.dart';
 import 'api/types.dart';
 import 'api/wallet.dart';
@@ -28,12 +31,34 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
           ._rust_arc_decrement_strong_count_RustOpaque_Mutexlwk_wolletWolletPtr;
 
   CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_IssuanceFactoryPtr => wire
+          ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactoryPtr;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_LendingTransactionPtr => wire
+          ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransactionPtr;
+
+  CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_LiquidTransactionPtr => wire
           ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransactionPtr;
 
   CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_PartiallySignedElementsTransactionPtr =>
           wire._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransactionPtr;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_TryFromIssuanceFactoryResultPtr => wire
+          ._rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResultPtr;
+
+  @protected
+  IssuanceFactory
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          dynamic raw);
+
+  @protected
+  LendingTransaction
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          dynamic raw);
 
   @protected
   LiquidTransaction
@@ -43,6 +68,26 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   @protected
   PartiallySignedElementsTransaction
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
+          dynamic raw);
+
+  @protected
+  TryFromIssuanceFactoryResult
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          dynamic raw);
+
+  @protected
+  LendingTransaction
+      dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          dynamic raw);
+
+  @protected
+  IssuanceFactory
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          dynamic raw);
+
+  @protected
+  LendingTransaction
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
           dynamic raw);
 
   @protected
@@ -56,7 +101,22 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
           dynamic raw);
 
   @protected
+  TryFromIssuanceFactoryResult
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          dynamic raw);
+
+  @protected
   MutexWollet dco_decode_RustOpaque_Mutexlwk_wolletWollet(dynamic raw);
+
+  @protected
+  IssuanceFactory
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          dynamic raw);
+
+  @protected
+  LendingTransaction
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          dynamic raw);
 
   @protected
   LiquidTransaction
@@ -66,6 +126,11 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   @protected
   PartiallySignedElementsTransaction
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
+          dynamic raw);
+
+  @protected
+  TryFromIssuanceFactoryResult
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
           dynamic raw);
 
   @protected
@@ -88,6 +153,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   Descriptor dco_decode_box_autoadd_descriptor(dynamic raw);
+
+  @protected
+  IssuanceFactoryParameters dco_decode_box_autoadd_issuance_factory_parameters(
+      dynamic raw);
 
   @protected
   PsetInput dco_decode_box_autoadd_pset_input(dynamic raw);
@@ -124,6 +193,20 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   PlatformInt64 dco_decode_i_64(dynamic raw);
+
+  @protected
+  IssuanceDetails dco_decode_issuance_details(dynamic raw);
+
+  @protected
+  IssuanceFactoryParameters dco_decode_issuance_factory_parameters(dynamic raw);
+
+  @protected
+  IssuanceFactoryWitnessBranch dco_decode_issuance_factory_witness_branch(
+      dynamic raw);
+
+  @protected
+  IssuanceFactoryWitnessBranchKind
+      dco_decode_issuance_factory_witness_branch_kind(dynamic raw);
 
   @protected
   LiquidNetwork dco_decode_liquid_network(dynamic raw);
@@ -237,7 +320,20 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   BigInt dco_decode_usize(dynamic raw);
 
   @protected
+  UtilityNftIssuanceResult dco_decode_utility_nft_issuance_result(dynamic raw);
+
+  @protected
   Wallet dco_decode_wallet(dynamic raw);
+
+  @protected
+  IssuanceFactory
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          SseDeserializer deserializer);
+
+  @protected
+  LendingTransaction
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          SseDeserializer deserializer);
 
   @protected
   LiquidTransaction
@@ -247,6 +343,26 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   @protected
   PartiallySignedElementsTransaction
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
+          SseDeserializer deserializer);
+
+  @protected
+  TryFromIssuanceFactoryResult
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          SseDeserializer deserializer);
+
+  @protected
+  LendingTransaction
+      sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          SseDeserializer deserializer);
+
+  @protected
+  IssuanceFactory
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          SseDeserializer deserializer);
+
+  @protected
+  LendingTransaction
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
           SseDeserializer deserializer);
 
   @protected
@@ -260,8 +376,23 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
           SseDeserializer deserializer);
 
   @protected
+  TryFromIssuanceFactoryResult
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          SseDeserializer deserializer);
+
+  @protected
   MutexWollet sse_decode_RustOpaque_Mutexlwk_wolletWollet(
       SseDeserializer deserializer);
+
+  @protected
+  IssuanceFactory
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          SseDeserializer deserializer);
+
+  @protected
+  LendingTransaction
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          SseDeserializer deserializer);
 
   @protected
   LiquidTransaction
@@ -271,6 +402,11 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   @protected
   PartiallySignedElementsTransaction
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
+          SseDeserializer deserializer);
+
+  @protected
+  TryFromIssuanceFactoryResult
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
           SseDeserializer deserializer);
 
   @protected
@@ -293,6 +429,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   Descriptor sse_decode_box_autoadd_descriptor(SseDeserializer deserializer);
+
+  @protected
+  IssuanceFactoryParameters sse_decode_box_autoadd_issuance_factory_parameters(
+      SseDeserializer deserializer);
 
   @protected
   PsetInput sse_decode_box_autoadd_pset_input(SseDeserializer deserializer);
@@ -329,6 +469,22 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   PlatformInt64 sse_decode_i_64(SseDeserializer deserializer);
+
+  @protected
+  IssuanceDetails sse_decode_issuance_details(SseDeserializer deserializer);
+
+  @protected
+  IssuanceFactoryParameters sse_decode_issuance_factory_parameters(
+      SseDeserializer deserializer);
+
+  @protected
+  IssuanceFactoryWitnessBranch sse_decode_issuance_factory_witness_branch(
+      SseDeserializer deserializer);
+
+  @protected
+  IssuanceFactoryWitnessBranchKind
+      sse_decode_issuance_factory_witness_branch_kind(
+          SseDeserializer deserializer);
 
   @protected
   LiquidNetwork sse_decode_liquid_network(SseDeserializer deserializer);
@@ -445,6 +601,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   BigInt sse_decode_usize(SseDeserializer deserializer);
 
   @protected
+  UtilityNftIssuanceResult sse_decode_utility_nft_issuance_result(
+      SseDeserializer deserializer);
+
+  @protected
   Wallet sse_decode_wallet(SseDeserializer deserializer);
 
   @protected
@@ -468,6 +628,16 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
     // Codec=Cst (C-struct based), see doc to use other codecs
     final ptr = wire.cst_new_box_autoadd_descriptor();
     cst_api_fill_to_wire_descriptor(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_issuance_factory_parameters>
+      cst_encode_box_autoadd_issuance_factory_parameters(
+          IssuanceFactoryParameters raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ptr = wire.cst_new_box_autoadd_issuance_factory_parameters();
+    cst_api_fill_to_wire_issuance_factory_parameters(raw, ptr.ref);
     return ptr;
   }
 
@@ -742,6 +912,13 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   }
 
   @protected
+  void cst_api_fill_to_wire_box_autoadd_issuance_factory_parameters(
+      IssuanceFactoryParameters apiObj,
+      ffi.Pointer<wire_cst_issuance_factory_parameters> wireObj) {
+    cst_api_fill_to_wire_issuance_factory_parameters(apiObj, wireObj.ref);
+  }
+
+  @protected
   void cst_api_fill_to_wire_box_autoadd_pset_input(
       PsetInput apiObj, ffi.Pointer<wire_cst_pset_input> wireObj) {
     cst_api_fill_to_wire_pset_input(apiObj, wireObj.ref);
@@ -775,6 +952,30 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   void cst_api_fill_to_wire_descriptor(
       Descriptor apiObj, wire_cst_descriptor wireObj) {
     wireObj.ct_descriptor = cst_encode_String(apiObj.ctDescriptor);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_issuance_details(
+      IssuanceDetails apiObj, wire_cst_issuance_details wireObj) {
+    wireObj.asset_id = cst_encode_String(apiObj.assetId);
+    wireObj.reissuance_token_id = cst_encode_String(apiObj.reissuanceTokenId);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_issuance_factory_parameters(
+      IssuanceFactoryParameters apiObj,
+      wire_cst_issuance_factory_parameters wireObj) {
+    wireObj.issuing_utxos_count = cst_encode_u_8(apiObj.issuingUtxosCount);
+    wireObj.reissuance_flags = cst_encode_u_64(apiObj.reissuanceFlags);
+    wireObj.network = cst_encode_liquid_network(apiObj.network);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_issuance_factory_witness_branch(
+      IssuanceFactoryWitnessBranch apiObj,
+      wire_cst_issuance_factory_witness_branch wireObj) {
+    wireObj.kind = cst_encode_issuance_factory_witness_branch_kind(apiObj.kind);
+    wireObj.output_index = cst_encode_u_32(apiObj.outputIndex);
   }
 
   @protected
@@ -888,9 +1089,26 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   }
 
   @protected
+  void cst_api_fill_to_wire_utility_nft_issuance_result(
+      UtilityNftIssuanceResult apiObj,
+      wire_cst_utility_nft_issuance_result wireObj) {
+    wireObj.borrower_nft_asset_id =
+        cst_encode_String(apiObj.borrowerNftAssetId);
+    wireObj.policy_asset_id = cst_encode_String(apiObj.policyAssetId);
+  }
+
+  @protected
   void cst_api_fill_to_wire_wallet(Wallet apiObj, wire_cst_wallet wireObj) {
     wireObj.inner = cst_encode_RustOpaque_Mutexlwk_wolletWollet(apiObj.inner);
   }
+
+  @protected
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+      IssuanceFactory raw);
+
+  @protected
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      LendingTransaction raw);
 
   @protected
   int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
@@ -901,6 +1119,22 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
       PartiallySignedElementsTransaction raw);
 
   @protected
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+      TryFromIssuanceFactoryResult raw);
+
+  @protected
+  int cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      LendingTransaction raw);
+
+  @protected
+  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+      IssuanceFactory raw);
+
+  @protected
+  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      LendingTransaction raw);
+
+  @protected
   int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
       LiquidTransaction raw);
 
@@ -909,7 +1143,19 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
       PartiallySignedElementsTransaction raw);
 
   @protected
+  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+      TryFromIssuanceFactoryResult raw);
+
+  @protected
   int cst_encode_RustOpaque_Mutexlwk_wolletWollet(MutexWollet raw);
+
+  @protected
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+      IssuanceFactory raw);
+
+  @protected
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      LendingTransaction raw);
 
   @protected
   int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
@@ -920,6 +1166,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
       PartiallySignedElementsTransaction raw);
 
   @protected
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+      TryFromIssuanceFactoryResult raw);
+
+  @protected
   bool cst_encode_bool(bool raw);
 
   @protected
@@ -927,6 +1177,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   int cst_encode_i_32(int raw);
+
+  @protected
+  int cst_encode_issuance_factory_witness_branch_kind(
+      IssuanceFactoryWitnessBranchKind raw);
 
   @protected
   int cst_encode_liquid_network(LiquidNetwork raw);
@@ -942,6 +1196,16 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          IssuanceFactory self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          LendingTransaction self, SseSerializer serializer);
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
           LiquidTransaction self, SseSerializer serializer);
 
@@ -949,6 +1213,26 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
           PartiallySignedElementsTransaction self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          TryFromIssuanceFactoryResult self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          LendingTransaction self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          IssuanceFactory self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          LendingTransaction self, SseSerializer serializer);
 
   @protected
   void
@@ -961,8 +1245,23 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
           PartiallySignedElementsTransaction self, SseSerializer serializer);
 
   @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          TryFromIssuanceFactoryResult self, SseSerializer serializer);
+
+  @protected
   void sse_encode_RustOpaque_Mutexlwk_wolletWollet(
       MutexWollet self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          IssuanceFactory self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          LendingTransaction self, SseSerializer serializer);
 
   @protected
   void
@@ -973,6 +1272,11 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
           PartiallySignedElementsTransaction self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          TryFromIssuanceFactoryResult self, SseSerializer serializer);
 
   @protected
   void sse_encode_String(String self, SseSerializer serializer);
@@ -996,6 +1300,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   @protected
   void sse_encode_box_autoadd_descriptor(
       Descriptor self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_issuance_factory_parameters(
+      IssuanceFactoryParameters self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_pset_input(
@@ -1035,6 +1343,22 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_issuance_details(
+      IssuanceDetails self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_issuance_factory_parameters(
+      IssuanceFactoryParameters self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_issuance_factory_witness_branch(
+      IssuanceFactoryWitnessBranch self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_issuance_factory_witness_branch_kind(
+      IssuanceFactoryWitnessBranchKind self, SseSerializer serializer);
 
   @protected
   void sse_encode_liquid_network(LiquidNetwork self, SseSerializer serializer);
@@ -1156,6 +1480,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   void sse_encode_usize(BigInt self, SseSerializer serializer);
 
   @protected
+  void sse_encode_utility_nft_issuance_result(
+      UtilityNftIssuanceResult self, SseSerializer serializer);
+
+  @protected
   void sse_encode_wallet(Wallet self, SseSerializer serializer);
 }
 
@@ -1195,6 +1523,483 @@ class LwkCoreWire implements BaseWire {
   );
   late final _store_dart_post_cobject = _store_dart_post_cobjectPtr
       .asFunction<void Function(DartPostCObjectFnType)>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__factory__IssuanceFactory_attach_creation(
+    int that,
+    int tx,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> factory_asset_id,
+    int factory_asset_amount,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> policy_asset_id,
+  ) {
+    return _wire__crate__api__lending__factory__IssuanceFactory_attach_creation(
+      that,
+      tx,
+      factory_asset_id,
+      factory_asset_amount,
+      policy_asset_id,
+    );
+  }
+
+  late final _wire__crate__api__lending__factory__IssuanceFactory_attach_creationPtr =
+      _lookup<
+          ffi.NativeFunction<
+              WireSyncRust2DartDco Function(
+                ffi.UintPtr,
+                ffi.UintPtr,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Uint64,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+              )>>(
+    'frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_attach_creation',
+  );
+  late final _wire__crate__api__lending__factory__IssuanceFactory_attach_creation =
+      _wire__crate__api__lending__factory__IssuanceFactory_attach_creationPtr
+          .asFunction<
+              WireSyncRust2DartDco Function(
+                int,
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+              )>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing(
+    int that,
+    int tx,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> program_utxo_txid,
+    int program_utxo_vout,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> program_utxo_script_hex,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> program_utxo_asset_id,
+    int program_utxo_amount,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> policy_asset_id,
+  ) {
+    return _wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing(
+      that,
+      tx,
+      program_utxo_txid,
+      program_utxo_vout,
+      program_utxo_script_hex,
+      program_utxo_asset_id,
+      program_utxo_amount,
+      policy_asset_id,
+    );
+  }
+
+  late final _wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removingPtr =
+      _lookup<
+          ffi.NativeFunction<
+              WireSyncRust2DartDco Function(
+                ffi.UintPtr,
+                ffi.UintPtr,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Uint32,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Uint64,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+              )>>(
+    'frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing',
+  );
+  late final _wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing =
+      _wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removingPtr
+          .asFunction<
+              WireSyncRust2DartDco Function(
+                int,
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+              )>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance(
+    int that,
+    int tx,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> factory_utxo_txid,
+    int factory_utxo_vout,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> factory_utxo_script_hex,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> factory_utxo_asset_id,
+    int factory_utxo_amount,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> asset_entropy,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> policy_asset_id,
+  ) {
+    return _wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance(
+      that,
+      tx,
+      factory_utxo_txid,
+      factory_utxo_vout,
+      factory_utxo_script_hex,
+      factory_utxo_asset_id,
+      factory_utxo_amount,
+      asset_entropy,
+      policy_asset_id,
+    );
+  }
+
+  late final _wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuancePtr =
+      _lookup<
+          ffi.NativeFunction<
+              WireSyncRust2DartDco Function(
+                ffi.UintPtr,
+                ffi.UintPtr,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Uint32,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Uint64,
+                ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+              )>>(
+    'frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance',
+  );
+  late final _wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance =
+      _wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuancePtr
+          .asFunction<
+              WireSyncRust2DartDco Function(
+                int,
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+              )>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count(
+    int that,
+  ) {
+    return _wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count(
+      that,
+    );
+  }
+
+  late final _wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_countPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+    'frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count',
+  );
+  late final _wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count =
+      _wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_countPtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco wire__crate__api__lending__factory__IssuanceFactory_new(
+    ffi.Pointer<wire_cst_issuance_factory_parameters> parameters,
+  ) {
+    return _wire__crate__api__lending__factory__IssuanceFactory_new(parameters);
+  }
+
+  late final _wire__crate__api__lending__factory__IssuanceFactory_newPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  WireSyncRust2DartDco Function(
+                    ffi.Pointer<wire_cst_issuance_factory_parameters>,
+                  )>>(
+          'frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_new');
+  late final _wire__crate__api__lending__factory__IssuanceFactory_new =
+      _wire__crate__api__lending__factory__IssuanceFactory_newPtr.asFunction<
+          WireSyncRust2DartDco Function(
+            ffi.Pointer<wire_cst_issuance_factory_parameters>,
+          )>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__factory__IssuanceFactory_program_id_hex(
+          int that) {
+    return _wire__crate__api__lending__factory__IssuanceFactory_program_id_hex(
+      that,
+    );
+  }
+
+  late final _wire__crate__api__lending__factory__IssuanceFactory_program_id_hexPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+    'frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_program_id_hex',
+  );
+  late final _wire__crate__api__lending__factory__IssuanceFactory_program_id_hex =
+      _wire__crate__api__lending__factory__IssuanceFactory_program_id_hexPtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags(
+    int that,
+  ) {
+    return _wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags(
+      that,
+    );
+  }
+
+  late final _wire__crate__api__lending__factory__IssuanceFactory_reissuance_flagsPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+    'frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags',
+  );
+  late final _wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags =
+      _wire__crate__api__lending__factory__IssuanceFactory_reissuance_flagsPtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex(
+    int that,
+  ) {
+    return _wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex(
+      that,
+    );
+  }
+
+  late final _wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hexPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+    'frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex',
+  );
+  late final _wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex =
+      _wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hexPtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__factory__IssuanceFactory_try_from_tx(
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> tx_bytes,
+    int network,
+  ) {
+    return _wire__crate__api__lending__factory__IssuanceFactory_try_from_tx(
+      tx_bytes,
+      network,
+    );
+  }
+
+  late final _wire__crate__api__lending__factory__IssuanceFactory_try_from_txPtr =
+      _lookup<
+          ffi.NativeFunction<
+              WireSyncRust2DartDco Function(
+                ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+                ffi.Int32,
+              )>>(
+    'frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_try_from_tx',
+  );
+  late final _wire__crate__api__lending__factory__IssuanceFactory_try_from_tx =
+      _wire__crate__api__lending__factory__IssuanceFactory_try_from_txPtr
+          .asFunction<
+              WireSyncRust2DartDco Function(
+                ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+                int,
+              )>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output(
+    int that,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> script_hex,
+    int satoshi,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> asset_id,
+  ) {
+    return _wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output(
+      that,
+      script_hex,
+      satoshi,
+      asset_id,
+    );
+  }
+
+  late final _wire__crate__api__lending__transaction__LendingTransaction_add_explicit_outputPtr =
+      _lookup<
+          ffi.NativeFunction<
+              WireSyncRust2DartDco Function(
+                ffi.UintPtr,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Uint64,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+              )>>(
+    'frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output',
+  );
+  late final _wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output =
+      _wire__crate__api__lending__transaction__LendingTransaction_add_explicit_outputPtr
+          .asFunction<
+              WireSyncRust2DartDco Function(
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+              )>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input(
+    int that,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> txid,
+    int vout,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> witness_utxo_script_hex,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> witness_utxo_asset_id,
+    int witness_utxo_amount,
+    int issuance_amount,
+    int inflation_amount,
+    ffi.Pointer<wire_cst_list_prim_u_8_loose> asset_entropy,
+  ) {
+    return _wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input(
+      that,
+      txid,
+      vout,
+      witness_utxo_script_hex,
+      witness_utxo_asset_id,
+      witness_utxo_amount,
+      issuance_amount,
+      inflation_amount,
+      asset_entropy,
+    );
+  }
+
+  late final _wire__crate__api__lending__transaction__LendingTransaction_add_issuance_inputPtr =
+      _lookup<
+          ffi.NativeFunction<
+              WireSyncRust2DartDco Function(
+                ffi.UintPtr,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Uint32,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Uint64,
+                ffi.Uint64,
+                ffi.Uint64,
+                ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+              )>>(
+    'frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input',
+  );
+  late final _wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input =
+      _wire__crate__api__lending__transaction__LendingTransaction_add_issuance_inputPtr
+          .asFunction<
+              WireSyncRust2DartDco Function(
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                int,
+                int,
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_loose>,
+              )>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input(
+    int that,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> txid,
+    int vout,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> witness_utxo_script_hex,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> witness_utxo_asset_id,
+    int witness_utxo_amount,
+  ) {
+    return _wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input(
+      that,
+      txid,
+      vout,
+      witness_utxo_script_hex,
+      witness_utxo_asset_id,
+      witness_utxo_amount,
+    );
+  }
+
+  late final _wire__crate__api__lending__transaction__LendingTransaction_add_wallet_inputPtr =
+      _lookup<
+          ffi.NativeFunction<
+              WireSyncRust2DartDco Function(
+                ffi.UintPtr,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Uint32,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Uint64,
+              )>>(
+    'frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input',
+  );
+  late final _wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input =
+      _wire__crate__api__lending__transaction__LendingTransaction_add_wallet_inputPtr
+          .asFunction<
+              WireSyncRust2DartDco Function(
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                int,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+                int,
+              )>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__transaction__LendingTransaction_build(
+          int that) {
+    return _wire__crate__api__lending__transaction__LendingTransaction_build(
+      that,
+    );
+  }
+
+  late final _wire__crate__api__lending__transaction__LendingTransaction_buildPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+    'frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_build',
+  );
+  late final _wire__crate__api__lending__transaction__LendingTransaction_build =
+      _wire__crate__api__lending__transaction__LendingTransaction_buildPtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  void wire__crate__api__lending__transaction__LendingTransaction_default(
+    int port_,
+  ) {
+    return _wire__crate__api__lending__transaction__LendingTransaction_default(
+      port_,
+    );
+  }
+
+  late final _wire__crate__api__lending__transaction__LendingTransaction_defaultPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+    'frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_default',
+  );
+  late final _wire__crate__api__lending__transaction__LendingTransaction_default =
+      _wire__crate__api__lending__transaction__LendingTransaction_defaultPtr
+          .asFunction<void Function(int)>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__transaction__LendingTransaction_n_inputs(
+    int that,
+  ) {
+    return _wire__crate__api__lending__transaction__LendingTransaction_n_inputs(
+      that,
+    );
+  }
+
+  late final _wire__crate__api__lending__transaction__LendingTransaction_n_inputsPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+    'frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_n_inputs',
+  );
+  late final _wire__crate__api__lending__transaction__LendingTransaction_n_inputs =
+      _wire__crate__api__lending__transaction__LendingTransaction_n_inputsPtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__transaction__LendingTransaction_n_outputs(
+    int that,
+  ) {
+    return _wire__crate__api__lending__transaction__LendingTransaction_n_outputs(
+      that,
+    );
+  }
+
+  late final _wire__crate__api__lending__transaction__LendingTransaction_n_outputsPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+    'frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_n_outputs',
+  );
+  late final _wire__crate__api__lending__transaction__LendingTransaction_n_outputs =
+      _wire__crate__api__lending__transaction__LendingTransaction_n_outputsPtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__transaction__LendingTransaction_new() {
+    return _wire__crate__api__lending__transaction__LendingTransaction_new();
+  }
+
+  late final _wire__crate__api__lending__transaction__LendingTransaction_newPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function()>>(
+    'frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_new',
+  );
+  late final _wire__crate__api__lending__transaction__LendingTransaction_new =
+      _wire__crate__api__lending__transaction__LendingTransaction_newPtr
+          .asFunction<WireSyncRust2DartDco Function()>();
 
   WireSyncRust2DartDco wire__crate__api__transaction__LiquidTransaction_fee(
     int that,
@@ -1860,6 +2665,40 @@ class LwkCoreWire implements BaseWire {
   );
   late final _wire__crate__api__transaction__PartiallySignedElementsTransaction_to_string =
       _wire__crate__api__transaction__PartiallySignedElementsTransaction_to_stringPtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory(
+    int that,
+  ) {
+    return _wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory(
+      that,
+    );
+  }
+
+  late final _wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factoryPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+    'frbgen_lwk_wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory',
+  );
+  late final _wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory =
+      _wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factoryPtr
+          .asFunction<WireSyncRust2DartDco Function(int)>();
+
+  WireSyncRust2DartDco
+      wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id(
+    int that,
+  ) {
+    return _wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id(
+      that,
+    );
+  }
+
+  late final _wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_idPtr =
+      _lookup<ffi.NativeFunction<WireSyncRust2DartDco Function(ffi.UintPtr)>>(
+    'frbgen_lwk_wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id',
+  );
+  late final _wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id =
+      _wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_idPtr
           .asFunction<WireSyncRust2DartDco Function(int)>();
 
   void wire__crate__api__types__address_address_from_script(
@@ -2574,6 +3413,74 @@ class LwkCoreWire implements BaseWire {
           .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
   void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactoryPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+    'frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory',
+  );
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactoryPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactoryPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+    'frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory',
+  );
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactoryPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransactionPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+    'frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction',
+  );
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransactionPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransactionPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+    'frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction',
+  );
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransactionPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
       rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
     ffi.Pointer<ffi.Void> ptr,
   ) {
@@ -2641,6 +3548,40 @@ class LwkCoreWire implements BaseWire {
       _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransactionPtr
           .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
+  void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResultPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+    'frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult',
+  );
+  late final _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult =
+      _rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResultPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
+  void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+      ptr,
+    );
+  }
+
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResultPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+    'frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult',
+  );
+  late final _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult =
+      _rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResultPtr
+          .asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
   ffi.Pointer<wire_cst_blockchain> cst_new_box_autoadd_blockchain() {
     return _cst_new_box_autoadd_blockchain();
   }
@@ -2664,6 +3605,19 @@ class LwkCoreWire implements BaseWire {
   late final _cst_new_box_autoadd_descriptor =
       _cst_new_box_autoadd_descriptorPtr
           .asFunction<ffi.Pointer<wire_cst_descriptor> Function()>();
+
+  ffi.Pointer<wire_cst_issuance_factory_parameters>
+      cst_new_box_autoadd_issuance_factory_parameters() {
+    return _cst_new_box_autoadd_issuance_factory_parameters();
+  }
+
+  late final _cst_new_box_autoadd_issuance_factory_parametersPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<wire_cst_issuance_factory_parameters> Function()>>(
+      'frbgen_lwk_cst_new_box_autoadd_issuance_factory_parameters');
+  late final _cst_new_box_autoadd_issuance_factory_parameters =
+      _cst_new_box_autoadd_issuance_factory_parametersPtr.asFunction<
+          ffi.Pointer<wire_cst_issuance_factory_parameters> Function()>();
 
   ffi.Pointer<wire_cst_pset_input> cst_new_box_autoadd_pset_input() {
     return _cst_new_box_autoadd_pset_input();
@@ -2903,6 +3857,13 @@ typedef DartDartPostCObjectFnTypeFunction = bool Function(
 typedef DartPostCObjectFnType
     = ffi.Pointer<ffi.NativeFunction<DartPostCObjectFnTypeFunction>>;
 
+final class wire_cst_list_prim_u_8_strict extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint8> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
 final class wire_cst_list_prim_u_8_loose extends ffi.Struct {
   external ffi.Pointer<ffi.Uint8> ptr;
 
@@ -2910,11 +3871,15 @@ final class wire_cst_list_prim_u_8_loose extends ffi.Struct {
   external int len;
 }
 
-final class wire_cst_list_prim_u_8_strict extends ffi.Struct {
-  external ffi.Pointer<ffi.Uint8> ptr;
+final class wire_cst_issuance_factory_parameters extends ffi.Struct {
+  @ffi.Uint8()
+  external int issuing_utxos_count;
+
+  @ffi.Uint64()
+  external int reissuance_flags;
 
   @ffi.Int32()
-  external int len;
+  external int network;
 }
 
 final class wire_cst_blockchain extends ffi.Opaque {}
@@ -3110,6 +4075,20 @@ final class wire_cst_list_tx_output extends ffi.Struct {
   external int len;
 }
 
+final class wire_cst_issuance_details extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> asset_id;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> reissuance_token_id;
+}
+
+final class wire_cst_issuance_factory_witness_branch extends ffi.Struct {
+  @ffi.Int32()
+  external int kind;
+
+  @ffi.Uint32()
+  external int output_index;
+}
+
 final class wire_cst_lwk_error extends ffi.Struct {
   external ffi.Pointer<wire_cst_list_prim_u_8_strict> msg;
 }
@@ -3142,3 +4121,11 @@ final class wire_cst_size_and_fees extends ffi.Struct {
 
   external ffi.Pointer<wire_cst_list_balance> absolute_fees;
 }
+
+final class wire_cst_utility_nft_issuance_result extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> borrower_nft_asset_id;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> policy_asset_id;
+}
+
+const int PROGRAM_ID_LENGTH = 4;

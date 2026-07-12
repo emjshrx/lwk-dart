@@ -14,15 +14,23 @@ void store_dart_post_cobject(DartPostCObjectFnType ptr);
 // EXTRA END
 typedef struct _Dart_Handle* Dart_Handle;
 
-typedef struct wire_cst_list_prim_u_8_loose {
-  uint8_t *ptr;
-  int32_t len;
-} wire_cst_list_prim_u_8_loose;
+#define PROGRAM_ID_LENGTH 4
 
 typedef struct wire_cst_list_prim_u_8_strict {
   uint8_t *ptr;
   int32_t len;
 } wire_cst_list_prim_u_8_strict;
+
+typedef struct wire_cst_list_prim_u_8_loose {
+  uint8_t *ptr;
+  int32_t len;
+} wire_cst_list_prim_u_8_loose;
+
+typedef struct wire_cst_issuance_factory_parameters {
+  uint8_t issuing_utxos_count;
+  uint64_t reissuance_flags;
+  int32_t network;
+} wire_cst_issuance_factory_parameters;
 
 typedef struct wire_cst_blockchain {
 
@@ -156,6 +164,16 @@ typedef struct wire_cst_list_tx_output {
   int32_t len;
 } wire_cst_list_tx_output;
 
+typedef struct wire_cst_issuance_details {
+  struct wire_cst_list_prim_u_8_strict *asset_id;
+  struct wire_cst_list_prim_u_8_strict *reissuance_token_id;
+} wire_cst_issuance_details;
+
+typedef struct wire_cst_issuance_factory_witness_branch {
+  int32_t kind;
+  uint32_t output_index;
+} wire_cst_issuance_factory_witness_branch;
+
 typedef struct wire_cst_lwk_error {
   struct wire_cst_list_prim_u_8_strict *msg;
 } wire_cst_lwk_error;
@@ -177,6 +195,81 @@ typedef struct wire_cst_size_and_fees {
   uintptr_t discounted_weight;
   struct wire_cst_list_balance *absolute_fees;
 } wire_cst_size_and_fees;
+
+typedef struct wire_cst_utility_nft_issuance_result {
+  struct wire_cst_list_prim_u_8_strict *borrower_nft_asset_id;
+  struct wire_cst_list_prim_u_8_strict *policy_asset_id;
+} wire_cst_utility_nft_issuance_result;
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_attach_creation(uintptr_t that,
+                                                                                                    uintptr_t tx,
+                                                                                                    struct wire_cst_list_prim_u_8_strict *factory_asset_id,
+                                                                                                    uint64_t factory_asset_amount,
+                                                                                                    struct wire_cst_list_prim_u_8_strict *policy_asset_id);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing(uintptr_t that,
+                                                                                                            uintptr_t tx,
+                                                                                                            struct wire_cst_list_prim_u_8_strict *program_utxo_txid,
+                                                                                                            uint32_t program_utxo_vout,
+                                                                                                            struct wire_cst_list_prim_u_8_strict *program_utxo_script_hex,
+                                                                                                            struct wire_cst_list_prim_u_8_strict *program_utxo_asset_id,
+                                                                                                            uint64_t program_utxo_amount,
+                                                                                                            struct wire_cst_list_prim_u_8_strict *policy_asset_id);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance(uintptr_t that,
+                                                                                                                uintptr_t tx,
+                                                                                                                struct wire_cst_list_prim_u_8_strict *factory_utxo_txid,
+                                                                                                                uint32_t factory_utxo_vout,
+                                                                                                                struct wire_cst_list_prim_u_8_strict *factory_utxo_script_hex,
+                                                                                                                struct wire_cst_list_prim_u_8_strict *factory_utxo_asset_id,
+                                                                                                                uint64_t factory_utxo_amount,
+                                                                                                                struct wire_cst_list_prim_u_8_loose *asset_entropy,
+                                                                                                                struct wire_cst_list_prim_u_8_strict *policy_asset_id);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count(uintptr_t that);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_new(struct wire_cst_issuance_factory_parameters *parameters);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_program_id_hex(uintptr_t that);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags(uintptr_t that);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex(uintptr_t that);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_try_from_tx(struct wire_cst_list_prim_u_8_loose *tx_bytes,
+                                                                                                int32_t network);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output(uintptr_t that,
+                                                                                                               struct wire_cst_list_prim_u_8_strict *script_hex,
+                                                                                                               uint64_t satoshi,
+                                                                                                               struct wire_cst_list_prim_u_8_strict *asset_id);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input(uintptr_t that,
+                                                                                                              struct wire_cst_list_prim_u_8_strict *txid,
+                                                                                                              uint32_t vout,
+                                                                                                              struct wire_cst_list_prim_u_8_strict *witness_utxo_script_hex,
+                                                                                                              struct wire_cst_list_prim_u_8_strict *witness_utxo_asset_id,
+                                                                                                              uint64_t witness_utxo_amount,
+                                                                                                              uint64_t issuance_amount,
+                                                                                                              uint64_t inflation_amount,
+                                                                                                              struct wire_cst_list_prim_u_8_loose *asset_entropy);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input(uintptr_t that,
+                                                                                                            struct wire_cst_list_prim_u_8_strict *txid,
+                                                                                                            uint32_t vout,
+                                                                                                            struct wire_cst_list_prim_u_8_strict *witness_utxo_script_hex,
+                                                                                                            struct wire_cst_list_prim_u_8_strict *witness_utxo_asset_id,
+                                                                                                            uint64_t witness_utxo_amount);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_build(uintptr_t that);
+
+void frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_default(int64_t port_);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_n_inputs(uintptr_t that);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_n_outputs(uintptr_t that);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_new(void);
 
 WireSyncRust2DartDco frbgen_lwk_wire__crate__api__transaction__LiquidTransaction_fee(uintptr_t that);
 
@@ -266,6 +359,10 @@ WireSyncRust2DartDco frbgen_lwk_wire__crate__api__transaction__PartiallySignedEl
 WireSyncRust2DartDco frbgen_lwk_wire__crate__api__transaction__PartiallySignedElementsTransaction_output_count(uintptr_t that);
 
 WireSyncRust2DartDco frbgen_lwk_wire__crate__api__transaction__PartiallySignedElementsTransaction_to_string(uintptr_t that);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory(uintptr_t that);
+
+WireSyncRust2DartDco frbgen_lwk_wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id(uintptr_t that);
 
 void frbgen_lwk_wire__crate__api__types__address_address_from_script(int64_t port_,
                                                                      int32_t network,
@@ -383,6 +480,14 @@ void frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_Mutexlwk_wolletWollet
 
 void frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_Mutexlwk_wolletWollet(const void *ptr);
 
+void frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(const void *ptr);
+
+void frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(const void *ptr);
+
+void frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(const void *ptr);
+
+void frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(const void *ptr);
+
 void frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(const void *ptr);
 
 void frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(const void *ptr);
@@ -391,9 +496,15 @@ void frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefo
 
 void frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(const void *ptr);
 
+void frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(const void *ptr);
+
+void frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(const void *ptr);
+
 struct wire_cst_blockchain *frbgen_lwk_cst_new_box_autoadd_blockchain(void);
 
 struct wire_cst_descriptor *frbgen_lwk_cst_new_box_autoadd_descriptor(void);
+
+struct wire_cst_issuance_factory_parameters *frbgen_lwk_cst_new_box_autoadd_issuance_factory_parameters(void);
 
 struct wire_cst_pset_input *frbgen_lwk_cst_new_box_autoadd_pset_input(void);
 
@@ -436,6 +547,7 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     int64_t dummy_var = 0;
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_blockchain);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_descriptor);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_issuance_factory_parameters);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_pset_input);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_pset_output);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_tx_input);
@@ -456,15 +568,40 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_list_tx_out_secrets);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_list_tx_output);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_Mutexlwk_wolletWollet);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_Mutexlwk_wolletWollet);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__blockchain__blockchain_broadcast_signed_pset);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__blockchain__blockchain_broadcast_tx_bytes);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__blockchain__blockchain_test);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__descriptor__descriptor_new_confidential);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_attach_creation);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_new);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_program_id_hex);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_try_from_tx);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_build);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_default);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_n_inputs);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_n_outputs);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_new);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__transaction__LiquidTransaction_fee);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__transaction__LiquidTransaction_from_bytes);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__transaction__LiquidTransaction_from_pset);

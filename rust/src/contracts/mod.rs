@@ -5,4 +5,4 @@ pub mod pset;
 pub mod signer;
 pub mod simplicity;
 
-mod lending;
+pub(crate) mod lending;
