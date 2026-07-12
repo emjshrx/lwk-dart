@@ -3,19 +3,20 @@
 use crate::api::error::LwkError;
 use crate::contracts::blockdata::{ElementsOutPoint, ElementsTxOut, Script};
 use crate::contracts::pset::{
-    CovenantPsetInput, CovenantPsetOutput, Pset, PsetBuilder, PsetInputBuilder, PsetOutputBuilder,
+    CovenantPsetInput, CovenantPsetOutput, IssuanceDetails, Pset, PsetBuilder, PsetInputBuilder,
+    PsetOutputBuilder,
 };
 
 /// Passed to `LendingOffer::attach*` methods; callers extract a partial PSET via
 /// [`build`](Self::build) for wallet signing and broadcast.
-pub struct LendingTransaction {
+pub(crate) struct LendingTransaction {
     builder: PsetBuilder,
     n_inputs: u32,
     n_outputs: u32,
 }
 
 impl LendingTransaction {
-    pub fn new() -> Self {
+    pub(crate) fn new() -> Self {
         Self {
             builder: PsetBuilder::new_v2(),
             n_inputs: 0,
@@ -23,16 +24,16 @@ impl LendingTransaction {
         }
     }
 
-    pub fn n_inputs(&self) -> u32 {
+    pub(crate) fn n_inputs(&self) -> u32 {
         self.n_inputs
     }
 
-    pub fn n_outputs(&self) -> u32 {
+    pub(crate) fn n_outputs(&self) -> u32 {
         self.n_outputs
     }
 
     /// Wallet-owned input (native signing handled separately via `Wallet::sign_tx`).
-    pub fn add_wallet_input(
+    pub(crate) fn add_wallet_input(
         &mut self,
         outpoint: &ElementsOutPoint,
         witness_utxo: &ElementsTxOut,
@@ -43,7 +44,7 @@ impl LendingTransaction {
     }
 
     /// Wallet-owned input with an explicit nSequence (e.g. liquidation timelocks).
-    pub fn add_wallet_input_with_sequence(
+    pub(crate) fn add_wallet_input_with_sequence(
         &mut self,
         outpoint: &ElementsOutPoint,
         witness_utxo: &ElementsTxOut,
@@ -56,14 +57,57 @@ impl LendingTransaction {
     }
 
     /// Covenant/program input (Simplicity witness attached during finalization).
-    pub fn add_covenant_input(&mut self, input: &CovenantPsetInput) -> anyhow::Result<(), LwkError> {
+    pub(crate) fn add_covenant_input(&mut self, input: &CovenantPsetInput) -> anyhow::Result<(), LwkError> {
         self.builder.add_input(input)?;
         self.n_inputs += 1;
         Ok(())
     }
 
+    /// Covenant/program input spending an explicit UTXO.
+    pub(crate) fn add_program_input(
+        &mut self,
+        outpoint: &ElementsOutPoint,
+        witness_utxo: &ElementsTxOut,
+    ) -> anyhow::Result<(), LwkError> {
+        self.add_wallet_input(outpoint, witness_utxo)
+    }
+
+    /// Wallet-funded issuance input for a new asset.
+    pub(crate) fn add_issuance_input(
+        &mut self,
+        outpoint: &ElementsOutPoint,
+        witness_utxo: &ElementsTxOut,
+        issuance_amount: u64,
+        inflation_amount: u64,
+        asset_entropy: [u8; 32],
+    ) -> anyhow::Result<IssuanceDetails, LwkError> {
+        let input_builder = PsetInputBuilder::from_prevout(outpoint);
+        input_builder.witness_utxo(witness_utxo)?;
+        input_builder.explicit_issuance(issuance_amount, inflation_amount, asset_entropy)?;
+        let details = input_builder.issuance_details()?;
+        self.add_covenant_input(&input_builder.build()?)?;
+        Ok(details)
+    }
+
+    /// Program input with an attached issuance (utility NFT flow).
+    pub(crate) fn add_program_issuance_input(
+        &mut self,
+        outpoint: &ElementsOutPoint,
+        witness_utxo: &ElementsTxOut,
+        issuance_amount: u64,
+        inflation_amount: u64,
+        asset_entropy: [u8; 32],
+    ) -> anyhow::Result<IssuanceDetails, LwkError> {
+        let input_builder = PsetInputBuilder::from_prevout(outpoint);
+        input_builder.witness_utxo(witness_utxo)?;
+        input_builder.explicit_issuance(issuance_amount, inflation_amount, asset_entropy)?;
+        let details = input_builder.issuance_details()?;
+        self.add_covenant_input(&input_builder.build()?)?;
+        Ok(details)
+    }
+
     /// Explicit-value output; returns the output index before insertion.
-    pub fn add_explicit_output(
+    pub(crate) fn add_explicit_output(
         &mut self,
         script: &Script,
         satoshi: u64,
@@ -76,7 +120,7 @@ impl LendingTransaction {
     }
 
     /// OP_RETURN output; returns the output index before insertion.
-    pub fn add_op_return_output(
+    pub(crate) fn add_op_return_output(
         &mut self,
         data: Vec<u8>,
         satoshi: u64,
@@ -88,18 +132,18 @@ impl LendingTransaction {
         Ok(output_index)
     }
 
-    pub fn add_output(&mut self, output: &CovenantPsetOutput) -> anyhow::Result<(), LwkError> {
+    pub(crate) fn add_output(&mut self, output: &CovenantPsetOutput) -> anyhow::Result<(), LwkError> {
         self.builder.add_output(output)?;
         self.n_outputs += 1;
         Ok(())
     }
 
-    pub fn set_fallback_locktime(&self, height: u32) -> anyhow::Result<(), LwkError> {
+    pub(crate) fn set_fallback_locktime(&self, height: u32) -> anyhow::Result<(), LwkError> {
         self.builder.set_fallback_locktime(height)
     }
 
     /// Upstream invariant: repayment attachments require at least one prior input.
-    pub fn require_prior_attachment(&self) -> anyhow::Result<(), LwkError> {
+    pub(crate) fn require_prior_attachment(&self) -> anyhow::Result<(), LwkError> {
         if self.n_inputs == 0 {
             return Err(LwkError {
                 msg: "Repayment can't be first attachment in transaction".into(),
@@ -108,7 +152,7 @@ impl LendingTransaction {
         Ok(())
     }
 
-    pub fn build(self) -> anyhow::Result<Pset, LwkError> {
+    pub(crate) fn build(self) -> anyhow::Result<Pset, LwkError> {
         self.builder.build()
     }
 }

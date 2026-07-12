@@ -1,5 +1,6 @@
 pub mod descriptor;
 pub mod error;
+pub mod lending;
 pub mod types;
 pub mod wallet;
 pub mod transaction;

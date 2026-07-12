@@ -6,6 +6,9 @@
 import 'api/blockchain.dart';
 import 'api/descriptor.dart';
 import 'api/error.dart';
+import 'api/lending/factory.dart';
+import 'api/lending/transaction.dart';
+import 'api/lending/types.dart';
 import 'api/transaction.dart';
 import 'api/types.dart';
 import 'api/wallet.dart';
@@ -73,7 +76,7 @@ class LwkCore extends BaseEntrypoint<LwkCoreApi, LwkCoreApiImpl, LwkCoreWire> {
   String get codegenVersion => '2.12.0';
 
   @override
-  int get rustContentHash => 651086619;
+  int get rustContentHash => 1159489660;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -85,6 +88,93 @@ class LwkCore extends BaseEntrypoint<LwkCoreApi, LwkCoreApiImpl, LwkCoreWire> {
 }
 
 abstract class LwkCoreApi extends BaseApi {
+  void crateApiLendingFactoryIssuanceFactoryAttachCreation(
+      {required IssuanceFactory that,
+      required LendingTransaction tx,
+      required String factoryAssetId,
+      required BigInt factoryAssetAmount,
+      required String policyAssetId});
+
+  IssuanceFactoryWitnessBranch
+      crateApiLendingFactoryIssuanceFactoryAttachFactoryRemoving(
+          {required IssuanceFactory that,
+          required LendingTransaction tx,
+          required String programUtxoTxid,
+          required int programUtxoVout,
+          required String programUtxoScriptHex,
+          required String programUtxoAssetId,
+          required BigInt programUtxoAmount,
+          required String policyAssetId});
+
+  UtilityNftIssuanceResult
+      crateApiLendingFactoryIssuanceFactoryAttachUtilityNftIssuance(
+          {required IssuanceFactory that,
+          required LendingTransaction tx,
+          required String factoryUtxoTxid,
+          required int factoryUtxoVout,
+          required String factoryUtxoScriptHex,
+          required String factoryUtxoAssetId,
+          required BigInt factoryUtxoAmount,
+          required List<int> assetEntropy,
+          required String policyAssetId});
+
+  int crateApiLendingFactoryIssuanceFactoryIssuingUtxosCount(
+      {required IssuanceFactory that});
+
+  IssuanceFactory crateApiLendingFactoryIssuanceFactoryNew(
+      {required IssuanceFactoryParameters parameters});
+
+  String crateApiLendingFactoryIssuanceFactoryProgramIdHex(
+      {required IssuanceFactory that});
+
+  BigInt crateApiLendingFactoryIssuanceFactoryReissuanceFlags(
+      {required IssuanceFactory that});
+
+  String crateApiLendingFactoryIssuanceFactoryScriptPubkeyHex(
+      {required IssuanceFactory that});
+
+  TryFromIssuanceFactoryResult crateApiLendingFactoryIssuanceFactoryTryFromTx(
+      {required List<int> txBytes, required LiquidNetwork network});
+
+  int crateApiLendingTransactionLendingTransactionAddExplicitOutput(
+      {required LendingTransaction that,
+      required String scriptHex,
+      required BigInt satoshi,
+      required String assetId});
+
+  IssuanceDetails crateApiLendingTransactionLendingTransactionAddIssuanceInput(
+      {required LendingTransaction that,
+      required String txid,
+      required int vout,
+      required String witnessUtxoScriptHex,
+      required String witnessUtxoAssetId,
+      required BigInt witnessUtxoAmount,
+      required BigInt issuanceAmount,
+      required BigInt inflationAmount,
+      required List<int> assetEntropy});
+
+  void crateApiLendingTransactionLendingTransactionAddWalletInput(
+      {required LendingTransaction that,
+      required String txid,
+      required int vout,
+      required String witnessUtxoScriptHex,
+      required String witnessUtxoAssetId,
+      required BigInt witnessUtxoAmount});
+
+  String crateApiLendingTransactionLendingTransactionBuild(
+      {required LendingTransaction that});
+
+  Future<LendingTransaction>
+      crateApiLendingTransactionLendingTransactionDefault();
+
+  int crateApiLendingTransactionLendingTransactionNInputs(
+      {required LendingTransaction that});
+
+  int crateApiLendingTransactionLendingTransactionNOutputs(
+      {required LendingTransaction that});
+
+  LendingTransaction crateApiLendingTransactionLendingTransactionNew();
+
   BigInt crateApiTransactionLiquidTransactionFee(
       {required LiquidTransaction that});
 
@@ -213,6 +303,12 @@ abstract class LwkCoreApi extends BaseApi {
   String crateApiTransactionPartiallySignedElementsTransactionToString(
       {required PartiallySignedElementsTransaction that});
 
+  IssuanceFactory crateApiLendingTypesTryFromIssuanceFactoryResultFactory(
+      {required TryFromIssuanceFactoryResult that});
+
+  String crateApiLendingTypesTryFromIssuanceFactoryResultFactoryAssetId(
+      {required TryFromIssuanceFactoryResult that});
+
   Future<Address> crateApiTypesAddressAddressFromScript(
       {required LiquidNetwork network,
       required String script,
@@ -323,6 +419,24 @@ abstract class LwkCoreApi extends BaseApi {
   CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_MutexWolletPtr;
 
   RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_IssuanceFactory;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_IssuanceFactory;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_IssuanceFactoryPtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_LendingTransaction;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_LendingTransaction;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_LendingTransactionPtr;
+
+  RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_LiquidTransaction;
 
   RustArcDecrementStrongCountFnType
@@ -339,6 +453,15 @@ abstract class LwkCoreApi extends BaseApi {
 
   CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_PartiallySignedElementsTransactionPtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_TryFromIssuanceFactoryResult;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_TryFromIssuanceFactoryResult;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_TryFromIssuanceFactoryResultPtr;
 }
 
 class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
@@ -348,6 +471,651 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
     required super.generalizedFrbRustBinding,
     required super.portManager,
   });
+
+  @override
+  void crateApiLendingFactoryIssuanceFactoryAttachCreation(
+      {required IssuanceFactory that,
+      required LendingTransaction tx,
+      required String factoryAssetId,
+      required BigInt factoryAssetAmount,
+      required String policyAssetId}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+                that);
+        var arg1 =
+            cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+                tx);
+        var arg2 = cst_encode_String(factoryAssetId);
+        var arg3 = cst_encode_u_64(factoryAssetAmount);
+        var arg4 = cst_encode_String(policyAssetId);
+        return wire
+            .wire__crate__api__lending__factory__IssuanceFactory_attach_creation(
+                arg0, arg1, arg2, arg3, arg4);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_unit,
+        decodeErrorData: dco_decode_lwk_error,
+      ),
+      constMeta: kCrateApiLendingFactoryIssuanceFactoryAttachCreationConstMeta,
+      argValues: [that, tx, factoryAssetId, factoryAssetAmount, policyAssetId],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingFactoryIssuanceFactoryAttachCreationConstMeta =>
+          const TaskConstMeta(
+            debugName: "IssuanceFactory_attach_creation",
+            argNames: [
+              "that",
+              "tx",
+              "factoryAssetId",
+              "factoryAssetAmount",
+              "policyAssetId"
+            ],
+          );
+
+  @override
+  IssuanceFactoryWitnessBranch
+      crateApiLendingFactoryIssuanceFactoryAttachFactoryRemoving(
+          {required IssuanceFactory that,
+          required LendingTransaction tx,
+          required String programUtxoTxid,
+          required int programUtxoVout,
+          required String programUtxoScriptHex,
+          required String programUtxoAssetId,
+          required BigInt programUtxoAmount,
+          required String policyAssetId}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+                that);
+        var arg1 =
+            cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+                tx);
+        var arg2 = cst_encode_String(programUtxoTxid);
+        var arg3 = cst_encode_u_32(programUtxoVout);
+        var arg4 = cst_encode_String(programUtxoScriptHex);
+        var arg5 = cst_encode_String(programUtxoAssetId);
+        var arg6 = cst_encode_u_64(programUtxoAmount);
+        var arg7 = cst_encode_String(policyAssetId);
+        return wire
+            .wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing(
+                arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_issuance_factory_witness_branch,
+        decodeErrorData: dco_decode_lwk_error,
+      ),
+      constMeta:
+          kCrateApiLendingFactoryIssuanceFactoryAttachFactoryRemovingConstMeta,
+      argValues: [
+        that,
+        tx,
+        programUtxoTxid,
+        programUtxoVout,
+        programUtxoScriptHex,
+        programUtxoAssetId,
+        programUtxoAmount,
+        policyAssetId
+      ],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingFactoryIssuanceFactoryAttachFactoryRemovingConstMeta =>
+          const TaskConstMeta(
+            debugName: "IssuanceFactory_attach_factory_removing",
+            argNames: [
+              "that",
+              "tx",
+              "programUtxoTxid",
+              "programUtxoVout",
+              "programUtxoScriptHex",
+              "programUtxoAssetId",
+              "programUtxoAmount",
+              "policyAssetId"
+            ],
+          );
+
+  @override
+  UtilityNftIssuanceResult
+      crateApiLendingFactoryIssuanceFactoryAttachUtilityNftIssuance(
+          {required IssuanceFactory that,
+          required LendingTransaction tx,
+          required String factoryUtxoTxid,
+          required int factoryUtxoVout,
+          required String factoryUtxoScriptHex,
+          required String factoryUtxoAssetId,
+          required BigInt factoryUtxoAmount,
+          required List<int> assetEntropy,
+          required String policyAssetId}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+                that);
+        var arg1 =
+            cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+                tx);
+        var arg2 = cst_encode_String(factoryUtxoTxid);
+        var arg3 = cst_encode_u_32(factoryUtxoVout);
+        var arg4 = cst_encode_String(factoryUtxoScriptHex);
+        var arg5 = cst_encode_String(factoryUtxoAssetId);
+        var arg6 = cst_encode_u_64(factoryUtxoAmount);
+        var arg7 = cst_encode_list_prim_u_8_loose(assetEntropy);
+        var arg8 = cst_encode_String(policyAssetId);
+        return wire
+            .wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance(
+                arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_utility_nft_issuance_result,
+        decodeErrorData: dco_decode_lwk_error,
+      ),
+      constMeta:
+          kCrateApiLendingFactoryIssuanceFactoryAttachUtilityNftIssuanceConstMeta,
+      argValues: [
+        that,
+        tx,
+        factoryUtxoTxid,
+        factoryUtxoVout,
+        factoryUtxoScriptHex,
+        factoryUtxoAssetId,
+        factoryUtxoAmount,
+        assetEntropy,
+        policyAssetId
+      ],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingFactoryIssuanceFactoryAttachUtilityNftIssuanceConstMeta =>
+          const TaskConstMeta(
+            debugName: "IssuanceFactory_attach_utility_nft_issuance",
+            argNames: [
+              "that",
+              "tx",
+              "factoryUtxoTxid",
+              "factoryUtxoVout",
+              "factoryUtxoScriptHex",
+              "factoryUtxoAssetId",
+              "factoryUtxoAmount",
+              "assetEntropy",
+              "policyAssetId"
+            ],
+          );
+
+  @override
+  int crateApiLendingFactoryIssuanceFactoryIssuingUtxosCount(
+      {required IssuanceFactory that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+                that);
+        return wire
+            .wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count(
+                arg0);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_u_8,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kCrateApiLendingFactoryIssuanceFactoryIssuingUtxosCountConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingFactoryIssuanceFactoryIssuingUtxosCountConstMeta =>
+          const TaskConstMeta(
+            debugName: "IssuanceFactory_issuing_utxos_count",
+            argNames: ["that"],
+          );
+
+  @override
+  IssuanceFactory crateApiLendingFactoryIssuanceFactoryNew(
+      {required IssuanceFactoryParameters parameters}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_box_autoadd_issuance_factory_parameters(parameters);
+        return wire
+            .wire__crate__api__lending__factory__IssuanceFactory_new(arg0);
+      },
+      codec: DcoCodec(
+        decodeSuccessData:
+            dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory,
+        decodeErrorData: dco_decode_lwk_error,
+      ),
+      constMeta: kCrateApiLendingFactoryIssuanceFactoryNewConstMeta,
+      argValues: [parameters],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiLendingFactoryIssuanceFactoryNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "IssuanceFactory_new",
+        argNames: ["parameters"],
+      );
+
+  @override
+  String crateApiLendingFactoryIssuanceFactoryProgramIdHex(
+      {required IssuanceFactory that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+                that);
+        return wire
+            .wire__crate__api__lending__factory__IssuanceFactory_program_id_hex(
+                arg0);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_String,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiLendingFactoryIssuanceFactoryProgramIdHexConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingFactoryIssuanceFactoryProgramIdHexConstMeta =>
+          const TaskConstMeta(
+            debugName: "IssuanceFactory_program_id_hex",
+            argNames: ["that"],
+          );
+
+  @override
+  BigInt crateApiLendingFactoryIssuanceFactoryReissuanceFlags(
+      {required IssuanceFactory that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+                that);
+        return wire
+            .wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags(
+                arg0);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_u_64,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiLendingFactoryIssuanceFactoryReissuanceFlagsConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingFactoryIssuanceFactoryReissuanceFlagsConstMeta =>
+          const TaskConstMeta(
+            debugName: "IssuanceFactory_reissuance_flags",
+            argNames: ["that"],
+          );
+
+  @override
+  String crateApiLendingFactoryIssuanceFactoryScriptPubkeyHex(
+      {required IssuanceFactory that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+                that);
+        return wire
+            .wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex(
+                arg0);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_String,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiLendingFactoryIssuanceFactoryScriptPubkeyHexConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingFactoryIssuanceFactoryScriptPubkeyHexConstMeta =>
+          const TaskConstMeta(
+            debugName: "IssuanceFactory_script_pubkey_hex",
+            argNames: ["that"],
+          );
+
+  @override
+  TryFromIssuanceFactoryResult crateApiLendingFactoryIssuanceFactoryTryFromTx(
+      {required List<int> txBytes, required LiquidNetwork network}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 = cst_encode_list_prim_u_8_loose(txBytes);
+        var arg1 = cst_encode_liquid_network(network);
+        return wire
+            .wire__crate__api__lending__factory__IssuanceFactory_try_from_tx(
+                arg0, arg1);
+      },
+      codec: DcoCodec(
+        decodeSuccessData:
+            dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult,
+        decodeErrorData: dco_decode_lwk_error,
+      ),
+      constMeta: kCrateApiLendingFactoryIssuanceFactoryTryFromTxConstMeta,
+      argValues: [txBytes, network],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiLendingFactoryIssuanceFactoryTryFromTxConstMeta =>
+      const TaskConstMeta(
+        debugName: "IssuanceFactory_try_from_tx",
+        argNames: ["txBytes", "network"],
+      );
+
+  @override
+  int crateApiLendingTransactionLendingTransactionAddExplicitOutput(
+      {required LendingTransaction that,
+      required String scriptHex,
+      required BigInt satoshi,
+      required String assetId}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+                that);
+        var arg1 = cst_encode_String(scriptHex);
+        var arg2 = cst_encode_u_64(satoshi);
+        var arg3 = cst_encode_String(assetId);
+        return wire
+            .wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output(
+                arg0, arg1, arg2, arg3);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_u_32,
+        decodeErrorData: dco_decode_lwk_error,
+      ),
+      constMeta:
+          kCrateApiLendingTransactionLendingTransactionAddExplicitOutputConstMeta,
+      argValues: [that, scriptHex, satoshi, assetId],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingTransactionLendingTransactionAddExplicitOutputConstMeta =>
+          const TaskConstMeta(
+            debugName: "LendingTransaction_add_explicit_output",
+            argNames: ["that", "scriptHex", "satoshi", "assetId"],
+          );
+
+  @override
+  IssuanceDetails crateApiLendingTransactionLendingTransactionAddIssuanceInput(
+      {required LendingTransaction that,
+      required String txid,
+      required int vout,
+      required String witnessUtxoScriptHex,
+      required String witnessUtxoAssetId,
+      required BigInt witnessUtxoAmount,
+      required BigInt issuanceAmount,
+      required BigInt inflationAmount,
+      required List<int> assetEntropy}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+                that);
+        var arg1 = cst_encode_String(txid);
+        var arg2 = cst_encode_u_32(vout);
+        var arg3 = cst_encode_String(witnessUtxoScriptHex);
+        var arg4 = cst_encode_String(witnessUtxoAssetId);
+        var arg5 = cst_encode_u_64(witnessUtxoAmount);
+        var arg6 = cst_encode_u_64(issuanceAmount);
+        var arg7 = cst_encode_u_64(inflationAmount);
+        var arg8 = cst_encode_list_prim_u_8_loose(assetEntropy);
+        return wire
+            .wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input(
+                arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_issuance_details,
+        decodeErrorData: dco_decode_lwk_error,
+      ),
+      constMeta:
+          kCrateApiLendingTransactionLendingTransactionAddIssuanceInputConstMeta,
+      argValues: [
+        that,
+        txid,
+        vout,
+        witnessUtxoScriptHex,
+        witnessUtxoAssetId,
+        witnessUtxoAmount,
+        issuanceAmount,
+        inflationAmount,
+        assetEntropy
+      ],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingTransactionLendingTransactionAddIssuanceInputConstMeta =>
+          const TaskConstMeta(
+            debugName: "LendingTransaction_add_issuance_input",
+            argNames: [
+              "that",
+              "txid",
+              "vout",
+              "witnessUtxoScriptHex",
+              "witnessUtxoAssetId",
+              "witnessUtxoAmount",
+              "issuanceAmount",
+              "inflationAmount",
+              "assetEntropy"
+            ],
+          );
+
+  @override
+  void crateApiLendingTransactionLendingTransactionAddWalletInput(
+      {required LendingTransaction that,
+      required String txid,
+      required int vout,
+      required String witnessUtxoScriptHex,
+      required String witnessUtxoAssetId,
+      required BigInt witnessUtxoAmount}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+                that);
+        var arg1 = cst_encode_String(txid);
+        var arg2 = cst_encode_u_32(vout);
+        var arg3 = cst_encode_String(witnessUtxoScriptHex);
+        var arg4 = cst_encode_String(witnessUtxoAssetId);
+        var arg5 = cst_encode_u_64(witnessUtxoAmount);
+        return wire
+            .wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input(
+                arg0, arg1, arg2, arg3, arg4, arg5);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_unit,
+        decodeErrorData: dco_decode_lwk_error,
+      ),
+      constMeta:
+          kCrateApiLendingTransactionLendingTransactionAddWalletInputConstMeta,
+      argValues: [
+        that,
+        txid,
+        vout,
+        witnessUtxoScriptHex,
+        witnessUtxoAssetId,
+        witnessUtxoAmount
+      ],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingTransactionLendingTransactionAddWalletInputConstMeta =>
+          const TaskConstMeta(
+            debugName: "LendingTransaction_add_wallet_input",
+            argNames: [
+              "that",
+              "txid",
+              "vout",
+              "witnessUtxoScriptHex",
+              "witnessUtxoAssetId",
+              "witnessUtxoAmount"
+            ],
+          );
+
+  @override
+  String crateApiLendingTransactionLendingTransactionBuild(
+      {required LendingTransaction that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+                that);
+        return wire
+            .wire__crate__api__lending__transaction__LendingTransaction_build(
+                arg0);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_String,
+        decodeErrorData: dco_decode_lwk_error,
+      ),
+      constMeta: kCrateApiLendingTransactionLendingTransactionBuildConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingTransactionLendingTransactionBuildConstMeta =>
+          const TaskConstMeta(
+            debugName: "LendingTransaction_build",
+            argNames: ["that"],
+          );
+
+  @override
+  Future<LendingTransaction>
+      crateApiLendingTransactionLendingTransactionDefault() {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        return wire
+            .wire__crate__api__lending__transaction__LendingTransaction_default(
+                port_);
+      },
+      codec: DcoCodec(
+        decodeSuccessData:
+            dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiLendingTransactionLendingTransactionDefaultConstMeta,
+      argValues: [],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingTransactionLendingTransactionDefaultConstMeta =>
+          const TaskConstMeta(
+            debugName: "LendingTransaction_default",
+            argNames: [],
+          );
+
+  @override
+  int crateApiLendingTransactionLendingTransactionNInputs(
+      {required LendingTransaction that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+                that);
+        return wire
+            .wire__crate__api__lending__transaction__LendingTransaction_n_inputs(
+                arg0);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_u_32,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiLendingTransactionLendingTransactionNInputsConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingTransactionLendingTransactionNInputsConstMeta =>
+          const TaskConstMeta(
+            debugName: "LendingTransaction_n_inputs",
+            argNames: ["that"],
+          );
+
+  @override
+  int crateApiLendingTransactionLendingTransactionNOutputs(
+      {required LendingTransaction that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+                that);
+        return wire
+            .wire__crate__api__lending__transaction__LendingTransaction_n_outputs(
+                arg0);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_u_32,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiLendingTransactionLendingTransactionNOutputsConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingTransactionLendingTransactionNOutputsConstMeta =>
+          const TaskConstMeta(
+            debugName: "LendingTransaction_n_outputs",
+            argNames: ["that"],
+          );
+
+  @override
+  LendingTransaction crateApiLendingTransactionLendingTransactionNew() {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        return wire
+            .wire__crate__api__lending__transaction__LendingTransaction_new();
+      },
+      codec: DcoCodec(
+        decodeSuccessData:
+            dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiLendingTransactionLendingTransactionNewConstMeta,
+      argValues: [],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiLendingTransactionLendingTransactionNewConstMeta =>
+      const TaskConstMeta(
+        debugName: "LendingTransaction_new",
+        argNames: [],
+      );
 
   @override
   BigInt crateApiTransactionLiquidTransactionFee(
@@ -1442,6 +2210,67 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
           );
 
   @override
+  IssuanceFactory crateApiLendingTypesTryFromIssuanceFactoryResultFactory(
+      {required TryFromIssuanceFactoryResult that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+                that);
+        return wire
+            .wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory(
+                arg0);
+      },
+      codec: DcoCodec(
+        decodeSuccessData:
+            dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kCrateApiLendingTypesTryFromIssuanceFactoryResultFactoryConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingTypesTryFromIssuanceFactoryResultFactoryConstMeta =>
+          const TaskConstMeta(
+            debugName: "TryFromIssuanceFactoryResult_factory",
+            argNames: ["that"],
+          );
+
+  @override
+  String crateApiLendingTypesTryFromIssuanceFactoryResultFactoryAssetId(
+      {required TryFromIssuanceFactoryResult that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        var arg0 =
+            cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+                that);
+        return wire
+            .wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id(
+                arg0);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_String,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kCrateApiLendingTypesTryFromIssuanceFactoryResultFactoryAssetIdConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiLendingTypesTryFromIssuanceFactoryResultFactoryAssetIdConstMeta =>
+          const TaskConstMeta(
+            debugName: "TryFromIssuanceFactoryResult_factory_asset_id",
+            argNames: ["that"],
+          );
+
+  @override
   Future<Address> crateApiTypesAddressAddressFromScript(
       {required LiquidNetwork network,
       required String script,
@@ -2202,6 +3031,22 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
           wire.rust_arc_decrement_strong_count_RustOpaque_Mutexlwk_wolletWollet;
 
   RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_IssuanceFactory => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_IssuanceFactory => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_LendingTransaction => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_LendingTransaction => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction;
+
+  RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_LiquidTransaction => wire
           .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction;
 
@@ -2216,6 +3061,30 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   RustArcDecrementStrongCountFnType
       get rust_arc_decrement_strong_count_PartiallySignedElementsTransaction =>
           wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_TryFromIssuanceFactoryResult => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_TryFromIssuanceFactoryResult => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult;
+
+  @protected
+  IssuanceFactory
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return IssuanceFactoryImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  LendingTransaction
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return LendingTransactionImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
 
   @protected
   LiquidTransaction
@@ -2232,6 +3101,39 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return PartiallySignedElementsTransactionImpl.frbInternalDcoDecode(
         raw as List<dynamic>);
+  }
+
+  @protected
+  TryFromIssuanceFactoryResult
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return TryFromIssuanceFactoryResultImpl.frbInternalDcoDecode(
+        raw as List<dynamic>);
+  }
+
+  @protected
+  LendingTransaction
+      dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return LendingTransactionImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  IssuanceFactory
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return IssuanceFactoryImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  LendingTransaction
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return LendingTransactionImpl.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -2252,9 +3154,34 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   }
 
   @protected
+  TryFromIssuanceFactoryResult
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return TryFromIssuanceFactoryResultImpl.frbInternalDcoDecode(
+        raw as List<dynamic>);
+  }
+
+  @protected
   MutexWollet dco_decode_RustOpaque_Mutexlwk_wolletWollet(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return MutexWolletImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  IssuanceFactory
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return IssuanceFactoryImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  LendingTransaction
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return LendingTransactionImpl.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -2271,6 +3198,15 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return PartiallySignedElementsTransactionImpl.frbInternalDcoDecode(
+        raw as List<dynamic>);
+  }
+
+  @protected
+  TryFromIssuanceFactoryResult
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return TryFromIssuanceFactoryResultImpl.frbInternalDcoDecode(
         raw as List<dynamic>);
   }
 
@@ -2331,6 +3267,13 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   Descriptor dco_decode_box_autoadd_descriptor(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_descriptor(raw);
+  }
+
+  @protected
+  IssuanceFactoryParameters dco_decode_box_autoadd_issuance_factory_parameters(
+      dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_issuance_factory_parameters(raw);
   }
 
   @protected
@@ -2408,6 +3351,52 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   PlatformInt64 dco_decode_i_64(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dcoDecodeI64(raw);
+  }
+
+  @protected
+  IssuanceDetails dco_decode_issuance_details(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2)
+      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+    return IssuanceDetails(
+      assetId: dco_decode_String(arr[0]),
+      reissuanceTokenId: dco_decode_String(arr[1]),
+    );
+  }
+
+  @protected
+  IssuanceFactoryParameters dco_decode_issuance_factory_parameters(
+      dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 3)
+      throw Exception('unexpected arr length: expect 3 but see ${arr.length}');
+    return IssuanceFactoryParameters(
+      issuingUtxosCount: dco_decode_u_8(arr[0]),
+      reissuanceFlags: dco_decode_u_64(arr[1]),
+      network: dco_decode_liquid_network(arr[2]),
+    );
+  }
+
+  @protected
+  IssuanceFactoryWitnessBranch dco_decode_issuance_factory_witness_branch(
+      dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2)
+      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+    return IssuanceFactoryWitnessBranch(
+      kind: dco_decode_issuance_factory_witness_branch_kind(arr[0]),
+      outputIndex: dco_decode_u_32(arr[1]),
+    );
+  }
+
+  @protected
+  IssuanceFactoryWitnessBranchKind
+      dco_decode_issuance_factory_witness_branch_kind(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return IssuanceFactoryWitnessBranchKind.values[raw as int];
   }
 
   @protected
@@ -2730,6 +3719,18 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   }
 
   @protected
+  UtilityNftIssuanceResult dco_decode_utility_nft_issuance_result(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2)
+      throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+    return UtilityNftIssuanceResult(
+      borrowerNftAssetId: dco_decode_String(arr[0]),
+      policyAssetId: dco_decode_String(arr[1]),
+    );
+  }
+
+  @protected
   Wallet dco_decode_wallet(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
@@ -2738,6 +3739,24 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
     return Wallet(
       inner: dco_decode_RustOpaque_Mutexlwk_wolletWollet(arr[0]),
     );
+  }
+
+  @protected
+  IssuanceFactory
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return IssuanceFactoryImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  LendingTransaction
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return LendingTransactionImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
   @protected
@@ -2755,6 +3774,42 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return PartiallySignedElementsTransactionImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  TryFromIssuanceFactoryResult
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return TryFromIssuanceFactoryResultImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  LendingTransaction
+      sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return LendingTransactionImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  IssuanceFactory
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return IssuanceFactoryImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  LendingTransaction
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return LendingTransactionImpl.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -2777,10 +3832,37 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   }
 
   @protected
+  TryFromIssuanceFactoryResult
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return TryFromIssuanceFactoryResultImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   MutexWollet sse_decode_RustOpaque_Mutexlwk_wolletWollet(
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return MutexWolletImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  IssuanceFactory
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return IssuanceFactoryImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  LendingTransaction
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return LendingTransactionImpl.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -2799,6 +3881,15 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return PartiallySignedElementsTransactionImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  TryFromIssuanceFactoryResult
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return TryFromIssuanceFactoryResultImpl.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -2853,6 +3944,13 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   Descriptor sse_decode_box_autoadd_descriptor(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_descriptor(deserializer));
+  }
+
+  @protected
+  IssuanceFactoryParameters sse_decode_box_autoadd_issuance_factory_parameters(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_issuance_factory_parameters(deserializer));
   }
 
   @protected
@@ -2926,6 +4024,48 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   PlatformInt64 sse_decode_i_64(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getPlatformInt64();
+  }
+
+  @protected
+  IssuanceDetails sse_decode_issuance_details(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_assetId = sse_decode_String(deserializer);
+    var var_reissuanceTokenId = sse_decode_String(deserializer);
+    return IssuanceDetails(
+        assetId: var_assetId, reissuanceTokenId: var_reissuanceTokenId);
+  }
+
+  @protected
+  IssuanceFactoryParameters sse_decode_issuance_factory_parameters(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_issuingUtxosCount = sse_decode_u_8(deserializer);
+    var var_reissuanceFlags = sse_decode_u_64(deserializer);
+    var var_network = sse_decode_liquid_network(deserializer);
+    return IssuanceFactoryParameters(
+        issuingUtxosCount: var_issuingUtxosCount,
+        reissuanceFlags: var_reissuanceFlags,
+        network: var_network);
+  }
+
+  @protected
+  IssuanceFactoryWitnessBranch sse_decode_issuance_factory_witness_branch(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_kind =
+        sse_decode_issuance_factory_witness_branch_kind(deserializer);
+    var var_outputIndex = sse_decode_u_32(deserializer);
+    return IssuanceFactoryWitnessBranch(
+        kind: var_kind, outputIndex: var_outputIndex);
+  }
+
+  @protected
+  IssuanceFactoryWitnessBranchKind
+      sse_decode_issuance_factory_witness_branch_kind(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return IssuanceFactoryWitnessBranchKind.values[inner];
   }
 
   @protected
@@ -3343,10 +4483,37 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   }
 
   @protected
+  UtilityNftIssuanceResult sse_decode_utility_nft_issuance_result(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_borrowerNftAssetId = sse_decode_String(deserializer);
+    var var_policyAssetId = sse_decode_String(deserializer);
+    return UtilityNftIssuanceResult(
+        borrowerNftAssetId: var_borrowerNftAssetId,
+        policyAssetId: var_policyAssetId);
+  }
+
+  @protected
   Wallet sse_decode_wallet(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var var_inner = sse_decode_RustOpaque_Mutexlwk_wolletWollet(deserializer);
     return Wallet(inner: var_inner);
+  }
+
+  @protected
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+      IssuanceFactory raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+// ignore: invalid_use_of_internal_member
+    return (raw as IssuanceFactoryImpl).frbInternalCstEncode(move: true);
+  }
+
+  @protected
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      LendingTransaction raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+// ignore: invalid_use_of_internal_member
+    return (raw as LendingTransactionImpl).frbInternalCstEncode(move: true);
   }
 
   @protected
@@ -3367,6 +4534,39 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   }
 
   @protected
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+      TryFromIssuanceFactoryResult raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+// ignore: invalid_use_of_internal_member
+    return (raw as TryFromIssuanceFactoryResultImpl)
+        .frbInternalCstEncode(move: true);
+  }
+
+  @protected
+  int cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      LendingTransaction raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+// ignore: invalid_use_of_internal_member
+    return (raw as LendingTransactionImpl).frbInternalCstEncode(move: false);
+  }
+
+  @protected
+  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+      IssuanceFactory raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+// ignore: invalid_use_of_internal_member
+    return (raw as IssuanceFactoryImpl).frbInternalCstEncode(move: false);
+  }
+
+  @protected
+  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      LendingTransaction raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+// ignore: invalid_use_of_internal_member
+    return (raw as LendingTransactionImpl).frbInternalCstEncode(move: false);
+  }
+
+  @protected
   int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
       LiquidTransaction raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
@@ -3384,10 +4584,35 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   }
 
   @protected
+  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+      TryFromIssuanceFactoryResult raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+// ignore: invalid_use_of_internal_member
+    return (raw as TryFromIssuanceFactoryResultImpl)
+        .frbInternalCstEncode(move: false);
+  }
+
+  @protected
   int cst_encode_RustOpaque_Mutexlwk_wolletWollet(MutexWollet raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
 // ignore: invalid_use_of_internal_member
     return (raw as MutexWolletImpl).frbInternalCstEncode();
+  }
+
+  @protected
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+      IssuanceFactory raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+// ignore: invalid_use_of_internal_member
+    return (raw as IssuanceFactoryImpl).frbInternalCstEncode();
+  }
+
+  @protected
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      LendingTransaction raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+// ignore: invalid_use_of_internal_member
+    return (raw as LendingTransactionImpl).frbInternalCstEncode();
   }
 
   @protected
@@ -3408,6 +4633,14 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   }
 
   @protected
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+      TryFromIssuanceFactoryResult raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+// ignore: invalid_use_of_internal_member
+    return (raw as TryFromIssuanceFactoryResultImpl).frbInternalCstEncode();
+  }
+
+  @protected
   bool cst_encode_bool(bool raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return raw;
@@ -3423,6 +4656,13 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   int cst_encode_i_32(int raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return raw;
+  }
+
+  @protected
+  int cst_encode_issuance_factory_witness_branch_kind(
+      IssuanceFactoryWitnessBranchKind raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_i_32(raw.index);
   }
 
   @protected
@@ -3451,6 +4691,26 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          IssuanceFactory self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as IssuanceFactoryImpl).frbInternalSseEncode(move: true),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          LendingTransaction self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as LendingTransactionImpl).frbInternalSseEncode(move: true),
+        serializer);
+  }
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
           LiquidTransaction self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -3467,6 +4727,47 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
     sse_encode_usize(
         (self as PartiallySignedElementsTransactionImpl)
             .frbInternalSseEncode(move: true),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          TryFromIssuanceFactoryResult self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as TryFromIssuanceFactoryResultImpl)
+            .frbInternalSseEncode(move: true),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          LendingTransaction self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as LendingTransactionImpl).frbInternalSseEncode(move: false),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          IssuanceFactory self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as IssuanceFactoryImpl).frbInternalSseEncode(move: false),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          LendingTransaction self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as LendingTransactionImpl).frbInternalSseEncode(move: false),
         serializer);
   }
 
@@ -3492,11 +4793,42 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   }
 
   @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          TryFromIssuanceFactoryResult self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as TryFromIssuanceFactoryResultImpl)
+            .frbInternalSseEncode(move: false),
+        serializer);
+  }
+
+  @protected
   void sse_encode_RustOpaque_Mutexlwk_wolletWollet(
       MutexWollet self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(
         (self as MutexWolletImpl).frbInternalSseEncode(move: null), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          IssuanceFactory self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as IssuanceFactoryImpl).frbInternalSseEncode(move: null),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          LendingTransaction self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as LendingTransactionImpl).frbInternalSseEncode(move: null),
+        serializer);
   }
 
   @protected
@@ -3516,6 +4848,17 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(
         (self as PartiallySignedElementsTransactionImpl)
+            .frbInternalSseEncode(move: null),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          TryFromIssuanceFactoryResult self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as TryFromIssuanceFactoryResultImpl)
             .frbInternalSseEncode(move: null),
         serializer);
   }
@@ -3565,6 +4908,13 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
       Descriptor self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_descriptor(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_issuance_factory_parameters(
+      IssuanceFactoryParameters self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_issuance_factory_parameters(self, serializer);
   }
 
   @protected
@@ -3640,6 +4990,38 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putPlatformInt64(self);
+  }
+
+  @protected
+  void sse_encode_issuance_details(
+      IssuanceDetails self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_String(self.assetId, serializer);
+    sse_encode_String(self.reissuanceTokenId, serializer);
+  }
+
+  @protected
+  void sse_encode_issuance_factory_parameters(
+      IssuanceFactoryParameters self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_u_8(self.issuingUtxosCount, serializer);
+    sse_encode_u_64(self.reissuanceFlags, serializer);
+    sse_encode_liquid_network(self.network, serializer);
+  }
+
+  @protected
+  void sse_encode_issuance_factory_witness_branch(
+      IssuanceFactoryWitnessBranch self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_issuance_factory_witness_branch_kind(self.kind, serializer);
+    sse_encode_u_32(self.outputIndex, serializer);
+  }
+
+  @protected
+  void sse_encode_issuance_factory_witness_branch_kind(
+      IssuanceFactoryWitnessBranchKind self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
   }
 
   @protected
@@ -3973,10 +5355,193 @@ class LwkCoreApiImpl extends LwkCoreApiImplPlatform implements LwkCoreApi {
   }
 
   @protected
+  void sse_encode_utility_nft_issuance_result(
+      UtilityNftIssuanceResult self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_String(self.borrowerNftAssetId, serializer);
+    sse_encode_String(self.policyAssetId, serializer);
+  }
+
+  @protected
   void sse_encode_wallet(Wallet self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_RustOpaque_Mutexlwk_wolletWollet(self.inner, serializer);
   }
+}
+
+@sealed
+class IssuanceFactoryImpl extends RustOpaque implements IssuanceFactory {
+  // Not to be used by end users
+  IssuanceFactoryImpl.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  IssuanceFactoryImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        LwkCore.instance.api.rust_arc_increment_strong_count_IssuanceFactory,
+    rustArcDecrementStrongCount:
+        LwkCore.instance.api.rust_arc_decrement_strong_count_IssuanceFactory,
+    rustArcDecrementStrongCountPtr:
+        LwkCore.instance.api.rust_arc_decrement_strong_count_IssuanceFactoryPtr,
+  );
+
+  void attachCreation(
+          {required LendingTransaction tx,
+          required String factoryAssetId,
+          required BigInt factoryAssetAmount,
+          required String policyAssetId}) =>
+      LwkCore.instance.api.crateApiLendingFactoryIssuanceFactoryAttachCreation(
+          that: this,
+          tx: tx,
+          factoryAssetId: factoryAssetId,
+          factoryAssetAmount: factoryAssetAmount,
+          policyAssetId: policyAssetId);
+
+  IssuanceFactoryWitnessBranch attachFactoryRemoving(
+          {required LendingTransaction tx,
+          required String programUtxoTxid,
+          required int programUtxoVout,
+          required String programUtxoScriptHex,
+          required String programUtxoAssetId,
+          required BigInt programUtxoAmount,
+          required String policyAssetId}) =>
+      LwkCore.instance.api
+          .crateApiLendingFactoryIssuanceFactoryAttachFactoryRemoving(
+              that: this,
+              tx: tx,
+              programUtxoTxid: programUtxoTxid,
+              programUtxoVout: programUtxoVout,
+              programUtxoScriptHex: programUtxoScriptHex,
+              programUtxoAssetId: programUtxoAssetId,
+              programUtxoAmount: programUtxoAmount,
+              policyAssetId: policyAssetId);
+
+  UtilityNftIssuanceResult attachUtilityNftIssuance(
+          {required LendingTransaction tx,
+          required String factoryUtxoTxid,
+          required int factoryUtxoVout,
+          required String factoryUtxoScriptHex,
+          required String factoryUtxoAssetId,
+          required BigInt factoryUtxoAmount,
+          required List<int> assetEntropy,
+          required String policyAssetId}) =>
+      LwkCore.instance.api
+          .crateApiLendingFactoryIssuanceFactoryAttachUtilityNftIssuance(
+              that: this,
+              tx: tx,
+              factoryUtxoTxid: factoryUtxoTxid,
+              factoryUtxoVout: factoryUtxoVout,
+              factoryUtxoScriptHex: factoryUtxoScriptHex,
+              factoryUtxoAssetId: factoryUtxoAssetId,
+              factoryUtxoAmount: factoryUtxoAmount,
+              assetEntropy: assetEntropy,
+              policyAssetId: policyAssetId);
+
+  int issuingUtxosCount() => LwkCore.instance.api
+          .crateApiLendingFactoryIssuanceFactoryIssuingUtxosCount(
+        that: this,
+      );
+
+  String programIdHex() =>
+      LwkCore.instance.api.crateApiLendingFactoryIssuanceFactoryProgramIdHex(
+        that: this,
+      );
+
+  BigInt reissuanceFlags() =>
+      LwkCore.instance.api.crateApiLendingFactoryIssuanceFactoryReissuanceFlags(
+        that: this,
+      );
+
+  String scriptPubkeyHex() =>
+      LwkCore.instance.api.crateApiLendingFactoryIssuanceFactoryScriptPubkeyHex(
+        that: this,
+      );
+}
+
+@sealed
+class LendingTransactionImpl extends RustOpaque implements LendingTransaction {
+  // Not to be used by end users
+  LendingTransactionImpl.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  LendingTransactionImpl.frbInternalSseDecode(
+      BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        LwkCore.instance.api.rust_arc_increment_strong_count_LendingTransaction,
+    rustArcDecrementStrongCount:
+        LwkCore.instance.api.rust_arc_decrement_strong_count_LendingTransaction,
+    rustArcDecrementStrongCountPtr: LwkCore
+        .instance.api.rust_arc_decrement_strong_count_LendingTransactionPtr,
+  );
+
+  int addExplicitOutput(
+          {required String scriptHex,
+          required BigInt satoshi,
+          required String assetId}) =>
+      LwkCore.instance.api
+          .crateApiLendingTransactionLendingTransactionAddExplicitOutput(
+              that: this,
+              scriptHex: scriptHex,
+              satoshi: satoshi,
+              assetId: assetId);
+
+  IssuanceDetails addIssuanceInput(
+          {required String txid,
+          required int vout,
+          required String witnessUtxoScriptHex,
+          required String witnessUtxoAssetId,
+          required BigInt witnessUtxoAmount,
+          required BigInt issuanceAmount,
+          required BigInt inflationAmount,
+          required List<int> assetEntropy}) =>
+      LwkCore.instance.api
+          .crateApiLendingTransactionLendingTransactionAddIssuanceInput(
+              that: this,
+              txid: txid,
+              vout: vout,
+              witnessUtxoScriptHex: witnessUtxoScriptHex,
+              witnessUtxoAssetId: witnessUtxoAssetId,
+              witnessUtxoAmount: witnessUtxoAmount,
+              issuanceAmount: issuanceAmount,
+              inflationAmount: inflationAmount,
+              assetEntropy: assetEntropy);
+
+  void addWalletInput(
+          {required String txid,
+          required int vout,
+          required String witnessUtxoScriptHex,
+          required String witnessUtxoAssetId,
+          required BigInt witnessUtxoAmount}) =>
+      LwkCore.instance.api
+          .crateApiLendingTransactionLendingTransactionAddWalletInput(
+              that: this,
+              txid: txid,
+              vout: vout,
+              witnessUtxoScriptHex: witnessUtxoScriptHex,
+              witnessUtxoAssetId: witnessUtxoAssetId,
+              witnessUtxoAmount: witnessUtxoAmount);
+
+  String build() =>
+      LwkCore.instance.api.crateApiLendingTransactionLendingTransactionBuild(
+        that: this,
+      );
+
+  int nInputs() =>
+      LwkCore.instance.api.crateApiLendingTransactionLendingTransactionNInputs(
+        that: this,
+      );
+
+  int nOutputs() =>
+      LwkCore.instance.api.crateApiLendingTransactionLendingTransactionNOutputs(
+        that: this,
+      );
 }
 
 @sealed
@@ -4191,6 +5756,38 @@ class PartiallySignedElementsTransactionImpl extends RustOpaque
 
   String toString() => LwkCore.instance.api
           .crateApiTransactionPartiallySignedElementsTransactionToString(
+        that: this,
+      );
+}
+
+@sealed
+class TryFromIssuanceFactoryResultImpl extends RustOpaque
+    implements TryFromIssuanceFactoryResult {
+  // Not to be used by end users
+  TryFromIssuanceFactoryResultImpl.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  TryFromIssuanceFactoryResultImpl.frbInternalSseDecode(
+      BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount: LwkCore.instance.api
+        .rust_arc_increment_strong_count_TryFromIssuanceFactoryResult,
+    rustArcDecrementStrongCount: LwkCore.instance.api
+        .rust_arc_decrement_strong_count_TryFromIssuanceFactoryResult,
+    rustArcDecrementStrongCountPtr: LwkCore.instance.api
+        .rust_arc_decrement_strong_count_TryFromIssuanceFactoryResultPtr,
+  );
+
+  IssuanceFactory factory_() => LwkCore.instance.api
+          .crateApiLendingTypesTryFromIssuanceFactoryResultFactory(
+        that: this,
+      );
+
+  String factoryAssetId() => LwkCore.instance.api
+          .crateApiLendingTypesTryFromIssuanceFactoryResultFactoryAssetId(
         that: this,
       );
 }

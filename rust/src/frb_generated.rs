@@ -26,6 +26,9 @@
 
 // Section: imports
 
+use crate::api::lending::factory::*;
+use crate::api::lending::transaction::*;
+use crate::api::lending::types::*;
 use crate::api::transaction::*;
 use crate::api::wallet::*;
 use flutter_rust_bridge::for_generated::byteorder::{NativeEndian, ReadBytesExt, WriteBytesExt};
@@ -40,7 +43,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueNom,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.12.0";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 651086619;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1159489660;
 
 // Section: executor
 
@@ -48,6 +51,698 @@ flutter_rust_bridge::frb_generated_default_handler!();
 
 // Section: wire_funcs
 
+fn wire__crate__api__lending__factory__IssuanceFactory_attach_creation_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>,
+    >,
+    tx: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>,
+    >,
+    factory_asset_id: impl CstDecode<String>,
+    factory_asset_amount: impl CstDecode<u64>,
+    policy_asset_id: impl CstDecode<String>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "IssuanceFactory_attach_creation",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_tx = tx.cst_decode();
+            let api_factory_asset_id = factory_asset_id.cst_decode();
+            let api_factory_asset_amount = factory_asset_amount.cst_decode();
+            let api_policy_asset_id = policy_asset_id.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                let mut api_that_guard = None;
+                let mut api_tx_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_tx, 1, true,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        1 => api_tx_guard = Some(api_tx.lockable_decode_sync_ref_mut()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let mut api_tx_guard = api_tx_guard.unwrap();
+                let output_ok = crate::api::lending::factory::IssuanceFactory::attach_creation(
+                    &*api_that_guard,
+                    &mut *api_tx_guard,
+                    api_factory_asset_id,
+                    api_factory_asset_amount,
+                    api_policy_asset_id,
+                )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>,
+    >,
+    tx: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>,
+    >,
+    program_utxo_txid: impl CstDecode<String>,
+    program_utxo_vout: impl CstDecode<u32>,
+    program_utxo_script_hex: impl CstDecode<String>,
+    program_utxo_asset_id: impl CstDecode<String>,
+    program_utxo_amount: impl CstDecode<u64>,
+    policy_asset_id: impl CstDecode<String>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "IssuanceFactory_attach_factory_removing",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_tx = tx.cst_decode();
+            let api_program_utxo_txid = program_utxo_txid.cst_decode();
+            let api_program_utxo_vout = program_utxo_vout.cst_decode();
+            let api_program_utxo_script_hex = program_utxo_script_hex.cst_decode();
+            let api_program_utxo_asset_id = program_utxo_asset_id.cst_decode();
+            let api_program_utxo_amount = program_utxo_amount.cst_decode();
+            let api_policy_asset_id = policy_asset_id.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                let mut api_that_guard = None;
+                let mut api_tx_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_tx, 1, true,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        1 => api_tx_guard = Some(api_tx.lockable_decode_sync_ref_mut()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let mut api_tx_guard = api_tx_guard.unwrap();
+                let output_ok =
+                    crate::api::lending::factory::IssuanceFactory::attach_factory_removing(
+                        &*api_that_guard,
+                        &mut *api_tx_guard,
+                        api_program_utxo_txid,
+                        api_program_utxo_vout,
+                        api_program_utxo_script_hex,
+                        api_program_utxo_asset_id,
+                        api_program_utxo_amount,
+                        api_policy_asset_id,
+                    )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>,
+    >,
+    tx: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>,
+    >,
+    factory_utxo_txid: impl CstDecode<String>,
+    factory_utxo_vout: impl CstDecode<u32>,
+    factory_utxo_script_hex: impl CstDecode<String>,
+    factory_utxo_asset_id: impl CstDecode<String>,
+    factory_utxo_amount: impl CstDecode<u64>,
+    asset_entropy: impl CstDecode<Vec<u8>>,
+    policy_asset_id: impl CstDecode<String>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "IssuanceFactory_attach_utility_nft_issuance",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_tx = tx.cst_decode();
+            let api_factory_utxo_txid = factory_utxo_txid.cst_decode();
+            let api_factory_utxo_vout = factory_utxo_vout.cst_decode();
+            let api_factory_utxo_script_hex = factory_utxo_script_hex.cst_decode();
+            let api_factory_utxo_asset_id = factory_utxo_asset_id.cst_decode();
+            let api_factory_utxo_amount = factory_utxo_amount.cst_decode();
+            let api_asset_entropy = asset_entropy.cst_decode();
+            let api_policy_asset_id = policy_asset_id.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                let mut api_that_guard = None;
+                let mut api_tx_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_tx, 1, true,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        1 => api_tx_guard = Some(api_tx.lockable_decode_sync_ref_mut()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let mut api_tx_guard = api_tx_guard.unwrap();
+                let output_ok =
+                    crate::api::lending::factory::IssuanceFactory::attach_utility_nft_issuance(
+                        &*api_that_guard,
+                        &mut *api_tx_guard,
+                        api_factory_utxo_txid,
+                        api_factory_utxo_vout,
+                        api_factory_utxo_script_hex,
+                        api_factory_utxo_asset_id,
+                        api_factory_utxo_amount,
+                        api_asset_entropy,
+                        api_policy_asset_id,
+                    )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "IssuanceFactory_issuing_utxos_count",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, ()>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok = Result::<_, ()>::Ok(
+                    crate::api::lending::factory::IssuanceFactory::issuing_utxos_count(
+                        &*api_that_guard,
+                    ),
+                )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__factory__IssuanceFactory_new_impl(
+    parameters: impl CstDecode<crate::api::lending::types::IssuanceFactoryParameters>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "IssuanceFactory_new",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_parameters = parameters.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                let output_ok = crate::api::lending::factory::IssuanceFactory::new(api_parameters)?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__factory__IssuanceFactory_program_id_hex_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "IssuanceFactory_program_id_hex",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, ()>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok = Result::<_, ()>::Ok(
+                    crate::api::lending::factory::IssuanceFactory::program_id_hex(&*api_that_guard),
+                )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "IssuanceFactory_reissuance_flags",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, ()>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok = Result::<_, ()>::Ok(
+                    crate::api::lending::factory::IssuanceFactory::reissuance_flags(
+                        &*api_that_guard,
+                    ),
+                )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "IssuanceFactory_script_pubkey_hex",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, ()>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok = Result::<_, ()>::Ok(
+                    crate::api::lending::factory::IssuanceFactory::script_pubkey_hex(
+                        &*api_that_guard,
+                    ),
+                )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__factory__IssuanceFactory_try_from_tx_impl(
+    tx_bytes: impl CstDecode<Vec<u8>>,
+    network: impl CstDecode<crate::api::types::LiquidNetwork>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "IssuanceFactory_try_from_tx",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_tx_bytes = tx_bytes.cst_decode();
+            let api_network = network.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                let output_ok = crate::api::lending::factory::IssuanceFactory::try_from_tx(
+                    api_tx_bytes,
+                    api_network,
+                )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>,
+    >,
+    script_hex: impl CstDecode<String>,
+    satoshi: impl CstDecode<u64>,
+    asset_id: impl CstDecode<String>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "LendingTransaction_add_explicit_output",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_script_hex = script_hex.cst_decode();
+            let api_satoshi = satoshi.cst_decode();
+            let api_asset_id = asset_id.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, true,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref_mut()),
+                        _ => unreachable!(),
+                    }
+                }
+                let mut api_that_guard = api_that_guard.unwrap();
+                let output_ok =
+                    crate::api::lending::transaction::LendingTransaction::add_explicit_output(
+                        &mut *api_that_guard,
+                        api_script_hex,
+                        api_satoshi,
+                        api_asset_id,
+                    )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>,
+    >,
+    txid: impl CstDecode<String>,
+    vout: impl CstDecode<u32>,
+    witness_utxo_script_hex: impl CstDecode<String>,
+    witness_utxo_asset_id: impl CstDecode<String>,
+    witness_utxo_amount: impl CstDecode<u64>,
+    issuance_amount: impl CstDecode<u64>,
+    inflation_amount: impl CstDecode<u64>,
+    asset_entropy: impl CstDecode<Vec<u8>>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "LendingTransaction_add_issuance_input",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_txid = txid.cst_decode();
+            let api_vout = vout.cst_decode();
+            let api_witness_utxo_script_hex = witness_utxo_script_hex.cst_decode();
+            let api_witness_utxo_asset_id = witness_utxo_asset_id.cst_decode();
+            let api_witness_utxo_amount = witness_utxo_amount.cst_decode();
+            let api_issuance_amount = issuance_amount.cst_decode();
+            let api_inflation_amount = inflation_amount.cst_decode();
+            let api_asset_entropy = asset_entropy.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, true,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref_mut()),
+                        _ => unreachable!(),
+                    }
+                }
+                let mut api_that_guard = api_that_guard.unwrap();
+                let output_ok =
+                    crate::api::lending::transaction::LendingTransaction::add_issuance_input(
+                        &mut *api_that_guard,
+                        api_txid,
+                        api_vout,
+                        api_witness_utxo_script_hex,
+                        api_witness_utxo_asset_id,
+                        api_witness_utxo_amount,
+                        api_issuance_amount,
+                        api_inflation_amount,
+                        api_asset_entropy,
+                    )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>,
+    >,
+    txid: impl CstDecode<String>,
+    vout: impl CstDecode<u32>,
+    witness_utxo_script_hex: impl CstDecode<String>,
+    witness_utxo_asset_id: impl CstDecode<String>,
+    witness_utxo_amount: impl CstDecode<u64>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "LendingTransaction_add_wallet_input",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_txid = txid.cst_decode();
+            let api_vout = vout.cst_decode();
+            let api_witness_utxo_script_hex = witness_utxo_script_hex.cst_decode();
+            let api_witness_utxo_asset_id = witness_utxo_asset_id.cst_decode();
+            let api_witness_utxo_amount = witness_utxo_amount.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, true,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref_mut()),
+                        _ => unreachable!(),
+                    }
+                }
+                let mut api_that_guard = api_that_guard.unwrap();
+                let output_ok =
+                    crate::api::lending::transaction::LendingTransaction::add_wallet_input(
+                        &mut *api_that_guard,
+                        api_txid,
+                        api_vout,
+                        api_witness_utxo_script_hex,
+                        api_witness_utxo_asset_id,
+                        api_witness_utxo_amount,
+                    )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__transaction__LendingTransaction_build_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "LendingTransaction_build",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, true,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref_mut()),
+                        _ => unreachable!(),
+                    }
+                }
+                let mut api_that_guard = api_that_guard.unwrap();
+                let output_ok = crate::api::lending::transaction::LendingTransaction::build(
+                    &mut *api_that_guard,
+                )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__transaction__LendingTransaction_default_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "LendingTransaction_default",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok = Result::<_, ()>::Ok(
+                        crate::api::lending::transaction::LendingTransaction::default(),
+                    )?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__crate__api__lending__transaction__LendingTransaction_n_inputs_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "LendingTransaction_n_inputs",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, ()>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok = Result::<_, ()>::Ok(
+                    crate::api::lending::transaction::LendingTransaction::n_inputs(
+                        &*api_that_guard,
+                    ),
+                )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__transaction__LendingTransaction_n_outputs_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "LendingTransaction_n_outputs",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, ()>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok = Result::<_, ()>::Ok(
+                    crate::api::lending::transaction::LendingTransaction::n_outputs(
+                        &*api_that_guard,
+                    ),
+                )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__transaction__LendingTransaction_new_impl(
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "LendingTransaction_new",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            transform_result_dco::<_, _, ()>((move || {
+                let output_ok = Result::<_, ()>::Ok(
+                    crate::api::lending::transaction::LendingTransaction::new(),
+                )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
 fn wire__crate__api__transaction__LiquidTransaction_fee_impl(
     that: impl CstDecode<
         RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LiquidTransaction>>,
@@ -1397,6 +2092,66 @@ fn wire__crate__api__transaction__PartiallySignedElementsTransaction_to_string_i
         },
     )
 }
+fn wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_impl(
+    that: impl CstDecode<TryFromIssuanceFactoryResult>,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "TryFromIssuanceFactoryResult_factory",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, ()>((move || {
+                let output_ok = Result::<_, ()>::Ok(
+                    crate::api::lending::types::TryFromIssuanceFactoryResult::factory(api_that),
+                )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
+fn wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id_impl(
+    that: impl CstDecode<
+        RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<TryFromIssuanceFactoryResult>,
+        >,
+    >,
+) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "TryFromIssuanceFactoryResult_factory_asset_id",
+            port: None,
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            transform_result_dco::<_, _, ()>((move || {
+                let mut api_that_guard = None;
+                let decode_indices_ =
+                    flutter_rust_bridge::for_generated::lockable_compute_decode_order(vec![
+                        flutter_rust_bridge::for_generated::LockableOrderInfo::new(
+                            &api_that, 0, false,
+                        ),
+                    ]);
+                for i in decode_indices_ {
+                    match i {
+                        0 => api_that_guard = Some(api_that.lockable_decode_sync_ref()),
+                        _ => unreachable!(),
+                    }
+                }
+                let api_that_guard = api_that_guard.unwrap();
+                let output_ok = Result::<_, ()>::Ok(
+                    crate::api::lending::types::TryFromIssuanceFactoryResult::factory_asset_id(
+                        &*api_that_guard,
+                    ),
+                )?;
+                Ok(output_ok)
+            })())
+        },
+    )
+}
 fn wire__crate__api__types__address_address_from_script_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     network: impl CstDecode<crate::api::types::LiquidNetwork>,
@@ -2119,6 +2874,19 @@ impl CstDecode<i64> for i64 {
         self
     }
 }
+impl CstDecode<crate::api::lending::types::IssuanceFactoryWitnessBranchKind> for i32 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::lending::types::IssuanceFactoryWitnessBranchKind {
+        match self {
+            0 => crate::api::lending::types::IssuanceFactoryWitnessBranchKind::IssueAssets,
+            1 => crate::api::lending::types::IssuanceFactoryWitnessBranchKind::RemoveFactory,
+            _ => unreachable!(
+                "Invalid variant for IssuanceFactoryWitnessBranchKind: {}",
+                self
+            ),
+        }
+    }
+}
 impl CstDecode<crate::api::types::LiquidNetwork> for i32 {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> crate::api::types::LiquidNetwork {
@@ -2153,6 +2921,26 @@ impl CstDecode<usize> for usize {
         self
     }
 }
+impl SseDecode for IssuanceFactory {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>,
+        >>::sse_decode(deserializer);
+        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
+    }
+}
+
+impl SseDecode for LendingTransaction {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>,
+        >>::sse_decode(deserializer);
+        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
+    }
+}
+
 impl SseDecode for LiquidTransaction {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -2175,7 +2963,37 @@ impl SseDecode for PartiallySignedElementsTransaction {
     }
 }
 
+impl SseDecode for TryFromIssuanceFactoryResult {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<TryFromIssuanceFactoryResult>,
+        >>::sse_decode(deserializer);
+        return flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(inner);
+    }
+}
+
 impl SseDecode for RustOpaqueNom<Mutex<lwk_wollet::Wollet>> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <usize>::sse_decode(deserializer);
+        return unsafe { decode_rust_opaque_nom(inner) };
+    }
+}
+
+impl SseDecode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <usize>::sse_decode(deserializer);
+        return unsafe { decode_rust_opaque_nom(inner) };
+    }
+}
+
+impl SseDecode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>
+{
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut inner = <usize>::sse_decode(deserializer);
@@ -2196,6 +3014,18 @@ impl SseDecode
 impl SseDecode
     for RustOpaqueNom<
         flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PartiallySignedElementsTransaction>,
+    >
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <usize>::sse_decode(deserializer);
+        return unsafe { decode_rust_opaque_nom(inner) };
+    }
+}
+
+impl SseDecode
+    for RustOpaqueNom<
+        flutter_rust_bridge::for_generated::RustAutoOpaqueInner<TryFromIssuanceFactoryResult>,
     >
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -2283,6 +3113,62 @@ impl SseDecode for i64 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         deserializer.cursor.read_i64::<NativeEndian>().unwrap()
+    }
+}
+
+impl SseDecode for crate::api::lending::types::IssuanceDetails {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_assetId = <String>::sse_decode(deserializer);
+        let mut var_reissuanceTokenId = <String>::sse_decode(deserializer);
+        return crate::api::lending::types::IssuanceDetails {
+            asset_id: var_assetId,
+            reissuance_token_id: var_reissuanceTokenId,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::IssuanceFactoryParameters {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_issuingUtxosCount = <u8>::sse_decode(deserializer);
+        let mut var_reissuanceFlags = <u64>::sse_decode(deserializer);
+        let mut var_network = <crate::api::types::LiquidNetwork>::sse_decode(deserializer);
+        return crate::api::lending::types::IssuanceFactoryParameters {
+            issuing_utxos_count: var_issuingUtxosCount,
+            reissuance_flags: var_reissuanceFlags,
+            network: var_network,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::IssuanceFactoryWitnessBranch {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_kind =
+            <crate::api::lending::types::IssuanceFactoryWitnessBranchKind>::sse_decode(
+                deserializer,
+            );
+        let mut var_outputIndex = <u32>::sse_decode(deserializer);
+        return crate::api::lending::types::IssuanceFactoryWitnessBranch {
+            kind: var_kind,
+            output_index: var_outputIndex,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::IssuanceFactoryWitnessBranchKind {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::api::lending::types::IssuanceFactoryWitnessBranchKind::IssueAssets,
+            1 => crate::api::lending::types::IssuanceFactoryWitnessBranchKind::RemoveFactory,
+            _ => unreachable!(
+                "Invalid variant for IssuanceFactoryWitnessBranchKind: {}",
+                inner
+            ),
+        };
     }
 }
 
@@ -2744,6 +3630,18 @@ impl SseDecode for usize {
     }
 }
 
+impl SseDecode for crate::api::lending::types::UtilityNftIssuanceResult {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_borrowerNftAssetId = <String>::sse_decode(deserializer);
+        let mut var_policyAssetId = <String>::sse_decode(deserializer);
+        return crate::api::lending::types::UtilityNftIssuanceResult {
+            borrower_nft_asset_id: var_borrowerNftAssetId,
+            policy_asset_id: var_policyAssetId,
+        };
+    }
+}
+
 impl SseDecode for crate::api::wallet::Wallet {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -2780,6 +3678,39 @@ fn pde_ffi_dispatcher_sync_impl(
 // Section: rust2dart
 
 // Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<IssuanceFactory> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self.0)
+            .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for FrbWrapper<IssuanceFactory> {}
+
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<IssuanceFactory>> for IssuanceFactory {
+    fn into_into_dart(self) -> FrbWrapper<IssuanceFactory> {
+        self.into()
+    }
+}
+
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<LendingTransaction> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self.0)
+            .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<LendingTransaction>
+{
+}
+
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<LendingTransaction>> for LendingTransaction {
+    fn into_into_dart(self) -> FrbWrapper<LendingTransaction> {
+        self.into()
+    }
+}
+
+// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for FrbWrapper<LiquidTransaction> {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self.0)
@@ -2810,6 +3741,26 @@ impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<PartiallySignedElementsTransac
     for PartiallySignedElementsTransaction
 {
     fn into_into_dart(self) -> FrbWrapper<PartiallySignedElementsTransaction> {
+        self.into()
+    }
+}
+
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for FrbWrapper<TryFromIssuanceFactoryResult> {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self.0)
+            .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for FrbWrapper<TryFromIssuanceFactoryResult>
+{
+}
+
+impl flutter_rust_bridge::IntoIntoDart<FrbWrapper<TryFromIssuanceFactoryResult>>
+    for TryFromIssuanceFactoryResult
+{
+    fn into_into_dart(self) -> FrbWrapper<TryFromIssuanceFactoryResult> {
         self.into()
     }
 }
@@ -2879,6 +3830,93 @@ impl flutter_rust_bridge::IntoIntoDart<crate::api::descriptor::Descriptor>
     for crate::api::descriptor::Descriptor
 {
     fn into_into_dart(self) -> crate::api::descriptor::Descriptor {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::IssuanceDetails {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.asset_id.into_into_dart().into_dart(),
+            self.reissuance_token_id.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::IssuanceDetails
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::IssuanceDetails>
+    for crate::api::lending::types::IssuanceDetails
+{
+    fn into_into_dart(self) -> crate::api::lending::types::IssuanceDetails {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::IssuanceFactoryParameters {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.issuing_utxos_count.into_into_dart().into_dart(),
+            self.reissuance_flags.into_into_dart().into_dart(),
+            self.network.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::IssuanceFactoryParameters
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::IssuanceFactoryParameters>
+    for crate::api::lending::types::IssuanceFactoryParameters
+{
+    fn into_into_dart(self) -> crate::api::lending::types::IssuanceFactoryParameters {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::IssuanceFactoryWitnessBranch {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.kind.into_into_dart().into_dart(),
+            self.output_index.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::IssuanceFactoryWitnessBranch
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::IssuanceFactoryWitnessBranch>
+    for crate::api::lending::types::IssuanceFactoryWitnessBranch
+{
+    fn into_into_dart(self) -> crate::api::lending::types::IssuanceFactoryWitnessBranch {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart
+    for crate::api::lending::types::IssuanceFactoryWitnessBranchKind
+{
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::IssueAssets => 0.into_dart(),
+            Self::RemoveFactory => 1.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::IssuanceFactoryWitnessBranchKind
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::IssuanceFactoryWitnessBranchKind>
+    for crate::api::lending::types::IssuanceFactoryWitnessBranchKind
+{
+    fn into_into_dart(self) -> crate::api::lending::types::IssuanceFactoryWitnessBranchKind {
         self
     }
 }
@@ -3159,6 +4197,27 @@ impl flutter_rust_bridge::IntoIntoDart<crate::api::transaction::TxOutput>
     }
 }
 // Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::UtilityNftIssuanceResult {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.borrower_nft_asset_id.into_into_dart().into_dart(),
+            self.policy_asset_id.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::UtilityNftIssuanceResult
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::UtilityNftIssuanceResult>
+    for crate::api::lending::types::UtilityNftIssuanceResult
+{
+    fn into_into_dart(self) -> crate::api::lending::types::UtilityNftIssuanceResult {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
 impl flutter_rust_bridge::IntoDart for crate::api::wallet::Wallet {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [self.inner.into_into_dart().into_dart()].into_dart()
@@ -3168,6 +4227,20 @@ impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::api:
 impl flutter_rust_bridge::IntoIntoDart<crate::api::wallet::Wallet> for crate::api::wallet::Wallet {
     fn into_into_dart(self) -> crate::api::wallet::Wallet {
         self
+    }
+}
+
+impl SseEncode for IssuanceFactory {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self), serializer);
+    }
+}
+
+impl SseEncode for LendingTransaction {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>>::sse_encode(flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self), serializer);
     }
 }
 
@@ -3192,7 +4265,41 @@ impl SseEncode for PartiallySignedElementsTransaction {
     }
 }
 
+impl SseEncode for TryFromIssuanceFactoryResult {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<TryFromIssuanceFactoryResult>,
+        >>::sse_encode(
+            flutter_rust_bridge::for_generated::rust_auto_opaque_encode::<_, StdArc<_>>(self),
+            serializer,
+        );
+    }
+}
+
 impl SseEncode for RustOpaqueNom<Mutex<lwk_wollet::Wollet>> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        let (ptr, size) = self.sse_encode_raw();
+        <usize>::sse_encode(ptr, serializer);
+        <i32>::sse_encode(size, serializer);
+    }
+}
+
+impl SseEncode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        let (ptr, size) = self.sse_encode_raw();
+        <usize>::sse_encode(ptr, serializer);
+        <i32>::sse_encode(size, serializer);
+    }
+}
+
+impl SseEncode
+    for RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>
+{
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         let (ptr, size) = self.sse_encode_raw();
@@ -3215,6 +4322,19 @@ impl SseEncode
 impl SseEncode
     for RustOpaqueNom<
         flutter_rust_bridge::for_generated::RustAutoOpaqueInner<PartiallySignedElementsTransaction>,
+    >
+{
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        let (ptr, size) = self.sse_encode_raw();
+        <usize>::sse_encode(ptr, serializer);
+        <i32>::sse_encode(size, serializer);
+    }
+}
+
+impl SseEncode
+    for RustOpaqueNom<
+        flutter_rust_bridge::for_generated::RustAutoOpaqueInner<TryFromIssuanceFactoryResult>,
     >
 {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -3287,6 +4407,49 @@ impl SseEncode for i64 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         serializer.cursor.write_i64::<NativeEndian>(self).unwrap();
+    }
+}
+
+impl SseEncode for crate::api::lending::types::IssuanceDetails {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.asset_id, serializer);
+        <String>::sse_encode(self.reissuance_token_id, serializer);
+    }
+}
+
+impl SseEncode for crate::api::lending::types::IssuanceFactoryParameters {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <u8>::sse_encode(self.issuing_utxos_count, serializer);
+        <u64>::sse_encode(self.reissuance_flags, serializer);
+        <crate::api::types::LiquidNetwork>::sse_encode(self.network, serializer);
+    }
+}
+
+impl SseEncode for crate::api::lending::types::IssuanceFactoryWitnessBranch {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <crate::api::lending::types::IssuanceFactoryWitnessBranchKind>::sse_encode(
+            self.kind, serializer,
+        );
+        <u32>::sse_encode(self.output_index, serializer);
+    }
+}
+
+impl SseEncode for crate::api::lending::types::IssuanceFactoryWitnessBranchKind {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::api::lending::types::IssuanceFactoryWitnessBranchKind::IssueAssets => 0,
+                crate::api::lending::types::IssuanceFactoryWitnessBranchKind::RemoveFactory => 1,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
     }
 }
 
@@ -3643,6 +4806,14 @@ impl SseEncode for usize {
     }
 }
 
+impl SseEncode for crate::api::lending::types::UtilityNftIssuanceResult {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.borrower_nft_asset_id, serializer);
+        <String>::sse_encode(self.policy_asset_id, serializer);
+    }
+}
+
 impl SseEncode for crate::api::wallet::Wallet {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -3658,6 +4829,9 @@ mod io {
     // Section: imports
 
     use super::*;
+    use crate::api::lending::factory::*;
+    use crate::api::lending::transaction::*;
+    use crate::api::lending::types::*;
     use crate::api::transaction::*;
     use crate::api::wallet::*;
     use flutter_rust_bridge::for_generated::byteorder::{
@@ -3672,6 +4846,30 @@ mod io {
 
     // Section: dart2rust
 
+    impl CstDecode<IssuanceFactory> for usize {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> IssuanceFactory {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>,
+                >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
+    impl CstDecode<LendingTransaction> for usize {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> LendingTransaction {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>,
+                >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
     impl CstDecode<LiquidTransaction> for usize {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> LiquidTransaction {
@@ -3698,9 +4896,52 @@ mod io {
             ))
         }
     }
+    impl CstDecode<TryFromIssuanceFactoryResult> for usize {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> TryFromIssuanceFactoryResult {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<
+                        TryFromIssuanceFactoryResult,
+                    >,
+                >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
     impl CstDecode<RustOpaqueNom<Mutex<lwk_wollet::Wollet>>> for usize {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> RustOpaqueNom<Mutex<lwk_wollet::Wollet>> {
+            unsafe { decode_rust_opaque_nom(self as _) }
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>,
+        > for usize
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>
+        {
+            unsafe { decode_rust_opaque_nom(self as _) }
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>,
+            >,
+        > for usize
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>,
+        > {
             unsafe { decode_rust_opaque_nom(self as _) }
         }
     }
@@ -3735,6 +4976,24 @@ mod io {
             flutter_rust_bridge::for_generated::RustAutoOpaqueInner<
                 PartiallySignedElementsTransaction,
             >,
+        > {
+            unsafe { decode_rust_opaque_nom(self as _) }
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<
+                    TryFromIssuanceFactoryResult,
+                >,
+            >,
+        > for usize
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<TryFromIssuanceFactoryResult>,
         > {
             unsafe { decode_rust_opaque_nom(self as _) }
         }
@@ -3784,6 +5043,16 @@ mod io {
         fn cst_decode(self) -> crate::api::descriptor::Descriptor {
             let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
             CstDecode::<crate::api::descriptor::Descriptor>::cst_decode(*wrap).into()
+        }
+    }
+    impl CstDecode<crate::api::lending::types::IssuanceFactoryParameters>
+        for *mut wire_cst_issuance_factory_parameters
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::IssuanceFactoryParameters {
+            let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+            CstDecode::<crate::api::lending::types::IssuanceFactoryParameters>::cst_decode(*wrap)
+                .into()
         }
     }
     impl CstDecode<crate::api::transaction::PsetInput> for *mut wire_cst_pset_input {
@@ -3844,6 +5113,38 @@ mod io {
         fn cst_decode(self) -> crate::api::descriptor::Descriptor {
             crate::api::descriptor::Descriptor {
                 ct_descriptor: self.ct_descriptor.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::IssuanceDetails> for wire_cst_issuance_details {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::IssuanceDetails {
+            crate::api::lending::types::IssuanceDetails {
+                asset_id: self.asset_id.cst_decode(),
+                reissuance_token_id: self.reissuance_token_id.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::IssuanceFactoryParameters>
+        for wire_cst_issuance_factory_parameters
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::IssuanceFactoryParameters {
+            crate::api::lending::types::IssuanceFactoryParameters {
+                issuing_utxos_count: self.issuing_utxos_count.cst_decode(),
+                reissuance_flags: self.reissuance_flags.cst_decode(),
+                network: self.network.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::IssuanceFactoryWitnessBranch>
+        for wire_cst_issuance_factory_witness_branch
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::IssuanceFactoryWitnessBranch {
+            crate::api::lending::types::IssuanceFactoryWitnessBranch {
+                kind: self.kind.cst_decode(),
+                output_index: self.output_index.cst_decode(),
             }
         }
     }
@@ -4088,6 +5389,17 @@ mod io {
             }
         }
     }
+    impl CstDecode<crate::api::lending::types::UtilityNftIssuanceResult>
+        for wire_cst_utility_nft_issuance_result
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::UtilityNftIssuanceResult {
+            crate::api::lending::types::UtilityNftIssuanceResult {
+                borrower_nft_asset_id: self.borrower_nft_asset_id.cst_decode(),
+                policy_asset_id: self.policy_asset_id.cst_decode(),
+            }
+        }
+    }
     impl CstDecode<crate::api::wallet::Wallet> for wire_cst_wallet {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> crate::api::wallet::Wallet {
@@ -4142,6 +5454,46 @@ mod io {
         }
     }
     impl Default for wire_cst_descriptor {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_issuance_details {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                asset_id: core::ptr::null_mut(),
+                reissuance_token_id: core::ptr::null_mut(),
+            }
+        }
+    }
+    impl Default for wire_cst_issuance_details {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_issuance_factory_parameters {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                issuing_utxos_count: Default::default(),
+                reissuance_flags: Default::default(),
+                network: Default::default(),
+            }
+        }
+    }
+    impl Default for wire_cst_issuance_factory_parameters {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_issuance_factory_witness_branch {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                kind: Default::default(),
+                output_index: Default::default(),
+            }
+        }
+    }
+    impl Default for wire_cst_issuance_factory_witness_branch {
         fn default() -> Self {
             Self::new_with_null_ptr()
         }
@@ -4327,6 +5679,19 @@ mod io {
             Self::new_with_null_ptr()
         }
     }
+    impl NewWithNullPtr for wire_cst_utility_nft_issuance_result {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                borrower_nft_asset_id: core::ptr::null_mut(),
+                policy_asset_id: core::ptr::null_mut(),
+            }
+        }
+    }
+    impl Default for wire_cst_utility_nft_issuance_result {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
     impl NewWithNullPtr for wire_cst_wallet {
         fn new_with_null_ptr() -> Self {
             Self {
@@ -4338,6 +5703,204 @@ mod io {
         fn default() -> Self {
             Self::new_with_null_ptr()
         }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_attach_creation(
+        that: usize,
+        tx: usize,
+        factory_asset_id: *mut wire_cst_list_prim_u_8_strict,
+        factory_asset_amount: u64,
+        policy_asset_id: *mut wire_cst_list_prim_u_8_strict,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_attach_creation_impl(
+            that,
+            tx,
+            factory_asset_id,
+            factory_asset_amount,
+            policy_asset_id,
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing(
+        that: usize,
+        tx: usize,
+        program_utxo_txid: *mut wire_cst_list_prim_u_8_strict,
+        program_utxo_vout: u32,
+        program_utxo_script_hex: *mut wire_cst_list_prim_u_8_strict,
+        program_utxo_asset_id: *mut wire_cst_list_prim_u_8_strict,
+        program_utxo_amount: u64,
+        policy_asset_id: *mut wire_cst_list_prim_u_8_strict,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing_impl(
+            that,
+            tx,
+            program_utxo_txid,
+            program_utxo_vout,
+            program_utxo_script_hex,
+            program_utxo_asset_id,
+            program_utxo_amount,
+            policy_asset_id,
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance(
+        that: usize,
+        tx: usize,
+        factory_utxo_txid: *mut wire_cst_list_prim_u_8_strict,
+        factory_utxo_vout: u32,
+        factory_utxo_script_hex: *mut wire_cst_list_prim_u_8_strict,
+        factory_utxo_asset_id: *mut wire_cst_list_prim_u_8_strict,
+        factory_utxo_amount: u64,
+        asset_entropy: *mut wire_cst_list_prim_u_8_loose,
+        policy_asset_id: *mut wire_cst_list_prim_u_8_strict,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance_impl(
+            that,
+            tx,
+            factory_utxo_txid,
+            factory_utxo_vout,
+            factory_utxo_script_hex,
+            factory_utxo_asset_id,
+            factory_utxo_amount,
+            asset_entropy,
+            policy_asset_id,
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_new(
+        parameters: *mut wire_cst_issuance_factory_parameters,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_new_impl(parameters)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_program_id_hex(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_program_id_hex_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__factory__IssuanceFactory_try_from_tx(
+        tx_bytes: *mut wire_cst_list_prim_u_8_loose,
+        network: i32,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_try_from_tx_impl(tx_bytes, network)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output(
+        that: usize,
+        script_hex: *mut wire_cst_list_prim_u_8_strict,
+        satoshi: u64,
+        asset_id: *mut wire_cst_list_prim_u_8_strict,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output_impl(
+            that, script_hex, satoshi, asset_id,
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input(
+        that: usize,
+        txid: *mut wire_cst_list_prim_u_8_strict,
+        vout: u32,
+        witness_utxo_script_hex: *mut wire_cst_list_prim_u_8_strict,
+        witness_utxo_asset_id: *mut wire_cst_list_prim_u_8_strict,
+        witness_utxo_amount: u64,
+        issuance_amount: u64,
+        inflation_amount: u64,
+        asset_entropy: *mut wire_cst_list_prim_u_8_loose,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input_impl(
+            that,
+            txid,
+            vout,
+            witness_utxo_script_hex,
+            witness_utxo_asset_id,
+            witness_utxo_amount,
+            issuance_amount,
+            inflation_amount,
+            asset_entropy,
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input(
+        that: usize,
+        txid: *mut wire_cst_list_prim_u_8_strict,
+        vout: u32,
+        witness_utxo_script_hex: *mut wire_cst_list_prim_u_8_strict,
+        witness_utxo_asset_id: *mut wire_cst_list_prim_u_8_strict,
+        witness_utxo_amount: u64,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input_impl(
+            that,
+            txid,
+            vout,
+            witness_utxo_script_hex,
+            witness_utxo_asset_id,
+            witness_utxo_amount,
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_build(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_build_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_default(
+        port_: i64,
+    ) {
+        wire__crate__api__lending__transaction__LendingTransaction_default_impl(port_)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_n_inputs(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_n_inputs_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_n_outputs(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_n_outputs_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__transaction__LendingTransaction_new(
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_new_impl()
     }
 
     #[unsafe(no_mangle)]
@@ -4630,6 +6193,20 @@ mod io {
         that: usize,
     ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
         wire__crate__api__transaction__PartiallySignedElementsTransaction_to_string_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_impl(that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id(
+        that: usize,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id_impl(that)
     }
 
     #[unsafe(no_mangle)]
@@ -4948,6 +6525,42 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
         ptr: *const std::ffi::c_void,
     ) {
@@ -4992,6 +6605,32 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<
+                    TryFromIssuanceFactoryResult,
+                >,
+            >::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<
+                    TryFromIssuanceFactoryResult,
+                >,
+            >::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_lwk_cst_new_box_autoadd_blockchain() -> *mut wire_cst_blockchain {
         flutter_rust_bridge::for_generated::new_leak_box_ptr(
             wire_cst_blockchain::new_with_null_ptr(),
@@ -5002,6 +6641,14 @@ mod io {
     pub extern "C" fn frbgen_lwk_cst_new_box_autoadd_descriptor() -> *mut wire_cst_descriptor {
         flutter_rust_bridge::for_generated::new_leak_box_ptr(
             wire_cst_descriptor::new_with_null_ptr(),
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_cst_new_box_autoadd_issuance_factory_parameters(
+    ) -> *mut wire_cst_issuance_factory_parameters {
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(
+            wire_cst_issuance_factory_parameters::new_with_null_ptr(),
         )
     }
 
@@ -5209,6 +6856,25 @@ mod io {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
+    pub struct wire_cst_issuance_details {
+        asset_id: *mut wire_cst_list_prim_u_8_strict,
+        reissuance_token_id: *mut wire_cst_list_prim_u_8_strict,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_issuance_factory_parameters {
+        issuing_utxos_count: u8,
+        reissuance_flags: u64,
+        network: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_issuance_factory_witness_branch {
+        kind: i32,
+        output_index: u32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
     pub struct wire_cst_list_String {
         ptr: *mut *mut wire_cst_list_prim_u_8_strict,
         len: i32,
@@ -5372,6 +7038,12 @@ mod io {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
+    pub struct wire_cst_utility_nft_issuance_result {
+        borrower_nft_asset_id: *mut wire_cst_list_prim_u_8_strict,
+        policy_asset_id: *mut wire_cst_list_prim_u_8_strict,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
     pub struct wire_cst_wallet {
         inner: usize,
     }
@@ -5388,6 +7060,9 @@ mod web {
     // Section: imports
 
     use super::*;
+    use crate::api::lending::factory::*;
+    use crate::api::lending::transaction::*;
+    use crate::api::lending::types::*;
     use crate::api::transaction::*;
     use crate::api::wallet::*;
     use flutter_rust_bridge::for_generated::byteorder::{
@@ -5485,6 +7160,67 @@ mod web {
             );
             crate::api::descriptor::Descriptor {
                 ct_descriptor: self_.get(0).cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::IssuanceDetails>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::IssuanceDetails {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                2,
+                "Expected 2 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::IssuanceDetails {
+                asset_id: self_.get(0).cst_decode(),
+                reissuance_token_id: self_.get(1).cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::IssuanceFactoryParameters>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::IssuanceFactoryParameters {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                3,
+                "Expected 3 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::IssuanceFactoryParameters {
+                issuing_utxos_count: self_.get(0).cst_decode(),
+                reissuance_flags: self_.get(1).cst_decode(),
+                network: self_.get(2).cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::IssuanceFactoryWitnessBranch>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::IssuanceFactoryWitnessBranch {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                2,
+                "Expected 2 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::IssuanceFactoryWitnessBranch {
+                kind: self_.get(0).cst_decode(),
+                output_index: self_.get(1).cst_decode(),
             }
         }
     }
@@ -5871,6 +7607,26 @@ mod web {
             }
         }
     }
+    impl CstDecode<crate::api::lending::types::UtilityNftIssuanceResult>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::UtilityNftIssuanceResult {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                2,
+                "Expected 2 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::UtilityNftIssuanceResult {
+                borrower_nft_asset_id: self_.get(0).cst_decode(),
+                policy_asset_id: self_.get(1).cst_decode(),
+            }
+        }
+    }
     impl CstDecode<crate::api::wallet::Wallet>
         for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
     {
@@ -5888,6 +7644,30 @@ mod web {
             crate::api::wallet::Wallet {
                 inner: self_.get(0).cst_decode(),
             }
+        }
+    }
+    impl CstDecode<IssuanceFactory> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> IssuanceFactory {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>,
+                >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
+    impl CstDecode<LendingTransaction> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> LendingTransaction {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>,
+                >,
+            >::cst_decode(
+                self
+            ))
         }
     }
     impl CstDecode<LiquidTransaction> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
@@ -5918,11 +7698,64 @@ mod web {
             ))
         }
     }
+    impl CstDecode<TryFromIssuanceFactoryResult>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> TryFromIssuanceFactoryResult {
+            flutter_rust_bridge::for_generated::rust_auto_opaque_decode_owned(CstDecode::<
+                RustOpaqueNom<
+                    flutter_rust_bridge::for_generated::RustAutoOpaqueInner<
+                        TryFromIssuanceFactoryResult,
+                    >,
+                >,
+            >::cst_decode(
+                self
+            ))
+        }
+    }
     impl CstDecode<RustOpaqueNom<Mutex<lwk_wollet::Wollet>>>
         for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
     {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> RustOpaqueNom<Mutex<lwk_wollet::Wollet>> {
+            #[cfg(target_pointer_width = "64")]
+            {
+                compile_error!("64-bit pointers are not supported.");
+            }
+            unsafe { decode_rust_opaque_nom((self.as_f64().unwrap() as usize) as _) }
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>,
+        > for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>
+        {
+            #[cfg(target_pointer_width = "64")]
+            {
+                compile_error!("64-bit pointers are not supported.");
+            }
+            unsafe { decode_rust_opaque_nom((self.as_f64().unwrap() as usize) as _) }
+        }
+    }
+    impl
+        CstDecode<
+            RustOpaqueNom<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>,
+            >,
+        > for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>,
+        > {
             #[cfg(target_pointer_width = "64")]
             {
                 compile_error!("64-bit pointers are not supported.");
@@ -5973,6 +7806,28 @@ mod web {
             unsafe { decode_rust_opaque_nom((self.as_f64().unwrap() as usize) as _) }
         }
     }
+    impl
+        CstDecode<
+            RustOpaqueNom<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<
+                    TryFromIssuanceFactoryResult,
+                >,
+            >,
+        > for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(
+            self,
+        ) -> RustOpaqueNom<
+            flutter_rust_bridge::for_generated::RustAutoOpaqueInner<TryFromIssuanceFactoryResult>,
+        > {
+            #[cfg(target_pointer_width = "64")]
+            {
+                compile_error!("64-bit pointers are not supported.");
+            }
+            unsafe { decode_rust_opaque_nom((self.as_f64().unwrap() as usize) as _) }
+        }
+    }
     impl CstDecode<String> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> String {
@@ -6001,6 +7856,14 @@ mod web {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> i64 {
             ::std::convert::TryInto::<i64>::try_into(self).unwrap() as _
+        }
+    }
+    impl CstDecode<crate::api::lending::types::IssuanceFactoryWitnessBranchKind>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::IssuanceFactoryWitnessBranchKind {
+            (self.unchecked_into_f64() as i32).cst_decode()
         }
     }
     impl CstDecode<crate::api::types::LiquidNetwork>
@@ -6042,6 +7905,204 @@ mod web {
         fn cst_decode(self) -> usize {
             ::std::convert::TryInto::<u64>::try_into(self).unwrap() as _
         }
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__factory__IssuanceFactory_attach_creation(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        tx: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        factory_asset_id: String,
+        factory_asset_amount: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        policy_asset_id: String,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_attach_creation_impl(
+            that,
+            tx,
+            factory_asset_id,
+            factory_asset_amount,
+            policy_asset_id,
+        )
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        tx: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        program_utxo_txid: String,
+        program_utxo_vout: u32,
+        program_utxo_script_hex: String,
+        program_utxo_asset_id: String,
+        program_utxo_amount: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        policy_asset_id: String,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing_impl(
+            that,
+            tx,
+            program_utxo_txid,
+            program_utxo_vout,
+            program_utxo_script_hex,
+            program_utxo_asset_id,
+            program_utxo_amount,
+            policy_asset_id,
+        )
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        tx: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        factory_utxo_txid: String,
+        factory_utxo_vout: u32,
+        factory_utxo_script_hex: String,
+        factory_utxo_asset_id: String,
+        factory_utxo_amount: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        asset_entropy: Box<[u8]>,
+        policy_asset_id: String,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance_impl(
+            that,
+            tx,
+            factory_utxo_txid,
+            factory_utxo_vout,
+            factory_utxo_script_hex,
+            factory_utxo_asset_id,
+            factory_utxo_amount,
+            asset_entropy,
+            policy_asset_id,
+        )
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__factory__IssuanceFactory_new(
+        parameters: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_new_impl(parameters)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__factory__IssuanceFactory_program_id_hex(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_program_id_hex_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__factory__IssuanceFactory_try_from_tx(
+        tx_bytes: Box<[u8]>,
+        network: i32,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__factory__IssuanceFactory_try_from_tx_impl(tx_bytes, network)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        script_hex: String,
+        satoshi: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        asset_id: String,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output_impl(
+            that, script_hex, satoshi, asset_id,
+        )
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        txid: String,
+        vout: u32,
+        witness_utxo_script_hex: String,
+        witness_utxo_asset_id: String,
+        witness_utxo_amount: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        issuance_amount: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        inflation_amount: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        asset_entropy: Box<[u8]>,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input_impl(
+            that,
+            txid,
+            vout,
+            witness_utxo_script_hex,
+            witness_utxo_asset_id,
+            witness_utxo_amount,
+            issuance_amount,
+            inflation_amount,
+            asset_entropy,
+        )
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        txid: String,
+        vout: u32,
+        witness_utxo_script_hex: String,
+        witness_utxo_asset_id: String,
+        witness_utxo_amount: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input_impl(
+            that,
+            txid,
+            vout,
+            witness_utxo_script_hex,
+            witness_utxo_asset_id,
+            witness_utxo_amount,
+        )
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__transaction__LendingTransaction_build(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_build_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__transaction__LendingTransaction_default(
+        port_: flutter_rust_bridge::for_generated::MessagePort,
+    ) {
+        wire__crate__api__lending__transaction__LendingTransaction_default_impl(port_)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__transaction__LendingTransaction_n_inputs(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_n_inputs_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__transaction__LendingTransaction_n_outputs(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_n_outputs_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__transaction__LendingTransaction_new(
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__transaction__LendingTransaction_new_impl()
     }
 
     #[wasm_bindgen]
@@ -6334,6 +8395,20 @@ mod web {
         that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
     ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
         wire__crate__api__transaction__PartiallySignedElementsTransaction_to_string_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_impl(that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id(
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+        wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id_impl(that)
     }
 
     #[wasm_bindgen]
@@ -6652,6 +8727,42 @@ mod web {
     }
 
     #[wasm_bindgen]
+    pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[wasm_bindgen]
+    pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<IssuanceFactory>>::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[wasm_bindgen]
+    pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[wasm_bindgen]
+    pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<LendingTransaction>>::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[wasm_bindgen]
     pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
         ptr: *const std::ffi::c_void,
     ) {
@@ -6690,6 +8801,32 @@ mod web {
             StdArc::<
                 flutter_rust_bridge::for_generated::RustAutoOpaqueInner<
                     PartiallySignedElementsTransaction,
+                >,
+            >::decrement_strong_count(ptr as _);
+        }
+    }
+
+    #[wasm_bindgen]
+    pub fn rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<
+                    TryFromIssuanceFactoryResult,
+                >,
+            >::increment_strong_count(ptr as _);
+        }
+    }
+
+    #[wasm_bindgen]
+    pub fn rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+        ptr: *const std::ffi::c_void,
+    ) {
+        unsafe {
+            StdArc::<
+                flutter_rust_bridge::for_generated::RustAutoOpaqueInner<
+                    TryFromIssuanceFactoryResult,
                 >,
             >::decrement_strong_count(ptr as _);
         }
