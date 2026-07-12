@@ -6,6 +6,9 @@
 import 'api/blockchain.dart';
 import 'api/descriptor.dart';
 import 'api/error.dart';
+import 'api/lending/config.dart';
+import 'api/lending/indexer.dart';
+import 'api/lending/types.dart';
 import 'api/transaction.dart';
 import 'api/types.dart';
 import 'api/wallet.dart';
@@ -90,6 +93,20 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   Descriptor dco_decode_box_autoadd_descriptor(dynamic raw);
 
   @protected
+  LendingConfig dco_decode_box_autoadd_lending_config(dynamic raw);
+
+  @protected
+  LendingIndexer dco_decode_box_autoadd_lending_indexer(dynamic raw);
+
+  @protected
+  LendingOfferListQuery dco_decode_box_autoadd_lending_offer_list_query(
+      dynamic raw);
+
+  @protected
+  LendingOfferUtxoOutpointShort
+      dco_decode_box_autoadd_lending_offer_utxo_outpoint_short(dynamic raw);
+
+  @protected
   PsetInput dco_decode_box_autoadd_pset_input(dynamic raw);
 
   @protected
@@ -126,6 +143,58 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   PlatformInt64 dco_decode_i_64(dynamic raw);
 
   @protected
+  LendingAssetAmount dco_decode_lending_asset_amount(dynamic raw);
+
+  @protected
+  LendingConfig dco_decode_lending_config(dynamic raw);
+
+  @protected
+  LendingIndexer dco_decode_lending_indexer(dynamic raw);
+
+  @protected
+  LendingOfferDetails dco_decode_lending_offer_details(dynamic raw);
+
+  @protected
+  LendingOfferListItem dco_decode_lending_offer_list_item(dynamic raw);
+
+  @protected
+  LendingOfferListQuery dco_decode_lending_offer_list_query(dynamic raw);
+
+  @protected
+  LendingOfferListResponse dco_decode_lending_offer_list_response(dynamic raw);
+
+  @protected
+  LendingOfferSortBy dco_decode_lending_offer_sort_by(dynamic raw);
+
+  @protected
+  LendingOfferStatus dco_decode_lending_offer_status(dynamic raw);
+
+  @protected
+  LendingOfferUtxoDto dco_decode_lending_offer_utxo_dto(dynamic raw);
+
+  @protected
+  LendingOfferUtxoOutpointShort dco_decode_lending_offer_utxo_outpoint_short(
+      dynamic raw);
+
+  @protected
+  LendingOffersOverview dco_decode_lending_offers_overview(dynamic raw);
+
+  @protected
+  LendingParticipantDto dco_decode_lending_participant_dto(dynamic raw);
+
+  @protected
+  LendingParticipantShort dco_decode_lending_participant_short(dynamic raw);
+
+  @protected
+  LendingParticipantType dco_decode_lending_participant_type(dynamic raw);
+
+  @protected
+  LendingSortDir dco_decode_lending_sort_dir(dynamic raw);
+
+  @protected
+  LendingUtxoType dco_decode_lending_utxo_type(dynamic raw);
+
+  @protected
   LiquidNetwork dco_decode_liquid_network(dynamic raw);
 
   @protected
@@ -133,6 +202,27 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   List<Balance> dco_decode_list_balance(dynamic raw);
+
+  @protected
+  List<LendingAssetAmount> dco_decode_list_lending_asset_amount(dynamic raw);
+
+  @protected
+  List<LendingOfferListItem> dco_decode_list_lending_offer_list_item(
+      dynamic raw);
+
+  @protected
+  List<LendingOfferStatus> dco_decode_list_lending_offer_status(dynamic raw);
+
+  @protected
+  List<LendingOfferUtxoDto> dco_decode_list_lending_offer_utxo_dto(dynamic raw);
+
+  @protected
+  List<LendingParticipantDto> dco_decode_list_lending_participant_dto(
+      dynamic raw);
+
+  @protected
+  List<LendingParticipantShort> dco_decode_list_lending_participant_short(
+      dynamic raw);
 
   @protected
   List<int> dco_decode_list_prim_u_8_loose(dynamic raw);
@@ -168,6 +258,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   String? dco_decode_opt_String(dynamic raw);
 
   @protected
+  LendingOfferUtxoOutpointShort?
+      dco_decode_opt_box_autoadd_lending_offer_utxo_outpoint_short(dynamic raw);
+
+  @protected
   PsetInput? dco_decode_opt_box_autoadd_pset_input(dynamic raw);
 
   @protected
@@ -187,6 +281,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   int? dco_decode_opt_box_autoadd_u_8(dynamic raw);
+
+  @protected
+  List<LendingOfferStatus>? dco_decode_opt_list_lending_offer_status(
+      dynamic raw);
 
   @protected
   OutPoint dco_decode_out_point(dynamic raw);
@@ -295,6 +393,23 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   Descriptor sse_decode_box_autoadd_descriptor(SseDeserializer deserializer);
 
   @protected
+  LendingConfig sse_decode_box_autoadd_lending_config(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingIndexer sse_decode_box_autoadd_lending_indexer(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferListQuery sse_decode_box_autoadd_lending_offer_list_query(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferUtxoOutpointShort
+      sse_decode_box_autoadd_lending_offer_utxo_outpoint_short(
+          SseDeserializer deserializer);
+
+  @protected
   PsetInput sse_decode_box_autoadd_pset_input(SseDeserializer deserializer);
 
   @protected
@@ -331,6 +446,70 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   PlatformInt64 sse_decode_i_64(SseDeserializer deserializer);
 
   @protected
+  LendingAssetAmount sse_decode_lending_asset_amount(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingConfig sse_decode_lending_config(SseDeserializer deserializer);
+
+  @protected
+  LendingIndexer sse_decode_lending_indexer(SseDeserializer deserializer);
+
+  @protected
+  LendingOfferDetails sse_decode_lending_offer_details(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferListItem sse_decode_lending_offer_list_item(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferListQuery sse_decode_lending_offer_list_query(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferListResponse sse_decode_lending_offer_list_response(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferSortBy sse_decode_lending_offer_sort_by(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferStatus sse_decode_lending_offer_status(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferUtxoDto sse_decode_lending_offer_utxo_dto(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferUtxoOutpointShort sse_decode_lending_offer_utxo_outpoint_short(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOffersOverview sse_decode_lending_offers_overview(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingParticipantDto sse_decode_lending_participant_dto(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingParticipantShort sse_decode_lending_participant_short(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingParticipantType sse_decode_lending_participant_type(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingSortDir sse_decode_lending_sort_dir(SseDeserializer deserializer);
+
+  @protected
+  LendingUtxoType sse_decode_lending_utxo_type(SseDeserializer deserializer);
+
+  @protected
   LiquidNetwork sse_decode_liquid_network(SseDeserializer deserializer);
 
   @protected
@@ -338,6 +517,30 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   List<Balance> sse_decode_list_balance(SseDeserializer deserializer);
+
+  @protected
+  List<LendingAssetAmount> sse_decode_list_lending_asset_amount(
+      SseDeserializer deserializer);
+
+  @protected
+  List<LendingOfferListItem> sse_decode_list_lending_offer_list_item(
+      SseDeserializer deserializer);
+
+  @protected
+  List<LendingOfferStatus> sse_decode_list_lending_offer_status(
+      SseDeserializer deserializer);
+
+  @protected
+  List<LendingOfferUtxoDto> sse_decode_list_lending_offer_utxo_dto(
+      SseDeserializer deserializer);
+
+  @protected
+  List<LendingParticipantDto> sse_decode_list_lending_participant_dto(
+      SseDeserializer deserializer);
+
+  @protected
+  List<LendingParticipantShort> sse_decode_list_lending_participant_short(
+      SseDeserializer deserializer);
 
   @protected
   List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer);
@@ -374,6 +577,11 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   String? sse_decode_opt_String(SseDeserializer deserializer);
 
   @protected
+  LendingOfferUtxoOutpointShort?
+      sse_decode_opt_box_autoadd_lending_offer_utxo_outpoint_short(
+          SseDeserializer deserializer);
+
+  @protected
   PsetInput? sse_decode_opt_box_autoadd_pset_input(
       SseDeserializer deserializer);
 
@@ -395,6 +603,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   int? sse_decode_opt_box_autoadd_u_8(SseDeserializer deserializer);
+
+  @protected
+  List<LendingOfferStatus>? sse_decode_opt_list_lending_offer_status(
+      SseDeserializer deserializer);
 
   @protected
   OutPoint sse_decode_out_point(SseDeserializer deserializer);
@@ -468,6 +680,44 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
     // Codec=Cst (C-struct based), see doc to use other codecs
     final ptr = wire.cst_new_box_autoadd_descriptor();
     cst_api_fill_to_wire_descriptor(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_lending_config> cst_encode_box_autoadd_lending_config(
+      LendingConfig raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ptr = wire.cst_new_box_autoadd_lending_config();
+    cst_api_fill_to_wire_lending_config(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_lending_indexer> cst_encode_box_autoadd_lending_indexer(
+      LendingIndexer raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ptr = wire.cst_new_box_autoadd_lending_indexer();
+
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_lending_offer_list_query>
+      cst_encode_box_autoadd_lending_offer_list_query(
+          LendingOfferListQuery raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ptr = wire.cst_new_box_autoadd_lending_offer_list_query();
+    cst_api_fill_to_wire_lending_offer_list_query(raw, ptr.ref);
+    return ptr;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_lending_offer_utxo_outpoint_short>
+      cst_encode_box_autoadd_lending_offer_utxo_outpoint_short(
+          LendingOfferUtxoOutpointShort raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ptr = wire.cst_new_box_autoadd_lending_offer_utxo_outpoint_short();
+    cst_api_fill_to_wire_lending_offer_utxo_outpoint_short(raw, ptr.ref);
     return ptr;
   }
 
@@ -555,6 +805,73 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
     final ans = wire.cst_new_list_balance(raw.length);
     for (var i = 0; i < raw.length; ++i) {
       cst_api_fill_to_wire_balance(raw[i], ans.ref.ptr[i]);
+    }
+    return ans;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_list_lending_asset_amount>
+      cst_encode_list_lending_asset_amount(List<LendingAssetAmount> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ans = wire.cst_new_list_lending_asset_amount(raw.length);
+    for (var i = 0; i < raw.length; ++i) {
+      cst_api_fill_to_wire_lending_asset_amount(raw[i], ans.ref.ptr[i]);
+    }
+    return ans;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_list_lending_offer_list_item>
+      cst_encode_list_lending_offer_list_item(List<LendingOfferListItem> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ans = wire.cst_new_list_lending_offer_list_item(raw.length);
+    for (var i = 0; i < raw.length; ++i) {
+      cst_api_fill_to_wire_lending_offer_list_item(raw[i], ans.ref.ptr[i]);
+    }
+    return ans;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_list_lending_offer_status>
+      cst_encode_list_lending_offer_status(List<LendingOfferStatus> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ans = wire.cst_new_list_lending_offer_status(raw.length);
+    for (var i = 0; i < raw.length; ++i) {
+      ans.ref.ptr[i] = cst_encode_lending_offer_status(raw[i]);
+    }
+    return ans;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_list_lending_offer_utxo_dto>
+      cst_encode_list_lending_offer_utxo_dto(List<LendingOfferUtxoDto> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ans = wire.cst_new_list_lending_offer_utxo_dto(raw.length);
+    for (var i = 0; i < raw.length; ++i) {
+      cst_api_fill_to_wire_lending_offer_utxo_dto(raw[i], ans.ref.ptr[i]);
+    }
+    return ans;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_list_lending_participant_dto>
+      cst_encode_list_lending_participant_dto(List<LendingParticipantDto> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ans = wire.cst_new_list_lending_participant_dto(raw.length);
+    for (var i = 0; i < raw.length; ++i) {
+      cst_api_fill_to_wire_lending_participant_dto(raw[i], ans.ref.ptr[i]);
+    }
+    return ans;
+  }
+
+  @protected
+  ffi.Pointer<wire_cst_list_lending_participant_short>
+      cst_encode_list_lending_participant_short(
+          List<LendingParticipantShort> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    final ans = wire.cst_new_list_lending_participant_short(raw.length);
+    for (var i = 0; i < raw.length; ++i) {
+      cst_api_fill_to_wire_lending_participant_short(raw[i], ans.ref.ptr[i]);
     }
     return ans;
   }
@@ -660,6 +977,16 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   }
 
   @protected
+  ffi.Pointer<wire_cst_lending_offer_utxo_outpoint_short>
+      cst_encode_opt_box_autoadd_lending_offer_utxo_outpoint_short(
+          LendingOfferUtxoOutpointShort? raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw == null
+        ? ffi.nullptr
+        : cst_encode_box_autoadd_lending_offer_utxo_outpoint_short(raw);
+  }
+
+  @protected
   ffi.Pointer<wire_cst_pset_input> cst_encode_opt_box_autoadd_pset_input(
       PsetInput? raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
@@ -706,6 +1033,15 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   }
 
   @protected
+  ffi.Pointer<wire_cst_list_lending_offer_status>
+      cst_encode_opt_list_lending_offer_status(List<LendingOfferStatus>? raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw == null
+        ? ffi.nullptr
+        : cst_encode_list_lending_offer_status(raw);
+  }
+
+  @protected
   int cst_encode_u_64(BigInt raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return raw.toSigned(64).toInt();
@@ -742,6 +1078,26 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   }
 
   @protected
+  void cst_api_fill_to_wire_box_autoadd_lending_config(
+      LendingConfig apiObj, ffi.Pointer<wire_cst_lending_config> wireObj) {
+    cst_api_fill_to_wire_lending_config(apiObj, wireObj.ref);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_box_autoadd_lending_offer_list_query(
+      LendingOfferListQuery apiObj,
+      ffi.Pointer<wire_cst_lending_offer_list_query> wireObj) {
+    cst_api_fill_to_wire_lending_offer_list_query(apiObj, wireObj.ref);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_box_autoadd_lending_offer_utxo_outpoint_short(
+      LendingOfferUtxoOutpointShort apiObj,
+      ffi.Pointer<wire_cst_lending_offer_utxo_outpoint_short> wireObj) {
+    cst_api_fill_to_wire_lending_offer_utxo_outpoint_short(apiObj, wireObj.ref);
+  }
+
+  @protected
   void cst_api_fill_to_wire_box_autoadd_pset_input(
       PsetInput apiObj, ffi.Pointer<wire_cst_pset_input> wireObj) {
     cst_api_fill_to_wire_pset_input(apiObj, wireObj.ref);
@@ -775,6 +1131,149 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   void cst_api_fill_to_wire_descriptor(
       Descriptor apiObj, wire_cst_descriptor wireObj) {
     wireObj.ct_descriptor = cst_encode_String(apiObj.ctDescriptor);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_lending_asset_amount(
+      LendingAssetAmount apiObj, wire_cst_lending_asset_amount wireObj) {
+    wireObj.asset = cst_encode_String(apiObj.asset);
+    wireObj.amount = cst_encode_String(apiObj.amount);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_lending_config(
+      LendingConfig apiObj, wire_cst_lending_config wireObj) {
+    wireObj.network = cst_encode_liquid_network(apiObj.network);
+    wireObj.allow_mainnet = cst_encode_bool(apiObj.allowMainnet);
+    wireObj.indexer_base_url = cst_encode_opt_String(apiObj.indexerBaseUrl);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_lending_indexer(
+      LendingIndexer apiObj, wire_cst_lending_indexer wireObj) {}
+
+  @protected
+  void cst_api_fill_to_wire_lending_offer_details(
+      LendingOfferDetails apiObj, wire_cst_lending_offer_details wireObj) {
+    wireObj.id = cst_encode_String(apiObj.id);
+    wireObj.issuance_factory_id = cst_encode_String(apiObj.issuanceFactoryId);
+    wireObj.status = cst_encode_lending_offer_status(apiObj.status);
+    wireObj.collateral_asset = cst_encode_String(apiObj.collateralAsset);
+    wireObj.principal_asset = cst_encode_String(apiObj.principalAsset);
+    wireObj.collateral_amount = cst_encode_String(apiObj.collateralAmount);
+    wireObj.principal_amount = cst_encode_String(apiObj.principalAmount);
+    wireObj.interest_rate = cst_encode_u_32(apiObj.interestRate);
+    wireObj.loan_expiration_height =
+        cst_encode_u_32(apiObj.loanExpirationHeight);
+    wireObj.created_at_height = cst_encode_u_64(apiObj.createdAtHeight);
+    wireObj.created_at_txid = cst_encode_String(apiObj.createdAtTxid);
+    wireObj.borrower_nft_asset = cst_encode_String(apiObj.borrowerNftAsset);
+    wireObj.lender_nft_asset = cst_encode_String(apiObj.lenderNftAsset);
+    wireObj.protocol_fee_keeper_asset =
+        cst_encode_String(apiObj.protocolFeeKeeperAsset);
+    wireObj.participants =
+        cst_encode_list_lending_participant_dto(apiObj.participants);
+    wireObj.utxos = cst_encode_list_lending_offer_utxo_dto(apiObj.utxos);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_lending_offer_list_item(
+      LendingOfferListItem apiObj, wire_cst_lending_offer_list_item wireObj) {
+    wireObj.id = cst_encode_String(apiObj.id);
+    wireObj.issuance_factory_id = cst_encode_String(apiObj.issuanceFactoryId);
+    wireObj.status = cst_encode_lending_offer_status(apiObj.status);
+    wireObj.collateral_asset = cst_encode_String(apiObj.collateralAsset);
+    wireObj.principal_asset = cst_encode_String(apiObj.principalAsset);
+    wireObj.collateral_amount = cst_encode_String(apiObj.collateralAmount);
+    wireObj.principal_amount = cst_encode_String(apiObj.principalAmount);
+    wireObj.interest_rate = cst_encode_u_32(apiObj.interestRate);
+    wireObj.loan_expiration_height =
+        cst_encode_u_32(apiObj.loanExpirationHeight);
+    wireObj.created_at_height = cst_encode_u_64(apiObj.createdAtHeight);
+    wireObj.created_at_txid = cst_encode_String(apiObj.createdAtTxid);
+    wireObj.participants =
+        cst_encode_list_lending_participant_short(apiObj.participants);
+    wireObj.borrower_principal_utxo =
+        cst_encode_opt_box_autoadd_lending_offer_utxo_outpoint_short(
+            apiObj.borrowerPrincipalUtxo);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_lending_offer_list_query(
+      LendingOfferListQuery apiObj, wire_cst_lending_offer_list_query wireObj) {
+    wireObj.status = cst_encode_opt_list_lending_offer_status(apiObj.status);
+    wireObj.collateral_asset = cst_encode_opt_String(apiObj.collateralAsset);
+    wireObj.principal_asset = cst_encode_opt_String(apiObj.principalAsset);
+    wireObj.factory_id = cst_encode_opt_String(apiObj.factoryId);
+    wireObj.limit = cst_encode_opt_box_autoadd_u_64(apiObj.limit);
+    wireObj.offset = cst_encode_opt_box_autoadd_u_64(apiObj.offset);
+    wireObj.sort_by = cst_encode_lending_offer_sort_by(apiObj.sortBy);
+    wireObj.sort_dir = cst_encode_lending_sort_dir(apiObj.sortDir);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_lending_offer_list_response(
+      LendingOfferListResponse apiObj,
+      wire_cst_lending_offer_list_response wireObj) {
+    wireObj.items = cst_encode_list_lending_offer_list_item(apiObj.items);
+    wireObj.total = cst_encode_u_64(apiObj.total);
+    wireObj.limit = cst_encode_u_64(apiObj.limit);
+    wireObj.offset = cst_encode_u_64(apiObj.offset);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_lending_offer_utxo_dto(
+      LendingOfferUtxoDto apiObj, wire_cst_lending_offer_utxo_dto wireObj) {
+    wireObj.offer_id = cst_encode_String(apiObj.offerId);
+    wireObj.txid = cst_encode_String(apiObj.txid);
+    wireObj.vout = cst_encode_u_32(apiObj.vout);
+    wireObj.utxo_type = cst_encode_lending_utxo_type(apiObj.utxoType);
+    wireObj.created_at_height = cst_encode_u_64(apiObj.createdAtHeight);
+    wireObj.spent_txid = cst_encode_opt_String(apiObj.spentTxid);
+    wireObj.spent_at_height =
+        cst_encode_opt_box_autoadd_u_64(apiObj.spentAtHeight);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_lending_offer_utxo_outpoint_short(
+      LendingOfferUtxoOutpointShort apiObj,
+      wire_cst_lending_offer_utxo_outpoint_short wireObj) {
+    wireObj.txid = cst_encode_String(apiObj.txid);
+    wireObj.vout = cst_encode_u_32(apiObj.vout);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_lending_offers_overview(
+      LendingOffersOverview apiObj, wire_cst_lending_offers_overview wireObj) {
+    wireObj.collateral_locked =
+        cst_encode_list_lending_asset_amount(apiObj.collateralLocked);
+    wireObj.active_loan_principal =
+        cst_encode_list_lending_asset_amount(apiObj.activeLoanPrincipal);
+    wireObj.active_loans_count = cst_encode_u_64(apiObj.activeLoansCount);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_lending_participant_dto(
+      LendingParticipantDto apiObj, wire_cst_lending_participant_dto wireObj) {
+    wireObj.offer_id = cst_encode_String(apiObj.offerId);
+    wireObj.participant_type =
+        cst_encode_lending_participant_type(apiObj.participantType);
+    wireObj.script_pubkey = cst_encode_String(apiObj.scriptPubkey);
+    wireObj.txid = cst_encode_String(apiObj.txid);
+    wireObj.vout = cst_encode_u_32(apiObj.vout);
+    wireObj.created_at_height = cst_encode_u_64(apiObj.createdAtHeight);
+    wireObj.spent_txid = cst_encode_opt_String(apiObj.spentTxid);
+    wireObj.spent_at_height =
+        cst_encode_opt_box_autoadd_u_64(apiObj.spentAtHeight);
+  }
+
+  @protected
+  void cst_api_fill_to_wire_lending_participant_short(
+      LendingParticipantShort apiObj,
+      wire_cst_lending_participant_short wireObj) {
+    wireObj.participant_type =
+        cst_encode_lending_participant_type(apiObj.participantType);
+    wireObj.script_pubkey = cst_encode_String(apiObj.scriptPubkey);
   }
 
   @protected
@@ -929,6 +1428,21 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   int cst_encode_i_32(int raw);
 
   @protected
+  int cst_encode_lending_offer_sort_by(LendingOfferSortBy raw);
+
+  @protected
+  int cst_encode_lending_offer_status(LendingOfferStatus raw);
+
+  @protected
+  int cst_encode_lending_participant_type(LendingParticipantType raw);
+
+  @protected
+  int cst_encode_lending_sort_dir(LendingSortDir raw);
+
+  @protected
+  int cst_encode_lending_utxo_type(LendingUtxoType raw);
+
+  @protected
   int cst_encode_liquid_network(LiquidNetwork raw);
 
   @protected
@@ -998,6 +1512,22 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
       Descriptor self, SseSerializer serializer);
 
   @protected
+  void sse_encode_box_autoadd_lending_config(
+      LendingConfig self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_lending_indexer(
+      LendingIndexer self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_lending_offer_list_query(
+      LendingOfferListQuery self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_lending_offer_utxo_outpoint_short(
+      LendingOfferUtxoOutpointShort self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_pset_input(
       PsetInput self, SseSerializer serializer);
 
@@ -1037,6 +1567,73 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer);
 
   @protected
+  void sse_encode_lending_asset_amount(
+      LendingAssetAmount self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_config(LendingConfig self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_indexer(
+      LendingIndexer self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_details(
+      LendingOfferDetails self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_list_item(
+      LendingOfferListItem self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_list_query(
+      LendingOfferListQuery self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_list_response(
+      LendingOfferListResponse self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_sort_by(
+      LendingOfferSortBy self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_status(
+      LendingOfferStatus self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_utxo_dto(
+      LendingOfferUtxoDto self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_utxo_outpoint_short(
+      LendingOfferUtxoOutpointShort self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offers_overview(
+      LendingOffersOverview self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_participant_dto(
+      LendingParticipantDto self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_participant_short(
+      LendingParticipantShort self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_participant_type(
+      LendingParticipantType self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_sort_dir(
+      LendingSortDir self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_utxo_type(
+      LendingUtxoType self, SseSerializer serializer);
+
+  @protected
   void sse_encode_liquid_network(LiquidNetwork self, SseSerializer serializer);
 
   @protected
@@ -1044,6 +1641,30 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   void sse_encode_list_balance(List<Balance> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_lending_asset_amount(
+      List<LendingAssetAmount> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_lending_offer_list_item(
+      List<LendingOfferListItem> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_lending_offer_status(
+      List<LendingOfferStatus> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_lending_offer_utxo_dto(
+      List<LendingOfferUtxoDto> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_lending_participant_dto(
+      List<LendingParticipantDto> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_lending_participant_short(
+      List<LendingParticipantShort> self, SseSerializer serializer);
 
   @protected
   void sse_encode_list_prim_u_8_loose(List<int> self, SseSerializer serializer);
@@ -1083,6 +1704,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   void sse_encode_opt_String(String? self, SseSerializer serializer);
 
   @protected
+  void sse_encode_opt_box_autoadd_lending_offer_utxo_outpoint_short(
+      LendingOfferUtxoOutpointShort? self, SseSerializer serializer);
+
+  @protected
   void sse_encode_opt_box_autoadd_pset_input(
       PsetInput? self, SseSerializer serializer);
 
@@ -1106,6 +1731,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   void sse_encode_opt_box_autoadd_u_8(int? self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_opt_list_lending_offer_status(
+      List<LendingOfferStatus>? self, SseSerializer serializer);
 
   @protected
   void sse_encode_out_point(OutPoint self, SseSerializer serializer);
@@ -2142,6 +2771,193 @@ class LwkCoreWire implements BaseWire {
       _wire__crate__api__transaction__get_size_and_absolute_feesPtr.asFunction<
           void Function(int, ffi.Pointer<wire_cst_list_prim_u_8_strict>)>();
 
+  void wire__crate__api__lending__indexer__lending_indexer_get_details(
+    int port_,
+    ffi.Pointer<wire_cst_lending_indexer> that,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> id,
+  ) {
+    return _wire__crate__api__lending__indexer__lending_indexer_get_details(
+      port_,
+      that,
+      id,
+    );
+  }
+
+  late final _wire__crate__api__lending__indexer__lending_indexer_get_detailsPtr =
+      _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                ffi.Int64,
+                ffi.Pointer<wire_cst_lending_indexer>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+              )>>(
+    'frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_get_details',
+  );
+  late final _wire__crate__api__lending__indexer__lending_indexer_get_details =
+      _wire__crate__api__lending__indexer__lending_indexer_get_detailsPtr
+          .asFunction<
+              void Function(
+                int,
+                ffi.Pointer<wire_cst_lending_indexer>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+              )>();
+
+  void wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script(
+    int port_,
+    ffi.Pointer<wire_cst_lending_indexer> that,
+    ffi.Pointer<wire_cst_list_prim_u_8_strict> script_pubkey,
+  ) {
+    return _wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script(
+      port_,
+      that,
+      script_pubkey,
+    );
+  }
+
+  late final _wire__crate__api__lending__indexer__lending_indexer_get_ids_by_scriptPtr =
+      _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                ffi.Int64,
+                ffi.Pointer<wire_cst_lending_indexer>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+              )>>(
+    'frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script',
+  );
+  late final _wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script =
+      _wire__crate__api__lending__indexer__lending_indexer_get_ids_by_scriptPtr
+          .asFunction<
+              void Function(
+                int,
+                ffi.Pointer<wire_cst_lending_indexer>,
+                ffi.Pointer<wire_cst_list_prim_u_8_strict>,
+              )>();
+
+  void wire__crate__api__lending__indexer__lending_indexer_get_overview(
+    int port_,
+    ffi.Pointer<wire_cst_lending_indexer> that,
+  ) {
+    return _wire__crate__api__lending__indexer__lending_indexer_get_overview(
+      port_,
+      that,
+    );
+  }
+
+  late final _wire__crate__api__lending__indexer__lending_indexer_get_overviewPtr =
+      _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Int64, ffi.Pointer<wire_cst_lending_indexer>)>>(
+    'frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_get_overview',
+  );
+  late final _wire__crate__api__lending__indexer__lending_indexer_get_overview =
+      _wire__crate__api__lending__indexer__lending_indexer_get_overviewPtr
+          .asFunction<
+              void Function(int, ffi.Pointer<wire_cst_lending_indexer>)>();
+
+  void wire__crate__api__lending__indexer__lending_indexer_list_offers(
+    int port_,
+    ffi.Pointer<wire_cst_lending_indexer> that,
+    ffi.Pointer<wire_cst_lending_offer_list_query> query,
+  ) {
+    return _wire__crate__api__lending__indexer__lending_indexer_list_offers(
+      port_,
+      that,
+      query,
+    );
+  }
+
+  late final _wire__crate__api__lending__indexer__lending_indexer_list_offersPtr =
+      _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                ffi.Int64,
+                ffi.Pointer<wire_cst_lending_indexer>,
+                ffi.Pointer<wire_cst_lending_offer_list_query>,
+              )>>(
+    'frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_list_offers',
+  );
+  late final _wire__crate__api__lending__indexer__lending_indexer_list_offers =
+      _wire__crate__api__lending__indexer__lending_indexer_list_offersPtr
+          .asFunction<
+              void Function(
+                int,
+                ffi.Pointer<wire_cst_lending_indexer>,
+                ffi.Pointer<wire_cst_lending_offer_list_query>,
+              )>();
+
+  void wire__crate__api__lending__indexer__lending_indexer_new(int port_) {
+    return _wire__crate__api__lending__indexer__lending_indexer_new(port_);
+  }
+
+  late final _wire__crate__api__lending__indexer__lending_indexer_newPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+    'frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_new',
+  );
+  late final _wire__crate__api__lending__indexer__lending_indexer_new =
+      _wire__crate__api__lending__indexer__lending_indexer_newPtr
+          .asFunction<void Function(int)>();
+
+  void wire__crate__api__lending__config__lending_init(
+    int port_,
+    ffi.Pointer<wire_cst_lending_config> config,
+  ) {
+    return _wire__crate__api__lending__config__lending_init(port_, config);
+  }
+
+  late final _wire__crate__api__lending__config__lending_initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Int64, ffi.Pointer<wire_cst_lending_config>)>>(
+      'frbgen_lwk_wire__crate__api__lending__config__lending_init');
+  late final _wire__crate__api__lending__config__lending_init =
+      _wire__crate__api__lending__config__lending_initPtr.asFunction<
+          void Function(int, ffi.Pointer<wire_cst_lending_config>)>();
+
+  void wire__crate__api__lending__types__lending_offer_list_query_default(
+    int port_,
+  ) {
+    return _wire__crate__api__lending__types__lending_offer_list_query_default(
+      port_,
+    );
+  }
+
+  late final _wire__crate__api__lending__types__lending_offer_list_query_defaultPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+    'frbgen_lwk_wire__crate__api__lending__types__lending_offer_list_query_default',
+  );
+  late final _wire__crate__api__lending__types__lending_offer_list_query_default =
+      _wire__crate__api__lending__types__lending_offer_list_query_defaultPtr
+          .asFunction<void Function(int)>();
+
+  void wire__crate__api__lending__types__lending_offer_sort_by_default(
+    int port_,
+  ) {
+    return _wire__crate__api__lending__types__lending_offer_sort_by_default(
+      port_,
+    );
+  }
+
+  late final _wire__crate__api__lending__types__lending_offer_sort_by_defaultPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+    'frbgen_lwk_wire__crate__api__lending__types__lending_offer_sort_by_default',
+  );
+  late final _wire__crate__api__lending__types__lending_offer_sort_by_default =
+      _wire__crate__api__lending__types__lending_offer_sort_by_defaultPtr
+          .asFunction<void Function(int)>();
+
+  void wire__crate__api__lending__types__lending_sort_dir_default(int port_) {
+    return _wire__crate__api__lending__types__lending_sort_dir_default(port_);
+  }
+
+  late final _wire__crate__api__lending__types__lending_sort_dir_defaultPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+    'frbgen_lwk_wire__crate__api__lending__types__lending_sort_dir_default',
+  );
+  late final _wire__crate__api__lending__types__lending_sort_dir_default =
+      _wire__crate__api__lending__types__lending_sort_dir_defaultPtr
+          .asFunction<void Function(int)>();
+
   void wire__crate__api__wallet__wallet_address(
     int port_,
     ffi.Pointer<wire_cst_wallet> that,
@@ -2665,6 +3481,56 @@ class LwkCoreWire implements BaseWire {
       _cst_new_box_autoadd_descriptorPtr
           .asFunction<ffi.Pointer<wire_cst_descriptor> Function()>();
 
+  ffi.Pointer<wire_cst_lending_config> cst_new_box_autoadd_lending_config() {
+    return _cst_new_box_autoadd_lending_config();
+  }
+
+  late final _cst_new_box_autoadd_lending_configPtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<wire_cst_lending_config> Function()>>(
+      'frbgen_lwk_cst_new_box_autoadd_lending_config');
+  late final _cst_new_box_autoadd_lending_config =
+      _cst_new_box_autoadd_lending_configPtr
+          .asFunction<ffi.Pointer<wire_cst_lending_config> Function()>();
+
+  ffi.Pointer<wire_cst_lending_indexer> cst_new_box_autoadd_lending_indexer() {
+    return _cst_new_box_autoadd_lending_indexer();
+  }
+
+  late final _cst_new_box_autoadd_lending_indexerPtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<wire_cst_lending_indexer> Function()>>(
+      'frbgen_lwk_cst_new_box_autoadd_lending_indexer');
+  late final _cst_new_box_autoadd_lending_indexer =
+      _cst_new_box_autoadd_lending_indexerPtr
+          .asFunction<ffi.Pointer<wire_cst_lending_indexer> Function()>();
+
+  ffi.Pointer<wire_cst_lending_offer_list_query>
+      cst_new_box_autoadd_lending_offer_list_query() {
+    return _cst_new_box_autoadd_lending_offer_list_query();
+  }
+
+  late final _cst_new_box_autoadd_lending_offer_list_queryPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<wire_cst_lending_offer_list_query> Function()>>(
+      'frbgen_lwk_cst_new_box_autoadd_lending_offer_list_query');
+  late final _cst_new_box_autoadd_lending_offer_list_query =
+      _cst_new_box_autoadd_lending_offer_list_queryPtr.asFunction<
+          ffi.Pointer<wire_cst_lending_offer_list_query> Function()>();
+
+  ffi.Pointer<wire_cst_lending_offer_utxo_outpoint_short>
+      cst_new_box_autoadd_lending_offer_utxo_outpoint_short() {
+    return _cst_new_box_autoadd_lending_offer_utxo_outpoint_short();
+  }
+
+  late final _cst_new_box_autoadd_lending_offer_utxo_outpoint_shortPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<wire_cst_lending_offer_utxo_outpoint_short>
+                      Function()>>(
+          'frbgen_lwk_cst_new_box_autoadd_lending_offer_utxo_outpoint_short');
+  late final _cst_new_box_autoadd_lending_offer_utxo_outpoint_short =
+      _cst_new_box_autoadd_lending_offer_utxo_outpoint_shortPtr.asFunction<
+          ffi.Pointer<wire_cst_lending_offer_utxo_outpoint_short> Function()>();
+
   ffi.Pointer<wire_cst_pset_input> cst_new_box_autoadd_pset_input() {
     return _cst_new_box_autoadd_pset_input();
   }
@@ -2776,6 +3642,85 @@ class LwkCoreWire implements BaseWire {
               ffi.Int32)>>('frbgen_lwk_cst_new_list_balance');
   late final _cst_new_list_balance = _cst_new_list_balancePtr
       .asFunction<ffi.Pointer<wire_cst_list_balance> Function(int)>();
+
+  ffi.Pointer<wire_cst_list_lending_asset_amount>
+      cst_new_list_lending_asset_amount(int len) {
+    return _cst_new_list_lending_asset_amount(len);
+  }
+
+  late final _cst_new_list_lending_asset_amountPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_cst_list_lending_asset_amount> Function(
+              ffi.Int32)>>('frbgen_lwk_cst_new_list_lending_asset_amount');
+  late final _cst_new_list_lending_asset_amount =
+      _cst_new_list_lending_asset_amountPtr.asFunction<
+          ffi.Pointer<wire_cst_list_lending_asset_amount> Function(int)>();
+
+  ffi.Pointer<wire_cst_list_lending_offer_list_item>
+      cst_new_list_lending_offer_list_item(int len) {
+    return _cst_new_list_lending_offer_list_item(len);
+  }
+
+  late final _cst_new_list_lending_offer_list_itemPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_cst_list_lending_offer_list_item> Function(
+              ffi.Int32)>>('frbgen_lwk_cst_new_list_lending_offer_list_item');
+  late final _cst_new_list_lending_offer_list_item =
+      _cst_new_list_lending_offer_list_itemPtr.asFunction<
+          ffi.Pointer<wire_cst_list_lending_offer_list_item> Function(int)>();
+
+  ffi.Pointer<wire_cst_list_lending_offer_status>
+      cst_new_list_lending_offer_status(int len) {
+    return _cst_new_list_lending_offer_status(len);
+  }
+
+  late final _cst_new_list_lending_offer_statusPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_cst_list_lending_offer_status> Function(
+              ffi.Int32)>>('frbgen_lwk_cst_new_list_lending_offer_status');
+  late final _cst_new_list_lending_offer_status =
+      _cst_new_list_lending_offer_statusPtr.asFunction<
+          ffi.Pointer<wire_cst_list_lending_offer_status> Function(int)>();
+
+  ffi.Pointer<wire_cst_list_lending_offer_utxo_dto>
+      cst_new_list_lending_offer_utxo_dto(int len) {
+    return _cst_new_list_lending_offer_utxo_dto(len);
+  }
+
+  late final _cst_new_list_lending_offer_utxo_dtoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_cst_list_lending_offer_utxo_dto> Function(
+              ffi.Int32)>>('frbgen_lwk_cst_new_list_lending_offer_utxo_dto');
+  late final _cst_new_list_lending_offer_utxo_dto =
+      _cst_new_list_lending_offer_utxo_dtoPtr.asFunction<
+          ffi.Pointer<wire_cst_list_lending_offer_utxo_dto> Function(int)>();
+
+  ffi.Pointer<wire_cst_list_lending_participant_dto>
+      cst_new_list_lending_participant_dto(int len) {
+    return _cst_new_list_lending_participant_dto(len);
+  }
+
+  late final _cst_new_list_lending_participant_dtoPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_cst_list_lending_participant_dto> Function(
+              ffi.Int32)>>('frbgen_lwk_cst_new_list_lending_participant_dto');
+  late final _cst_new_list_lending_participant_dto =
+      _cst_new_list_lending_participant_dtoPtr.asFunction<
+          ffi.Pointer<wire_cst_list_lending_participant_dto> Function(int)>();
+
+  ffi.Pointer<wire_cst_list_lending_participant_short>
+      cst_new_list_lending_participant_short(int len) {
+    return _cst_new_list_lending_participant_short(len);
+  }
+
+  late final _cst_new_list_lending_participant_shortPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_cst_list_lending_participant_short> Function(
+            ffi.Int32,
+          )>>('frbgen_lwk_cst_new_list_lending_participant_short');
+  late final _cst_new_list_lending_participant_short =
+      _cst_new_list_lending_participant_shortPtr.asFunction<
+          ffi.Pointer<wire_cst_list_lending_participant_short> Function(int)>();
 
   ffi.Pointer<wire_cst_list_prim_u_8_loose> cst_new_list_prim_u_8_loose(
     int len,
@@ -2933,6 +3878,45 @@ final class wire_cst_list_balance extends ffi.Struct {
   external int len;
 }
 
+final class wire_cst_lending_indexer extends ffi.Opaque {}
+
+final class wire_cst_list_lending_offer_status extends ffi.Struct {
+  external ffi.Pointer<ffi.Int32> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_cst_lending_offer_list_query extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_lending_offer_status> status;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> collateral_asset;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> principal_asset;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> factory_id;
+
+  external ffi.Pointer<ffi.Uint64> limit;
+
+  external ffi.Pointer<ffi.Uint64> offset;
+
+  @ffi.Int32()
+  external int sort_by;
+
+  @ffi.Int32()
+  external int sort_dir;
+}
+
+final class wire_cst_lending_config extends ffi.Struct {
+  @ffi.Int32()
+  external int network;
+
+  @ffi.Bool()
+  external bool allow_mainnet;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> indexer_base_url;
+}
+
 final class wire_cst_wallet extends ffi.Struct {
   @ffi.UintPtr()
   external int inner;
@@ -2940,6 +3924,13 @@ final class wire_cst_wallet extends ffi.Struct {
 
 final class wire_cst_descriptor extends ffi.Struct {
   external ffi.Pointer<wire_cst_list_prim_u_8_strict> ct_descriptor;
+}
+
+final class wire_cst_lending_offer_utxo_outpoint_short extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> txid;
+
+  @ffi.Uint32()
+  external int vout;
 }
 
 final class wire_cst_pset_input extends ffi.Struct {
@@ -2992,6 +3983,127 @@ final class wire_cst_tx_output extends ffi.Struct {
   external ffi.Pointer<ffi.Uint64> value;
 
   external ffi.Pointer<wire_cst_list_prim_u_8_strict> nonce;
+}
+
+final class wire_cst_lending_asset_amount extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> asset;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> amount;
+}
+
+final class wire_cst_list_lending_asset_amount extends ffi.Struct {
+  external ffi.Pointer<wire_cst_lending_asset_amount> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_cst_lending_participant_short extends ffi.Struct {
+  @ffi.Int32()
+  external int participant_type;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> script_pubkey;
+}
+
+final class wire_cst_list_lending_participant_short extends ffi.Struct {
+  external ffi.Pointer<wire_cst_lending_participant_short> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_cst_lending_offer_list_item extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> id;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> issuance_factory_id;
+
+  @ffi.Int32()
+  external int status;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> collateral_asset;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> principal_asset;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> collateral_amount;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> principal_amount;
+
+  @ffi.Uint32()
+  external int interest_rate;
+
+  @ffi.Uint32()
+  external int loan_expiration_height;
+
+  @ffi.Uint64()
+  external int created_at_height;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> created_at_txid;
+
+  external ffi.Pointer<wire_cst_list_lending_participant_short> participants;
+
+  external ffi.Pointer<wire_cst_lending_offer_utxo_outpoint_short>
+      borrower_principal_utxo;
+}
+
+final class wire_cst_list_lending_offer_list_item extends ffi.Struct {
+  external ffi.Pointer<wire_cst_lending_offer_list_item> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_cst_lending_offer_utxo_dto extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> offer_id;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> txid;
+
+  @ffi.Uint32()
+  external int vout;
+
+  @ffi.Int32()
+  external int utxo_type;
+
+  @ffi.Uint64()
+  external int created_at_height;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> spent_txid;
+
+  external ffi.Pointer<ffi.Uint64> spent_at_height;
+}
+
+final class wire_cst_list_lending_offer_utxo_dto extends ffi.Struct {
+  external ffi.Pointer<wire_cst_lending_offer_utxo_dto> ptr;
+
+  @ffi.Int32()
+  external int len;
+}
+
+final class wire_cst_lending_participant_dto extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> offer_id;
+
+  @ffi.Int32()
+  external int participant_type;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> script_pubkey;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> txid;
+
+  @ffi.Uint32()
+  external int vout;
+
+  @ffi.Uint64()
+  external int created_at_height;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> spent_txid;
+
+  external ffi.Pointer<ffi.Uint64> spent_at_height;
+}
+
+final class wire_cst_list_lending_participant_dto extends ffi.Struct {
+  external ffi.Pointer<wire_cst_lending_participant_dto> ptr;
+
+  @ffi.Int32()
+  external int len;
 }
 
 final class wire_cst_list_pset_input extends ffi.Struct {
@@ -3108,6 +4220,67 @@ final class wire_cst_list_tx_output extends ffi.Struct {
 
   @ffi.Int32()
   external int len;
+}
+
+final class wire_cst_lending_offer_details extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> id;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> issuance_factory_id;
+
+  @ffi.Int32()
+  external int status;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> collateral_asset;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> principal_asset;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> collateral_amount;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> principal_amount;
+
+  @ffi.Uint32()
+  external int interest_rate;
+
+  @ffi.Uint32()
+  external int loan_expiration_height;
+
+  @ffi.Uint64()
+  external int created_at_height;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> created_at_txid;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> borrower_nft_asset;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> lender_nft_asset;
+
+  external ffi.Pointer<wire_cst_list_prim_u_8_strict> protocol_fee_keeper_asset;
+
+  external ffi.Pointer<wire_cst_list_lending_participant_dto> participants;
+
+  external ffi.Pointer<wire_cst_list_lending_offer_utxo_dto> utxos;
+}
+
+final class wire_cst_lending_offer_list_response extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_lending_offer_list_item> items;
+
+  @ffi.Uint64()
+  external int total;
+
+  @ffi.Uint64()
+  external int limit;
+
+  @ffi.Uint64()
+  external int offset;
+}
+
+final class wire_cst_lending_offers_overview extends ffi.Struct {
+  external ffi.Pointer<wire_cst_list_lending_asset_amount> collateral_locked;
+
+  external ffi.Pointer<wire_cst_list_lending_asset_amount>
+      active_loan_principal;
+
+  @ffi.Uint64()
+  external int active_loans_count;
 }
 
 final class wire_cst_lwk_error extends ffi.Struct {

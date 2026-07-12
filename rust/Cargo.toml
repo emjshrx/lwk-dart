@@ -28,6 +28,9 @@ log = "0.4.22"
 sideswap_types = { git = "https://github.com/sideswap-io/sideswap_rust.git", rev = "3722a83da1c440c8a8c8edc79b7dc89ed01ae11c" }
 sideswap_common = { git = "https://github.com/sideswap-io/sideswap_rust.git", rev = "3722a83da1c440c8a8c8edc79b7dc89ed01ae11c" }
 sideswap_payjoin = { git = "https://github.com/sideswap-io/sideswap_rust.git", rev = "3722a83da1c440c8a8c8edc79b7dc89ed01ae11c" }
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "rustls-tls"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
 
 [features]
 bull_sdk = []

@@ -40,7 +40,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueNom,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.12.0";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 651086619;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -557251728;
 
 // Section: executor
 
@@ -1684,6 +1684,208 @@ fn wire__crate__api__transaction__get_size_and_absolute_fees_impl(
         },
     )
 }
+fn wire__crate__api__lending__indexer__lending_indexer_get_details_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    that: impl CstDecode<crate::api::lending::indexer::LendingIndexer>,
+    id: impl CstDecode<String>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "lending_indexer_get_details",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_id = id.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                    let output_ok = crate::api::lending::indexer::LendingIndexer::get_details(
+                        &api_that, api_id,
+                    )?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    that: impl CstDecode<crate::api::lending::indexer::LendingIndexer>,
+    script_pubkey: impl CstDecode<String>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "lending_indexer_get_ids_by_script",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_script_pubkey = script_pubkey.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                    let output_ok =
+                        crate::api::lending::indexer::LendingIndexer::get_ids_by_script(
+                            &api_that,
+                            api_script_pubkey,
+                        )?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__crate__api__lending__indexer__lending_indexer_get_overview_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    that: impl CstDecode<crate::api::lending::indexer::LendingIndexer>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "lending_indexer_get_overview",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                    let output_ok =
+                        crate::api::lending::indexer::LendingIndexer::get_overview(&api_that)?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__crate__api__lending__indexer__lending_indexer_list_offers_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    that: impl CstDecode<crate::api::lending::indexer::LendingIndexer>,
+    query: impl CstDecode<crate::api::lending::types::LendingOfferListQuery>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "lending_indexer_list_offers",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_that = that.cst_decode();
+            let api_query = query.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                    let output_ok = crate::api::lending::indexer::LendingIndexer::list_offers(
+                        &api_that, api_query,
+                    )?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__crate__api__lending__indexer__lending_indexer_new_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "lending_indexer_new",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok =
+                        Result::<_, ()>::Ok(crate::api::lending::indexer::LendingIndexer::new())?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__crate__api__lending__config__lending_init_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    config: impl CstDecode<crate::api::lending::config::LendingConfig>,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "lending_init",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_config = config.cst_decode();
+            move |context| {
+                transform_result_dco::<_, _, crate::api::error::LwkError>((move || {
+                    let output_ok = crate::api::lending::config::lending_init(api_config)?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__crate__api__lending__types__lending_offer_list_query_default_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "lending_offer_list_query_default",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok = Result::<_, ()>::Ok(
+                        crate::api::lending::types::LendingOfferListQuery::default(),
+                    )?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__crate__api__lending__types__lending_offer_sort_by_default_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "lending_offer_sort_by_default",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok = Result::<_, ()>::Ok(
+                        crate::api::lending::types::LendingOfferSortBy::default(),
+                    )?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
+fn wire__crate__api__lending__types__lending_sort_dir_default_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::DcoCodec, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "lending_sort_dir_default",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            move |context| {
+                transform_result_dco::<_, _, ()>((move || {
+                    let output_ok =
+                        Result::<_, ()>::Ok(crate::api::lending::types::LendingSortDir::default())?;
+                    Ok(output_ok)
+                })())
+            }
+        },
+    )
+}
 fn wire__crate__api__wallet__wallet_address_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     that: impl CstDecode<crate::api::wallet::Wallet>,
@@ -2119,6 +2321,68 @@ impl CstDecode<i64> for i64 {
         self
     }
 }
+impl CstDecode<crate::api::lending::types::LendingOfferSortBy> for i32 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::lending::types::LendingOfferSortBy {
+        match self {
+            0 => crate::api::lending::types::LendingOfferSortBy::CreatedAtHeight,
+            1 => crate::api::lending::types::LendingOfferSortBy::CollateralAmount,
+            2 => crate::api::lending::types::LendingOfferSortBy::PrincipalAmount,
+            3 => crate::api::lending::types::LendingOfferSortBy::InterestRate,
+            4 => crate::api::lending::types::LendingOfferSortBy::LoanExpirationHeight,
+            _ => unreachable!("Invalid variant for LendingOfferSortBy: {}", self),
+        }
+    }
+}
+impl CstDecode<crate::api::lending::types::LendingOfferStatus> for i32 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::lending::types::LendingOfferStatus {
+        match self {
+            0 => crate::api::lending::types::LendingOfferStatus::Pending,
+            1 => crate::api::lending::types::LendingOfferStatus::Active,
+            2 => crate::api::lending::types::LendingOfferStatus::Repaid,
+            3 => crate::api::lending::types::LendingOfferStatus::Liquidated,
+            4 => crate::api::lending::types::LendingOfferStatus::Cancelled,
+            5 => crate::api::lending::types::LendingOfferStatus::Claimed,
+            _ => unreachable!("Invalid variant for LendingOfferStatus: {}", self),
+        }
+    }
+}
+impl CstDecode<crate::api::lending::types::LendingParticipantType> for i32 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::lending::types::LendingParticipantType {
+        match self {
+            0 => crate::api::lending::types::LendingParticipantType::Borrower,
+            1 => crate::api::lending::types::LendingParticipantType::Lender,
+            _ => unreachable!("Invalid variant for LendingParticipantType: {}", self),
+        }
+    }
+}
+impl CstDecode<crate::api::lending::types::LendingSortDir> for i32 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::lending::types::LendingSortDir {
+        match self {
+            0 => crate::api::lending::types::LendingSortDir::Desc,
+            1 => crate::api::lending::types::LendingSortDir::Asc,
+            _ => unreachable!("Invalid variant for LendingSortDir: {}", self),
+        }
+    }
+}
+impl CstDecode<crate::api::lending::types::LendingUtxoType> for i32 {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    fn cst_decode(self) -> crate::api::lending::types::LendingUtxoType {
+        match self {
+            0 => crate::api::lending::types::LendingUtxoType::PendingOffer,
+            1 => crate::api::lending::types::LendingUtxoType::ActiveOffer,
+            2 => crate::api::lending::types::LendingUtxoType::BorrowerPrincipal,
+            3 => crate::api::lending::types::LendingUtxoType::Cancellation,
+            4 => crate::api::lending::types::LendingUtxoType::Repayment,
+            5 => crate::api::lending::types::LendingUtxoType::Liquidation,
+            6 => crate::api::lending::types::LendingUtxoType::Claim,
+            _ => unreachable!("Invalid variant for LendingUtxoType: {}", self),
+        }
+    }
+}
 impl CstDecode<crate::api::types::LiquidNetwork> for i32 {
     // Codec=Cst (C-struct based), see doc to use other codecs
     fn cst_decode(self) -> crate::api::types::LiquidNetwork {
@@ -2286,6 +2550,325 @@ impl SseDecode for i64 {
     }
 }
 
+impl SseDecode for crate::api::lending::types::LendingAssetAmount {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_asset = <String>::sse_decode(deserializer);
+        let mut var_amount = <String>::sse_decode(deserializer);
+        return crate::api::lending::types::LendingAssetAmount {
+            asset: var_asset,
+            amount: var_amount,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::config::LendingConfig {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_network = <crate::api::types::LiquidNetwork>::sse_decode(deserializer);
+        let mut var_allowMainnet = <bool>::sse_decode(deserializer);
+        let mut var_indexerBaseUrl = <Option<String>>::sse_decode(deserializer);
+        return crate::api::lending::config::LendingConfig {
+            network: var_network,
+            allow_mainnet: var_allowMainnet,
+            indexer_base_url: var_indexerBaseUrl,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::indexer::LendingIndexer {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        return crate::api::lending::indexer::LendingIndexer {};
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingOfferDetails {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_id = <String>::sse_decode(deserializer);
+        let mut var_issuanceFactoryId = <String>::sse_decode(deserializer);
+        let mut var_status =
+            <crate::api::lending::types::LendingOfferStatus>::sse_decode(deserializer);
+        let mut var_collateralAsset = <String>::sse_decode(deserializer);
+        let mut var_principalAsset = <String>::sse_decode(deserializer);
+        let mut var_collateralAmount = <String>::sse_decode(deserializer);
+        let mut var_principalAmount = <String>::sse_decode(deserializer);
+        let mut var_interestRate = <u32>::sse_decode(deserializer);
+        let mut var_loanExpirationHeight = <u32>::sse_decode(deserializer);
+        let mut var_createdAtHeight = <u64>::sse_decode(deserializer);
+        let mut var_createdAtTxid = <String>::sse_decode(deserializer);
+        let mut var_borrowerNftAsset = <String>::sse_decode(deserializer);
+        let mut var_lenderNftAsset = <String>::sse_decode(deserializer);
+        let mut var_protocolFeeKeeperAsset = <String>::sse_decode(deserializer);
+        let mut var_participants =
+            <Vec<crate::api::lending::types::LendingParticipantDto>>::sse_decode(deserializer);
+        let mut var_utxos =
+            <Vec<crate::api::lending::types::LendingOfferUtxoDto>>::sse_decode(deserializer);
+        return crate::api::lending::types::LendingOfferDetails {
+            id: var_id,
+            issuance_factory_id: var_issuanceFactoryId,
+            status: var_status,
+            collateral_asset: var_collateralAsset,
+            principal_asset: var_principalAsset,
+            collateral_amount: var_collateralAmount,
+            principal_amount: var_principalAmount,
+            interest_rate: var_interestRate,
+            loan_expiration_height: var_loanExpirationHeight,
+            created_at_height: var_createdAtHeight,
+            created_at_txid: var_createdAtTxid,
+            borrower_nft_asset: var_borrowerNftAsset,
+            lender_nft_asset: var_lenderNftAsset,
+            protocol_fee_keeper_asset: var_protocolFeeKeeperAsset,
+            participants: var_participants,
+            utxos: var_utxos,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingOfferListItem {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_id = <String>::sse_decode(deserializer);
+        let mut var_issuanceFactoryId = <String>::sse_decode(deserializer);
+        let mut var_status =
+            <crate::api::lending::types::LendingOfferStatus>::sse_decode(deserializer);
+        let mut var_collateralAsset = <String>::sse_decode(deserializer);
+        let mut var_principalAsset = <String>::sse_decode(deserializer);
+        let mut var_collateralAmount = <String>::sse_decode(deserializer);
+        let mut var_principalAmount = <String>::sse_decode(deserializer);
+        let mut var_interestRate = <u32>::sse_decode(deserializer);
+        let mut var_loanExpirationHeight = <u32>::sse_decode(deserializer);
+        let mut var_createdAtHeight = <u64>::sse_decode(deserializer);
+        let mut var_createdAtTxid = <String>::sse_decode(deserializer);
+        let mut var_participants =
+            <Vec<crate::api::lending::types::LendingParticipantShort>>::sse_decode(deserializer);
+        let mut var_borrowerPrincipalUtxo = <Option<
+            crate::api::lending::types::LendingOfferUtxoOutpointShort,
+        >>::sse_decode(deserializer);
+        return crate::api::lending::types::LendingOfferListItem {
+            id: var_id,
+            issuance_factory_id: var_issuanceFactoryId,
+            status: var_status,
+            collateral_asset: var_collateralAsset,
+            principal_asset: var_principalAsset,
+            collateral_amount: var_collateralAmount,
+            principal_amount: var_principalAmount,
+            interest_rate: var_interestRate,
+            loan_expiration_height: var_loanExpirationHeight,
+            created_at_height: var_createdAtHeight,
+            created_at_txid: var_createdAtTxid,
+            participants: var_participants,
+            borrower_principal_utxo: var_borrowerPrincipalUtxo,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingOfferListQuery {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_status =
+            <Option<Vec<crate::api::lending::types::LendingOfferStatus>>>::sse_decode(deserializer);
+        let mut var_collateralAsset = <Option<String>>::sse_decode(deserializer);
+        let mut var_principalAsset = <Option<String>>::sse_decode(deserializer);
+        let mut var_factoryId = <Option<String>>::sse_decode(deserializer);
+        let mut var_limit = <Option<u64>>::sse_decode(deserializer);
+        let mut var_offset = <Option<u64>>::sse_decode(deserializer);
+        let mut var_sortBy =
+            <crate::api::lending::types::LendingOfferSortBy>::sse_decode(deserializer);
+        let mut var_sortDir =
+            <crate::api::lending::types::LendingSortDir>::sse_decode(deserializer);
+        return crate::api::lending::types::LendingOfferListQuery {
+            status: var_status,
+            collateral_asset: var_collateralAsset,
+            principal_asset: var_principalAsset,
+            factory_id: var_factoryId,
+            limit: var_limit,
+            offset: var_offset,
+            sort_by: var_sortBy,
+            sort_dir: var_sortDir,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingOfferListResponse {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_items =
+            <Vec<crate::api::lending::types::LendingOfferListItem>>::sse_decode(deserializer);
+        let mut var_total = <u64>::sse_decode(deserializer);
+        let mut var_limit = <u64>::sse_decode(deserializer);
+        let mut var_offset = <u64>::sse_decode(deserializer);
+        return crate::api::lending::types::LendingOfferListResponse {
+            items: var_items,
+            total: var_total,
+            limit: var_limit,
+            offset: var_offset,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingOfferSortBy {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::api::lending::types::LendingOfferSortBy::CreatedAtHeight,
+            1 => crate::api::lending::types::LendingOfferSortBy::CollateralAmount,
+            2 => crate::api::lending::types::LendingOfferSortBy::PrincipalAmount,
+            3 => crate::api::lending::types::LendingOfferSortBy::InterestRate,
+            4 => crate::api::lending::types::LendingOfferSortBy::LoanExpirationHeight,
+            _ => unreachable!("Invalid variant for LendingOfferSortBy: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingOfferStatus {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::api::lending::types::LendingOfferStatus::Pending,
+            1 => crate::api::lending::types::LendingOfferStatus::Active,
+            2 => crate::api::lending::types::LendingOfferStatus::Repaid,
+            3 => crate::api::lending::types::LendingOfferStatus::Liquidated,
+            4 => crate::api::lending::types::LendingOfferStatus::Cancelled,
+            5 => crate::api::lending::types::LendingOfferStatus::Claimed,
+            _ => unreachable!("Invalid variant for LendingOfferStatus: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingOfferUtxoDto {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_offerId = <String>::sse_decode(deserializer);
+        let mut var_txid = <String>::sse_decode(deserializer);
+        let mut var_vout = <u32>::sse_decode(deserializer);
+        let mut var_utxoType =
+            <crate::api::lending::types::LendingUtxoType>::sse_decode(deserializer);
+        let mut var_createdAtHeight = <u64>::sse_decode(deserializer);
+        let mut var_spentTxid = <Option<String>>::sse_decode(deserializer);
+        let mut var_spentAtHeight = <Option<u64>>::sse_decode(deserializer);
+        return crate::api::lending::types::LendingOfferUtxoDto {
+            offer_id: var_offerId,
+            txid: var_txid,
+            vout: var_vout,
+            utxo_type: var_utxoType,
+            created_at_height: var_createdAtHeight,
+            spent_txid: var_spentTxid,
+            spent_at_height: var_spentAtHeight,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingOfferUtxoOutpointShort {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_txid = <String>::sse_decode(deserializer);
+        let mut var_vout = <u32>::sse_decode(deserializer);
+        return crate::api::lending::types::LendingOfferUtxoOutpointShort {
+            txid: var_txid,
+            vout: var_vout,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingOffersOverview {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_collateralLocked =
+            <Vec<crate::api::lending::types::LendingAssetAmount>>::sse_decode(deserializer);
+        let mut var_activeLoanPrincipal =
+            <Vec<crate::api::lending::types::LendingAssetAmount>>::sse_decode(deserializer);
+        let mut var_activeLoansCount = <u64>::sse_decode(deserializer);
+        return crate::api::lending::types::LendingOffersOverview {
+            collateral_locked: var_collateralLocked,
+            active_loan_principal: var_activeLoanPrincipal,
+            active_loans_count: var_activeLoansCount,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingParticipantDto {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_offerId = <String>::sse_decode(deserializer);
+        let mut var_participantType =
+            <crate::api::lending::types::LendingParticipantType>::sse_decode(deserializer);
+        let mut var_scriptPubkey = <String>::sse_decode(deserializer);
+        let mut var_txid = <String>::sse_decode(deserializer);
+        let mut var_vout = <u32>::sse_decode(deserializer);
+        let mut var_createdAtHeight = <u64>::sse_decode(deserializer);
+        let mut var_spentTxid = <Option<String>>::sse_decode(deserializer);
+        let mut var_spentAtHeight = <Option<u64>>::sse_decode(deserializer);
+        return crate::api::lending::types::LendingParticipantDto {
+            offer_id: var_offerId,
+            participant_type: var_participantType,
+            script_pubkey: var_scriptPubkey,
+            txid: var_txid,
+            vout: var_vout,
+            created_at_height: var_createdAtHeight,
+            spent_txid: var_spentTxid,
+            spent_at_height: var_spentAtHeight,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingParticipantShort {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_participantType =
+            <crate::api::lending::types::LendingParticipantType>::sse_decode(deserializer);
+        let mut var_scriptPubkey = <String>::sse_decode(deserializer);
+        return crate::api::lending::types::LendingParticipantShort {
+            participant_type: var_participantType,
+            script_pubkey: var_scriptPubkey,
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingParticipantType {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::api::lending::types::LendingParticipantType::Borrower,
+            1 => crate::api::lending::types::LendingParticipantType::Lender,
+            _ => unreachable!("Invalid variant for LendingParticipantType: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingSortDir {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::api::lending::types::LendingSortDir::Desc,
+            1 => crate::api::lending::types::LendingSortDir::Asc,
+            _ => unreachable!("Invalid variant for LendingSortDir: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for crate::api::lending::types::LendingUtxoType {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::api::lending::types::LendingUtxoType::PendingOffer,
+            1 => crate::api::lending::types::LendingUtxoType::ActiveOffer,
+            2 => crate::api::lending::types::LendingUtxoType::BorrowerPrincipal,
+            3 => crate::api::lending::types::LendingUtxoType::Cancellation,
+            4 => crate::api::lending::types::LendingUtxoType::Repayment,
+            5 => crate::api::lending::types::LendingUtxoType::Liquidation,
+            6 => crate::api::lending::types::LendingUtxoType::Claim,
+            _ => unreachable!("Invalid variant for LendingUtxoType: {}", inner),
+        };
+    }
+}
+
 impl SseDecode for crate::api::types::LiquidNetwork {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -2317,6 +2900,82 @@ impl SseDecode for Vec<crate::api::types::Balance> {
         let mut ans_ = Vec::with_capacity(len_ as usize);
         for idx_ in 0..len_ {
             ans_.push(<crate::api::types::Balance>::sse_decode(deserializer));
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for Vec<crate::api::lending::types::LendingAssetAmount> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<crate::api::lending::types::LendingAssetAmount>::sse_decode(deserializer));
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for Vec<crate::api::lending::types::LendingOfferListItem> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<crate::api::lending::types::LendingOfferListItem>::sse_decode(deserializer));
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for Vec<crate::api::lending::types::LendingOfferStatus> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<crate::api::lending::types::LendingOfferStatus>::sse_decode(deserializer));
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for Vec<crate::api::lending::types::LendingOfferUtxoDto> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<crate::api::lending::types::LendingOfferUtxoDto>::sse_decode(deserializer));
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for Vec<crate::api::lending::types::LendingParticipantDto> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(
+                <crate::api::lending::types::LendingParticipantDto>::sse_decode(deserializer),
+            );
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for Vec<crate::api::lending::types::LendingParticipantShort> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(
+                <crate::api::lending::types::LendingParticipantShort>::sse_decode(deserializer),
+            );
         }
         return ans_;
     }
@@ -2443,6 +3102,21 @@ impl SseDecode for Option<String> {
     }
 }
 
+impl SseDecode for Option<crate::api::lending::types::LendingOfferUtxoOutpointShort> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        if (<bool>::sse_decode(deserializer)) {
+            return Some(
+                <crate::api::lending::types::LendingOfferUtxoOutpointShort>::sse_decode(
+                    deserializer,
+                ),
+            );
+        } else {
+            return None;
+        }
+    }
+}
+
 impl SseDecode for Option<crate::api::transaction::PsetInput> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -2520,6 +3194,19 @@ impl SseDecode for Option<u8> {
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         if (<bool>::sse_decode(deserializer)) {
             return Some(<u8>::sse_decode(deserializer));
+        } else {
+            return None;
+        }
+    }
+}
+
+impl SseDecode for Option<Vec<crate::api::lending::types::LendingOfferStatus>> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        if (<bool>::sse_decode(deserializer)) {
+            return Some(
+                <Vec<crate::api::lending::types::LendingOfferStatus>>::sse_decode(deserializer),
+            );
         } else {
             return None;
         }
@@ -2879,6 +3566,417 @@ impl flutter_rust_bridge::IntoIntoDart<crate::api::descriptor::Descriptor>
     for crate::api::descriptor::Descriptor
 {
     fn into_into_dart(self) -> crate::api::descriptor::Descriptor {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingAssetAmount {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.asset.into_into_dart().into_dart(),
+            self.amount.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingAssetAmount
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingAssetAmount>
+    for crate::api::lending::types::LendingAssetAmount
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingAssetAmount {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::config::LendingConfig {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.network.into_into_dart().into_dart(),
+            self.allow_mainnet.into_into_dart().into_dart(),
+            self.indexer_base_url.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::config::LendingConfig
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::config::LendingConfig>
+    for crate::api::lending::config::LendingConfig
+{
+    fn into_into_dart(self) -> crate::api::lending::config::LendingConfig {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::indexer::LendingIndexer {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        Vec::<u8>::new().into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::indexer::LendingIndexer
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::indexer::LendingIndexer>
+    for crate::api::lending::indexer::LendingIndexer
+{
+    fn into_into_dart(self) -> crate::api::lending::indexer::LendingIndexer {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingOfferDetails {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.id.into_into_dart().into_dart(),
+            self.issuance_factory_id.into_into_dart().into_dart(),
+            self.status.into_into_dart().into_dart(),
+            self.collateral_asset.into_into_dart().into_dart(),
+            self.principal_asset.into_into_dart().into_dart(),
+            self.collateral_amount.into_into_dart().into_dart(),
+            self.principal_amount.into_into_dart().into_dart(),
+            self.interest_rate.into_into_dart().into_dart(),
+            self.loan_expiration_height.into_into_dart().into_dart(),
+            self.created_at_height.into_into_dart().into_dart(),
+            self.created_at_txid.into_into_dart().into_dart(),
+            self.borrower_nft_asset.into_into_dart().into_dart(),
+            self.lender_nft_asset.into_into_dart().into_dart(),
+            self.protocol_fee_keeper_asset.into_into_dart().into_dart(),
+            self.participants.into_into_dart().into_dart(),
+            self.utxos.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingOfferDetails
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingOfferDetails>
+    for crate::api::lending::types::LendingOfferDetails
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingOfferDetails {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingOfferListItem {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.id.into_into_dart().into_dart(),
+            self.issuance_factory_id.into_into_dart().into_dart(),
+            self.status.into_into_dart().into_dart(),
+            self.collateral_asset.into_into_dart().into_dart(),
+            self.principal_asset.into_into_dart().into_dart(),
+            self.collateral_amount.into_into_dart().into_dart(),
+            self.principal_amount.into_into_dart().into_dart(),
+            self.interest_rate.into_into_dart().into_dart(),
+            self.loan_expiration_height.into_into_dart().into_dart(),
+            self.created_at_height.into_into_dart().into_dart(),
+            self.created_at_txid.into_into_dart().into_dart(),
+            self.participants.into_into_dart().into_dart(),
+            self.borrower_principal_utxo.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingOfferListItem
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingOfferListItem>
+    for crate::api::lending::types::LendingOfferListItem
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingOfferListItem {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingOfferListQuery {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.status.into_into_dart().into_dart(),
+            self.collateral_asset.into_into_dart().into_dart(),
+            self.principal_asset.into_into_dart().into_dart(),
+            self.factory_id.into_into_dart().into_dart(),
+            self.limit.into_into_dart().into_dart(),
+            self.offset.into_into_dart().into_dart(),
+            self.sort_by.into_into_dart().into_dart(),
+            self.sort_dir.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingOfferListQuery
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingOfferListQuery>
+    for crate::api::lending::types::LendingOfferListQuery
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingOfferListQuery {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingOfferListResponse {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.items.into_into_dart().into_dart(),
+            self.total.into_into_dart().into_dart(),
+            self.limit.into_into_dart().into_dart(),
+            self.offset.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingOfferListResponse
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingOfferListResponse>
+    for crate::api::lending::types::LendingOfferListResponse
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingOfferListResponse {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingOfferSortBy {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::CreatedAtHeight => 0.into_dart(),
+            Self::CollateralAmount => 1.into_dart(),
+            Self::PrincipalAmount => 2.into_dart(),
+            Self::InterestRate => 3.into_dart(),
+            Self::LoanExpirationHeight => 4.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingOfferSortBy
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingOfferSortBy>
+    for crate::api::lending::types::LendingOfferSortBy
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingOfferSortBy {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingOfferStatus {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::Pending => 0.into_dart(),
+            Self::Active => 1.into_dart(),
+            Self::Repaid => 2.into_dart(),
+            Self::Liquidated => 3.into_dart(),
+            Self::Cancelled => 4.into_dart(),
+            Self::Claimed => 5.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingOfferStatus
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingOfferStatus>
+    for crate::api::lending::types::LendingOfferStatus
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingOfferStatus {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingOfferUtxoDto {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.offer_id.into_into_dart().into_dart(),
+            self.txid.into_into_dart().into_dart(),
+            self.vout.into_into_dart().into_dart(),
+            self.utxo_type.into_into_dart().into_dart(),
+            self.created_at_height.into_into_dart().into_dart(),
+            self.spent_txid.into_into_dart().into_dart(),
+            self.spent_at_height.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingOfferUtxoDto
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingOfferUtxoDto>
+    for crate::api::lending::types::LendingOfferUtxoDto
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingOfferUtxoDto {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingOfferUtxoOutpointShort {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.txid.into_into_dart().into_dart(),
+            self.vout.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingOfferUtxoOutpointShort
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingOfferUtxoOutpointShort>
+    for crate::api::lending::types::LendingOfferUtxoOutpointShort
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingOfferUtxoOutpointShort {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingOffersOverview {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.collateral_locked.into_into_dart().into_dart(),
+            self.active_loan_principal.into_into_dart().into_dart(),
+            self.active_loans_count.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingOffersOverview
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingOffersOverview>
+    for crate::api::lending::types::LendingOffersOverview
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingOffersOverview {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingParticipantDto {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.offer_id.into_into_dart().into_dart(),
+            self.participant_type.into_into_dart().into_dart(),
+            self.script_pubkey.into_into_dart().into_dart(),
+            self.txid.into_into_dart().into_dart(),
+            self.vout.into_into_dart().into_dart(),
+            self.created_at_height.into_into_dart().into_dart(),
+            self.spent_txid.into_into_dart().into_dart(),
+            self.spent_at_height.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingParticipantDto
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingParticipantDto>
+    for crate::api::lending::types::LendingParticipantDto
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingParticipantDto {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingParticipantShort {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.participant_type.into_into_dart().into_dart(),
+            self.script_pubkey.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingParticipantShort
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingParticipantShort>
+    for crate::api::lending::types::LendingParticipantShort
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingParticipantShort {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingParticipantType {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::Borrower => 0.into_dart(),
+            Self::Lender => 1.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingParticipantType
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingParticipantType>
+    for crate::api::lending::types::LendingParticipantType
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingParticipantType {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingSortDir {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::Desc => 0.into_dart(),
+            Self::Asc => 1.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingSortDir
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingSortDir>
+    for crate::api::lending::types::LendingSortDir
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingSortDir {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::lending::types::LendingUtxoType {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::PendingOffer => 0.into_dart(),
+            Self::ActiveOffer => 1.into_dart(),
+            Self::BorrowerPrincipal => 2.into_dart(),
+            Self::Cancellation => 3.into_dart(),
+            Self::Repayment => 4.into_dart(),
+            Self::Liquidation => 5.into_dart(),
+            Self::Claim => 6.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::lending::types::LendingUtxoType
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::lending::types::LendingUtxoType>
+    for crate::api::lending::types::LendingUtxoType
+{
+    fn into_into_dart(self) -> crate::api::lending::types::LendingUtxoType {
         self
     }
 }
@@ -3290,6 +4388,261 @@ impl SseEncode for i64 {
     }
 }
 
+impl SseEncode for crate::api::lending::types::LendingAssetAmount {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.asset, serializer);
+        <String>::sse_encode(self.amount, serializer);
+    }
+}
+
+impl SseEncode for crate::api::lending::config::LendingConfig {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <crate::api::types::LiquidNetwork>::sse_encode(self.network, serializer);
+        <bool>::sse_encode(self.allow_mainnet, serializer);
+        <Option<String>>::sse_encode(self.indexer_base_url, serializer);
+    }
+}
+
+impl SseEncode for crate::api::lending::indexer::LendingIndexer {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {}
+}
+
+impl SseEncode for crate::api::lending::types::LendingOfferDetails {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.id, serializer);
+        <String>::sse_encode(self.issuance_factory_id, serializer);
+        <crate::api::lending::types::LendingOfferStatus>::sse_encode(self.status, serializer);
+        <String>::sse_encode(self.collateral_asset, serializer);
+        <String>::sse_encode(self.principal_asset, serializer);
+        <String>::sse_encode(self.collateral_amount, serializer);
+        <String>::sse_encode(self.principal_amount, serializer);
+        <u32>::sse_encode(self.interest_rate, serializer);
+        <u32>::sse_encode(self.loan_expiration_height, serializer);
+        <u64>::sse_encode(self.created_at_height, serializer);
+        <String>::sse_encode(self.created_at_txid, serializer);
+        <String>::sse_encode(self.borrower_nft_asset, serializer);
+        <String>::sse_encode(self.lender_nft_asset, serializer);
+        <String>::sse_encode(self.protocol_fee_keeper_asset, serializer);
+        <Vec<crate::api::lending::types::LendingParticipantDto>>::sse_encode(
+            self.participants,
+            serializer,
+        );
+        <Vec<crate::api::lending::types::LendingOfferUtxoDto>>::sse_encode(self.utxos, serializer);
+    }
+}
+
+impl SseEncode for crate::api::lending::types::LendingOfferListItem {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.id, serializer);
+        <String>::sse_encode(self.issuance_factory_id, serializer);
+        <crate::api::lending::types::LendingOfferStatus>::sse_encode(self.status, serializer);
+        <String>::sse_encode(self.collateral_asset, serializer);
+        <String>::sse_encode(self.principal_asset, serializer);
+        <String>::sse_encode(self.collateral_amount, serializer);
+        <String>::sse_encode(self.principal_amount, serializer);
+        <u32>::sse_encode(self.interest_rate, serializer);
+        <u32>::sse_encode(self.loan_expiration_height, serializer);
+        <u64>::sse_encode(self.created_at_height, serializer);
+        <String>::sse_encode(self.created_at_txid, serializer);
+        <Vec<crate::api::lending::types::LendingParticipantShort>>::sse_encode(
+            self.participants,
+            serializer,
+        );
+        <Option<crate::api::lending::types::LendingOfferUtxoOutpointShort>>::sse_encode(
+            self.borrower_principal_utxo,
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for crate::api::lending::types::LendingOfferListQuery {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <Option<Vec<crate::api::lending::types::LendingOfferStatus>>>::sse_encode(
+            self.status,
+            serializer,
+        );
+        <Option<String>>::sse_encode(self.collateral_asset, serializer);
+        <Option<String>>::sse_encode(self.principal_asset, serializer);
+        <Option<String>>::sse_encode(self.factory_id, serializer);
+        <Option<u64>>::sse_encode(self.limit, serializer);
+        <Option<u64>>::sse_encode(self.offset, serializer);
+        <crate::api::lending::types::LendingOfferSortBy>::sse_encode(self.sort_by, serializer);
+        <crate::api::lending::types::LendingSortDir>::sse_encode(self.sort_dir, serializer);
+    }
+}
+
+impl SseEncode for crate::api::lending::types::LendingOfferListResponse {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <Vec<crate::api::lending::types::LendingOfferListItem>>::sse_encode(self.items, serializer);
+        <u64>::sse_encode(self.total, serializer);
+        <u64>::sse_encode(self.limit, serializer);
+        <u64>::sse_encode(self.offset, serializer);
+    }
+}
+
+impl SseEncode for crate::api::lending::types::LendingOfferSortBy {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::api::lending::types::LendingOfferSortBy::CreatedAtHeight => 0,
+                crate::api::lending::types::LendingOfferSortBy::CollateralAmount => 1,
+                crate::api::lending::types::LendingOfferSortBy::PrincipalAmount => 2,
+                crate::api::lending::types::LendingOfferSortBy::InterestRate => 3,
+                crate::api::lending::types::LendingOfferSortBy::LoanExpirationHeight => 4,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for crate::api::lending::types::LendingOfferStatus {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::api::lending::types::LendingOfferStatus::Pending => 0,
+                crate::api::lending::types::LendingOfferStatus::Active => 1,
+                crate::api::lending::types::LendingOfferStatus::Repaid => 2,
+                crate::api::lending::types::LendingOfferStatus::Liquidated => 3,
+                crate::api::lending::types::LendingOfferStatus::Cancelled => 4,
+                crate::api::lending::types::LendingOfferStatus::Claimed => 5,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for crate::api::lending::types::LendingOfferUtxoDto {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.offer_id, serializer);
+        <String>::sse_encode(self.txid, serializer);
+        <u32>::sse_encode(self.vout, serializer);
+        <crate::api::lending::types::LendingUtxoType>::sse_encode(self.utxo_type, serializer);
+        <u64>::sse_encode(self.created_at_height, serializer);
+        <Option<String>>::sse_encode(self.spent_txid, serializer);
+        <Option<u64>>::sse_encode(self.spent_at_height, serializer);
+    }
+}
+
+impl SseEncode for crate::api::lending::types::LendingOfferUtxoOutpointShort {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.txid, serializer);
+        <u32>::sse_encode(self.vout, serializer);
+    }
+}
+
+impl SseEncode for crate::api::lending::types::LendingOffersOverview {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <Vec<crate::api::lending::types::LendingAssetAmount>>::sse_encode(
+            self.collateral_locked,
+            serializer,
+        );
+        <Vec<crate::api::lending::types::LendingAssetAmount>>::sse_encode(
+            self.active_loan_principal,
+            serializer,
+        );
+        <u64>::sse_encode(self.active_loans_count, serializer);
+    }
+}
+
+impl SseEncode for crate::api::lending::types::LendingParticipantDto {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.offer_id, serializer);
+        <crate::api::lending::types::LendingParticipantType>::sse_encode(
+            self.participant_type,
+            serializer,
+        );
+        <String>::sse_encode(self.script_pubkey, serializer);
+        <String>::sse_encode(self.txid, serializer);
+        <u32>::sse_encode(self.vout, serializer);
+        <u64>::sse_encode(self.created_at_height, serializer);
+        <Option<String>>::sse_encode(self.spent_txid, serializer);
+        <Option<u64>>::sse_encode(self.spent_at_height, serializer);
+    }
+}
+
+impl SseEncode for crate::api::lending::types::LendingParticipantShort {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <crate::api::lending::types::LendingParticipantType>::sse_encode(
+            self.participant_type,
+            serializer,
+        );
+        <String>::sse_encode(self.script_pubkey, serializer);
+    }
+}
+
+impl SseEncode for crate::api::lending::types::LendingParticipantType {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::api::lending::types::LendingParticipantType::Borrower => 0,
+                crate::api::lending::types::LendingParticipantType::Lender => 1,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for crate::api::lending::types::LendingSortDir {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::api::lending::types::LendingSortDir::Desc => 0,
+                crate::api::lending::types::LendingSortDir::Asc => 1,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for crate::api::lending::types::LendingUtxoType {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::api::lending::types::LendingUtxoType::PendingOffer => 0,
+                crate::api::lending::types::LendingUtxoType::ActiveOffer => 1,
+                crate::api::lending::types::LendingUtxoType::BorrowerPrincipal => 2,
+                crate::api::lending::types::LendingUtxoType::Cancellation => 3,
+                crate::api::lending::types::LendingUtxoType::Repayment => 4,
+                crate::api::lending::types::LendingUtxoType::Liquidation => 5,
+                crate::api::lending::types::LendingUtxoType::Claim => 6,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
 impl SseEncode for crate::api::types::LiquidNetwork {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -3322,6 +4675,66 @@ impl SseEncode for Vec<crate::api::types::Balance> {
         <i32>::sse_encode(self.len() as _, serializer);
         for item in self {
             <crate::api::types::Balance>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for Vec<crate::api::lending::types::LendingAssetAmount> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::api::lending::types::LendingAssetAmount>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for Vec<crate::api::lending::types::LendingOfferListItem> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::api::lending::types::LendingOfferListItem>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for Vec<crate::api::lending::types::LendingOfferStatus> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::api::lending::types::LendingOfferStatus>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for Vec<crate::api::lending::types::LendingOfferUtxoDto> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::api::lending::types::LendingOfferUtxoDto>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for Vec<crate::api::lending::types::LendingParticipantDto> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::api::lending::types::LendingParticipantDto>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for Vec<crate::api::lending::types::LendingParticipantShort> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::api::lending::types::LendingParticipantShort>::sse_encode(item, serializer);
         }
     }
 }
@@ -3423,6 +4836,18 @@ impl SseEncode for Option<String> {
     }
 }
 
+impl SseEncode for Option<crate::api::lending::types::LendingOfferUtxoOutpointShort> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_some(), serializer);
+        if let Some(value) = self {
+            <crate::api::lending::types::LendingOfferUtxoOutpointShort>::sse_encode(
+                value, serializer,
+            );
+        }
+    }
+}
+
 impl SseEncode for Option<crate::api::transaction::PsetInput> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -3489,6 +4914,16 @@ impl SseEncode for Option<u8> {
         <bool>::sse_encode(self.is_some(), serializer);
         if let Some(value) = self {
             <u8>::sse_encode(value, serializer);
+        }
+    }
+}
+
+impl SseEncode for Option<Vec<crate::api::lending::types::LendingOfferStatus>> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_some(), serializer);
+        if let Some(value) = self {
+            <Vec<crate::api::lending::types::LendingOfferStatus>>::sse_encode(value, serializer);
         }
     }
 }
@@ -3786,6 +5221,41 @@ mod io {
             CstDecode::<crate::api::descriptor::Descriptor>::cst_decode(*wrap).into()
         }
     }
+    impl CstDecode<crate::api::lending::config::LendingConfig> for *mut wire_cst_lending_config {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::config::LendingConfig {
+            let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+            CstDecode::<crate::api::lending::config::LendingConfig>::cst_decode(*wrap).into()
+        }
+    }
+    impl CstDecode<crate::api::lending::indexer::LendingIndexer> for *mut wire_cst_lending_indexer {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::indexer::LendingIndexer {
+            let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+            CstDecode::<crate::api::lending::indexer::LendingIndexer>::cst_decode(*wrap).into()
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferListQuery>
+        for *mut wire_cst_lending_offer_list_query
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferListQuery {
+            let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+            CstDecode::<crate::api::lending::types::LendingOfferListQuery>::cst_decode(*wrap).into()
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferUtxoOutpointShort>
+        for *mut wire_cst_lending_offer_utxo_outpoint_short
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferUtxoOutpointShort {
+            let wrap = unsafe { flutter_rust_bridge::for_generated::box_from_leak_ptr(self) };
+            CstDecode::<crate::api::lending::types::LendingOfferUtxoOutpointShort>::cst_decode(
+                *wrap,
+            )
+            .into()
+        }
+    }
     impl CstDecode<crate::api::transaction::PsetInput> for *mut wire_cst_pset_input {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> crate::api::transaction::PsetInput {
@@ -3847,6 +5317,173 @@ mod io {
             }
         }
     }
+    impl CstDecode<crate::api::lending::types::LendingAssetAmount> for wire_cst_lending_asset_amount {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingAssetAmount {
+            crate::api::lending::types::LendingAssetAmount {
+                asset: self.asset.cst_decode(),
+                amount: self.amount.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::config::LendingConfig> for wire_cst_lending_config {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::config::LendingConfig {
+            crate::api::lending::config::LendingConfig {
+                network: self.network.cst_decode(),
+                allow_mainnet: self.allow_mainnet.cst_decode(),
+                indexer_base_url: self.indexer_base_url.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::indexer::LendingIndexer> for wire_cst_lending_indexer {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::indexer::LendingIndexer {
+            crate::api::lending::indexer::LendingIndexer {}
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferDetails> for wire_cst_lending_offer_details {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferDetails {
+            crate::api::lending::types::LendingOfferDetails {
+                id: self.id.cst_decode(),
+                issuance_factory_id: self.issuance_factory_id.cst_decode(),
+                status: self.status.cst_decode(),
+                collateral_asset: self.collateral_asset.cst_decode(),
+                principal_asset: self.principal_asset.cst_decode(),
+                collateral_amount: self.collateral_amount.cst_decode(),
+                principal_amount: self.principal_amount.cst_decode(),
+                interest_rate: self.interest_rate.cst_decode(),
+                loan_expiration_height: self.loan_expiration_height.cst_decode(),
+                created_at_height: self.created_at_height.cst_decode(),
+                created_at_txid: self.created_at_txid.cst_decode(),
+                borrower_nft_asset: self.borrower_nft_asset.cst_decode(),
+                lender_nft_asset: self.lender_nft_asset.cst_decode(),
+                protocol_fee_keeper_asset: self.protocol_fee_keeper_asset.cst_decode(),
+                participants: self.participants.cst_decode(),
+                utxos: self.utxos.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferListItem>
+        for wire_cst_lending_offer_list_item
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferListItem {
+            crate::api::lending::types::LendingOfferListItem {
+                id: self.id.cst_decode(),
+                issuance_factory_id: self.issuance_factory_id.cst_decode(),
+                status: self.status.cst_decode(),
+                collateral_asset: self.collateral_asset.cst_decode(),
+                principal_asset: self.principal_asset.cst_decode(),
+                collateral_amount: self.collateral_amount.cst_decode(),
+                principal_amount: self.principal_amount.cst_decode(),
+                interest_rate: self.interest_rate.cst_decode(),
+                loan_expiration_height: self.loan_expiration_height.cst_decode(),
+                created_at_height: self.created_at_height.cst_decode(),
+                created_at_txid: self.created_at_txid.cst_decode(),
+                participants: self.participants.cst_decode(),
+                borrower_principal_utxo: self.borrower_principal_utxo.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferListQuery>
+        for wire_cst_lending_offer_list_query
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferListQuery {
+            crate::api::lending::types::LendingOfferListQuery {
+                status: self.status.cst_decode(),
+                collateral_asset: self.collateral_asset.cst_decode(),
+                principal_asset: self.principal_asset.cst_decode(),
+                factory_id: self.factory_id.cst_decode(),
+                limit: self.limit.cst_decode(),
+                offset: self.offset.cst_decode(),
+                sort_by: self.sort_by.cst_decode(),
+                sort_dir: self.sort_dir.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferListResponse>
+        for wire_cst_lending_offer_list_response
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferListResponse {
+            crate::api::lending::types::LendingOfferListResponse {
+                items: self.items.cst_decode(),
+                total: self.total.cst_decode(),
+                limit: self.limit.cst_decode(),
+                offset: self.offset.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferUtxoDto>
+        for wire_cst_lending_offer_utxo_dto
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferUtxoDto {
+            crate::api::lending::types::LendingOfferUtxoDto {
+                offer_id: self.offer_id.cst_decode(),
+                txid: self.txid.cst_decode(),
+                vout: self.vout.cst_decode(),
+                utxo_type: self.utxo_type.cst_decode(),
+                created_at_height: self.created_at_height.cst_decode(),
+                spent_txid: self.spent_txid.cst_decode(),
+                spent_at_height: self.spent_at_height.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferUtxoOutpointShort>
+        for wire_cst_lending_offer_utxo_outpoint_short
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferUtxoOutpointShort {
+            crate::api::lending::types::LendingOfferUtxoOutpointShort {
+                txid: self.txid.cst_decode(),
+                vout: self.vout.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOffersOverview>
+        for wire_cst_lending_offers_overview
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOffersOverview {
+            crate::api::lending::types::LendingOffersOverview {
+                collateral_locked: self.collateral_locked.cst_decode(),
+                active_loan_principal: self.active_loan_principal.cst_decode(),
+                active_loans_count: self.active_loans_count.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingParticipantDto>
+        for wire_cst_lending_participant_dto
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingParticipantDto {
+            crate::api::lending::types::LendingParticipantDto {
+                offer_id: self.offer_id.cst_decode(),
+                participant_type: self.participant_type.cst_decode(),
+                script_pubkey: self.script_pubkey.cst_decode(),
+                txid: self.txid.cst_decode(),
+                vout: self.vout.cst_decode(),
+                created_at_height: self.created_at_height.cst_decode(),
+                spent_txid: self.spent_txid.cst_decode(),
+                spent_at_height: self.spent_at_height.cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingParticipantShort>
+        for wire_cst_lending_participant_short
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingParticipantShort {
+            crate::api::lending::types::LendingParticipantShort {
+                participant_type: self.participant_type.cst_decode(),
+                script_pubkey: self.script_pubkey.cst_decode(),
+            }
+        }
+    }
     impl CstDecode<Vec<String>> for *mut wire_cst_list_String {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> Vec<String> {
@@ -3860,6 +5497,78 @@ mod io {
     impl CstDecode<Vec<crate::api::types::Balance>> for *mut wire_cst_list_balance {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> Vec<crate::api::types::Balance> {
+            let vec = unsafe {
+                let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
+                flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
+            };
+            vec.into_iter().map(CstDecode::cst_decode).collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::lending::types::LendingAssetAmount>>
+        for *mut wire_cst_list_lending_asset_amount
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::lending::types::LendingAssetAmount> {
+            let vec = unsafe {
+                let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
+                flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
+            };
+            vec.into_iter().map(CstDecode::cst_decode).collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::lending::types::LendingOfferListItem>>
+        for *mut wire_cst_list_lending_offer_list_item
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::lending::types::LendingOfferListItem> {
+            let vec = unsafe {
+                let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
+                flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
+            };
+            vec.into_iter().map(CstDecode::cst_decode).collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::lending::types::LendingOfferStatus>>
+        for *mut wire_cst_list_lending_offer_status
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::lending::types::LendingOfferStatus> {
+            let vec = unsafe {
+                let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
+                flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
+            };
+            vec.into_iter().map(CstDecode::cst_decode).collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::lending::types::LendingOfferUtxoDto>>
+        for *mut wire_cst_list_lending_offer_utxo_dto
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::lending::types::LendingOfferUtxoDto> {
+            let vec = unsafe {
+                let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
+                flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
+            };
+            vec.into_iter().map(CstDecode::cst_decode).collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::lending::types::LendingParticipantDto>>
+        for *mut wire_cst_list_lending_participant_dto
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::lending::types::LendingParticipantDto> {
+            let vec = unsafe {
+                let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
+                flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
+            };
+            vec.into_iter().map(CstDecode::cst_decode).collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::lending::types::LendingParticipantShort>>
+        for *mut wire_cst_list_lending_participant_short
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::lending::types::LendingParticipantShort> {
             let vec = unsafe {
                 let wrap = flutter_rust_bridge::for_generated::box_from_leak_ptr(self);
                 flutter_rust_bridge::for_generated::vec_from_leak_ptr(wrap.ptr, wrap.len)
@@ -4142,6 +5851,205 @@ mod io {
         }
     }
     impl Default for wire_cst_descriptor {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_lending_asset_amount {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                asset: core::ptr::null_mut(),
+                amount: core::ptr::null_mut(),
+            }
+        }
+    }
+    impl Default for wire_cst_lending_asset_amount {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_lending_config {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                network: Default::default(),
+                allow_mainnet: Default::default(),
+                indexer_base_url: core::ptr::null_mut(),
+            }
+        }
+    }
+    impl Default for wire_cst_lending_config {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_lending_indexer {
+        fn new_with_null_ptr() -> Self {
+            Self {}
+        }
+    }
+    impl Default for wire_cst_lending_indexer {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_lending_offer_details {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                id: core::ptr::null_mut(),
+                issuance_factory_id: core::ptr::null_mut(),
+                status: Default::default(),
+                collateral_asset: core::ptr::null_mut(),
+                principal_asset: core::ptr::null_mut(),
+                collateral_amount: core::ptr::null_mut(),
+                principal_amount: core::ptr::null_mut(),
+                interest_rate: Default::default(),
+                loan_expiration_height: Default::default(),
+                created_at_height: Default::default(),
+                created_at_txid: core::ptr::null_mut(),
+                borrower_nft_asset: core::ptr::null_mut(),
+                lender_nft_asset: core::ptr::null_mut(),
+                protocol_fee_keeper_asset: core::ptr::null_mut(),
+                participants: core::ptr::null_mut(),
+                utxos: core::ptr::null_mut(),
+            }
+        }
+    }
+    impl Default for wire_cst_lending_offer_details {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_lending_offer_list_item {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                id: core::ptr::null_mut(),
+                issuance_factory_id: core::ptr::null_mut(),
+                status: Default::default(),
+                collateral_asset: core::ptr::null_mut(),
+                principal_asset: core::ptr::null_mut(),
+                collateral_amount: core::ptr::null_mut(),
+                principal_amount: core::ptr::null_mut(),
+                interest_rate: Default::default(),
+                loan_expiration_height: Default::default(),
+                created_at_height: Default::default(),
+                created_at_txid: core::ptr::null_mut(),
+                participants: core::ptr::null_mut(),
+                borrower_principal_utxo: core::ptr::null_mut(),
+            }
+        }
+    }
+    impl Default for wire_cst_lending_offer_list_item {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_lending_offer_list_query {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                status: core::ptr::null_mut(),
+                collateral_asset: core::ptr::null_mut(),
+                principal_asset: core::ptr::null_mut(),
+                factory_id: core::ptr::null_mut(),
+                limit: core::ptr::null_mut(),
+                offset: core::ptr::null_mut(),
+                sort_by: Default::default(),
+                sort_dir: Default::default(),
+            }
+        }
+    }
+    impl Default for wire_cst_lending_offer_list_query {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_lending_offer_list_response {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                items: core::ptr::null_mut(),
+                total: Default::default(),
+                limit: Default::default(),
+                offset: Default::default(),
+            }
+        }
+    }
+    impl Default for wire_cst_lending_offer_list_response {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_lending_offer_utxo_dto {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                offer_id: core::ptr::null_mut(),
+                txid: core::ptr::null_mut(),
+                vout: Default::default(),
+                utxo_type: Default::default(),
+                created_at_height: Default::default(),
+                spent_txid: core::ptr::null_mut(),
+                spent_at_height: core::ptr::null_mut(),
+            }
+        }
+    }
+    impl Default for wire_cst_lending_offer_utxo_dto {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_lending_offer_utxo_outpoint_short {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                txid: core::ptr::null_mut(),
+                vout: Default::default(),
+            }
+        }
+    }
+    impl Default for wire_cst_lending_offer_utxo_outpoint_short {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_lending_offers_overview {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                collateral_locked: core::ptr::null_mut(),
+                active_loan_principal: core::ptr::null_mut(),
+                active_loans_count: Default::default(),
+            }
+        }
+    }
+    impl Default for wire_cst_lending_offers_overview {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_lending_participant_dto {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                offer_id: core::ptr::null_mut(),
+                participant_type: Default::default(),
+                script_pubkey: core::ptr::null_mut(),
+                txid: core::ptr::null_mut(),
+                vout: Default::default(),
+                created_at_height: Default::default(),
+                spent_txid: core::ptr::null_mut(),
+                spent_at_height: core::ptr::null_mut(),
+            }
+        }
+    }
+    impl Default for wire_cst_lending_participant_dto {
+        fn default() -> Self {
+            Self::new_with_null_ptr()
+        }
+    }
+    impl NewWithNullPtr for wire_cst_lending_participant_short {
+        fn new_with_null_ptr() -> Self {
+            Self {
+                participant_type: Default::default(),
+                script_pubkey: core::ptr::null_mut(),
+            }
+        }
+    }
+    impl Default for wire_cst_lending_participant_short {
         fn default() -> Self {
             Self::new_with_null_ptr()
         }
@@ -4750,6 +6658,81 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_get_details(
+        port_: i64,
+        that: *mut wire_cst_lending_indexer,
+        id: *mut wire_cst_list_prim_u_8_strict,
+    ) {
+        wire__crate__api__lending__indexer__lending_indexer_get_details_impl(port_, that, id)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script(
+        port_: i64,
+        that: *mut wire_cst_lending_indexer,
+        script_pubkey: *mut wire_cst_list_prim_u_8_strict,
+    ) {
+        wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script_impl(
+            port_,
+            that,
+            script_pubkey,
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_get_overview(
+        port_: i64,
+        that: *mut wire_cst_lending_indexer,
+    ) {
+        wire__crate__api__lending__indexer__lending_indexer_get_overview_impl(port_, that)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_list_offers(
+        port_: i64,
+        that: *mut wire_cst_lending_indexer,
+        query: *mut wire_cst_lending_offer_list_query,
+    ) {
+        wire__crate__api__lending__indexer__lending_indexer_list_offers_impl(port_, that, query)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_new(
+        port_: i64,
+    ) {
+        wire__crate__api__lending__indexer__lending_indexer_new_impl(port_)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__config__lending_init(
+        port_: i64,
+        config: *mut wire_cst_lending_config,
+    ) {
+        wire__crate__api__lending__config__lending_init_impl(port_, config)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__types__lending_offer_list_query_default(
+        port_: i64,
+    ) {
+        wire__crate__api__lending__types__lending_offer_list_query_default_impl(port_)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__types__lending_offer_sort_by_default(
+        port_: i64,
+    ) {
+        wire__crate__api__lending__types__lending_offer_sort_by_default_impl(port_)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_wire__crate__api__lending__types__lending_sort_dir_default(
+        port_: i64,
+    ) {
+        wire__crate__api__lending__types__lending_sort_dir_default_impl(port_)
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_lwk_wire__crate__api__wallet__wallet_address(
         port_: i64,
         that: *mut wire_cst_wallet,
@@ -5006,6 +6989,38 @@ mod io {
     }
 
     #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_cst_new_box_autoadd_lending_config() -> *mut wire_cst_lending_config
+    {
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(
+            wire_cst_lending_config::new_with_null_ptr(),
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_cst_new_box_autoadd_lending_indexer(
+    ) -> *mut wire_cst_lending_indexer {
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(
+            wire_cst_lending_indexer::new_with_null_ptr(),
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_cst_new_box_autoadd_lending_offer_list_query(
+    ) -> *mut wire_cst_lending_offer_list_query {
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(
+            wire_cst_lending_offer_list_query::new_with_null_ptr(),
+        )
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_cst_new_box_autoadd_lending_offer_utxo_outpoint_short(
+    ) -> *mut wire_cst_lending_offer_utxo_outpoint_short {
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(
+            wire_cst_lending_offer_utxo_outpoint_short::new_with_null_ptr(),
+        )
+    }
+
+    #[unsafe(no_mangle)]
     pub extern "C" fn frbgen_lwk_cst_new_box_autoadd_pset_input() -> *mut wire_cst_pset_input {
         flutter_rust_bridge::for_generated::new_leak_box_ptr(
             wire_cst_pset_input::new_with_null_ptr(),
@@ -5066,6 +7081,87 @@ mod io {
         let wrap = wire_cst_list_balance {
             ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(
                 <wire_cst_balance>::new_with_null_ptr(),
+                len,
+            ),
+            len,
+        };
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(wrap)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_cst_new_list_lending_asset_amount(
+        len: i32,
+    ) -> *mut wire_cst_list_lending_asset_amount {
+        let wrap = wire_cst_list_lending_asset_amount {
+            ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(
+                <wire_cst_lending_asset_amount>::new_with_null_ptr(),
+                len,
+            ),
+            len,
+        };
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(wrap)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_cst_new_list_lending_offer_list_item(
+        len: i32,
+    ) -> *mut wire_cst_list_lending_offer_list_item {
+        let wrap = wire_cst_list_lending_offer_list_item {
+            ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(
+                <wire_cst_lending_offer_list_item>::new_with_null_ptr(),
+                len,
+            ),
+            len,
+        };
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(wrap)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_cst_new_list_lending_offer_status(
+        len: i32,
+    ) -> *mut wire_cst_list_lending_offer_status {
+        let wrap = wire_cst_list_lending_offer_status {
+            ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(Default::default(), len),
+            len,
+        };
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(wrap)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_cst_new_list_lending_offer_utxo_dto(
+        len: i32,
+    ) -> *mut wire_cst_list_lending_offer_utxo_dto {
+        let wrap = wire_cst_list_lending_offer_utxo_dto {
+            ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(
+                <wire_cst_lending_offer_utxo_dto>::new_with_null_ptr(),
+                len,
+            ),
+            len,
+        };
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(wrap)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_cst_new_list_lending_participant_dto(
+        len: i32,
+    ) -> *mut wire_cst_list_lending_participant_dto {
+        let wrap = wire_cst_list_lending_participant_dto {
+            ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(
+                <wire_cst_lending_participant_dto>::new_with_null_ptr(),
+                len,
+            ),
+            len,
+        };
+        flutter_rust_bridge::for_generated::new_leak_box_ptr(wrap)
+    }
+
+    #[unsafe(no_mangle)]
+    pub extern "C" fn frbgen_lwk_cst_new_list_lending_participant_short(
+        len: i32,
+    ) -> *mut wire_cst_list_lending_participant_short {
+        let wrap = wire_cst_list_lending_participant_short {
+            ptr: flutter_rust_bridge::for_generated::new_leak_vec_ptr(
+                <wire_cst_lending_participant_short>::new_with_null_ptr(),
                 len,
             ),
             len,
@@ -5209,6 +7305,121 @@ mod io {
     }
     #[repr(C)]
     #[derive(Clone, Copy)]
+    pub struct wire_cst_lending_asset_amount {
+        asset: *mut wire_cst_list_prim_u_8_strict,
+        amount: *mut wire_cst_list_prim_u_8_strict,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_lending_config {
+        network: i32,
+        allow_mainnet: bool,
+        indexer_base_url: *mut wire_cst_list_prim_u_8_strict,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_lending_indexer {}
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_lending_offer_details {
+        id: *mut wire_cst_list_prim_u_8_strict,
+        issuance_factory_id: *mut wire_cst_list_prim_u_8_strict,
+        status: i32,
+        collateral_asset: *mut wire_cst_list_prim_u_8_strict,
+        principal_asset: *mut wire_cst_list_prim_u_8_strict,
+        collateral_amount: *mut wire_cst_list_prim_u_8_strict,
+        principal_amount: *mut wire_cst_list_prim_u_8_strict,
+        interest_rate: u32,
+        loan_expiration_height: u32,
+        created_at_height: u64,
+        created_at_txid: *mut wire_cst_list_prim_u_8_strict,
+        borrower_nft_asset: *mut wire_cst_list_prim_u_8_strict,
+        lender_nft_asset: *mut wire_cst_list_prim_u_8_strict,
+        protocol_fee_keeper_asset: *mut wire_cst_list_prim_u_8_strict,
+        participants: *mut wire_cst_list_lending_participant_dto,
+        utxos: *mut wire_cst_list_lending_offer_utxo_dto,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_lending_offer_list_item {
+        id: *mut wire_cst_list_prim_u_8_strict,
+        issuance_factory_id: *mut wire_cst_list_prim_u_8_strict,
+        status: i32,
+        collateral_asset: *mut wire_cst_list_prim_u_8_strict,
+        principal_asset: *mut wire_cst_list_prim_u_8_strict,
+        collateral_amount: *mut wire_cst_list_prim_u_8_strict,
+        principal_amount: *mut wire_cst_list_prim_u_8_strict,
+        interest_rate: u32,
+        loan_expiration_height: u32,
+        created_at_height: u64,
+        created_at_txid: *mut wire_cst_list_prim_u_8_strict,
+        participants: *mut wire_cst_list_lending_participant_short,
+        borrower_principal_utxo: *mut wire_cst_lending_offer_utxo_outpoint_short,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_lending_offer_list_query {
+        status: *mut wire_cst_list_lending_offer_status,
+        collateral_asset: *mut wire_cst_list_prim_u_8_strict,
+        principal_asset: *mut wire_cst_list_prim_u_8_strict,
+        factory_id: *mut wire_cst_list_prim_u_8_strict,
+        limit: *mut u64,
+        offset: *mut u64,
+        sort_by: i32,
+        sort_dir: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_lending_offer_list_response {
+        items: *mut wire_cst_list_lending_offer_list_item,
+        total: u64,
+        limit: u64,
+        offset: u64,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_lending_offer_utxo_dto {
+        offer_id: *mut wire_cst_list_prim_u_8_strict,
+        txid: *mut wire_cst_list_prim_u_8_strict,
+        vout: u32,
+        utxo_type: i32,
+        created_at_height: u64,
+        spent_txid: *mut wire_cst_list_prim_u_8_strict,
+        spent_at_height: *mut u64,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_lending_offer_utxo_outpoint_short {
+        txid: *mut wire_cst_list_prim_u_8_strict,
+        vout: u32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_lending_offers_overview {
+        collateral_locked: *mut wire_cst_list_lending_asset_amount,
+        active_loan_principal: *mut wire_cst_list_lending_asset_amount,
+        active_loans_count: u64,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_lending_participant_dto {
+        offer_id: *mut wire_cst_list_prim_u_8_strict,
+        participant_type: i32,
+        script_pubkey: *mut wire_cst_list_prim_u_8_strict,
+        txid: *mut wire_cst_list_prim_u_8_strict,
+        vout: u32,
+        created_at_height: u64,
+        spent_txid: *mut wire_cst_list_prim_u_8_strict,
+        spent_at_height: *mut u64,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_lending_participant_short {
+        participant_type: i32,
+        script_pubkey: *mut wire_cst_list_prim_u_8_strict,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
     pub struct wire_cst_list_String {
         ptr: *mut *mut wire_cst_list_prim_u_8_strict,
         len: i32,
@@ -5217,6 +7428,42 @@ mod io {
     #[derive(Clone, Copy)]
     pub struct wire_cst_list_balance {
         ptr: *mut wire_cst_balance,
+        len: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_list_lending_asset_amount {
+        ptr: *mut wire_cst_lending_asset_amount,
+        len: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_list_lending_offer_list_item {
+        ptr: *mut wire_cst_lending_offer_list_item,
+        len: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_list_lending_offer_status {
+        ptr: *mut i32,
+        len: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_list_lending_offer_utxo_dto {
+        ptr: *mut wire_cst_lending_offer_utxo_dto,
+        len: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_list_lending_participant_dto {
+        ptr: *mut wire_cst_lending_participant_dto,
+        len: i32,
+    }
+    #[repr(C)]
+    #[derive(Clone, Copy)]
+    pub struct wire_cst_list_lending_participant_short {
+        ptr: *mut wire_cst_lending_participant_short,
         len: i32,
     }
     #[repr(C)]
@@ -5488,6 +7735,289 @@ mod web {
             }
         }
     }
+    impl CstDecode<crate::api::lending::types::LendingAssetAmount>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingAssetAmount {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                2,
+                "Expected 2 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::LendingAssetAmount {
+                asset: self_.get(0).cst_decode(),
+                amount: self_.get(1).cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::config::LendingConfig>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::config::LendingConfig {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                3,
+                "Expected 3 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::config::LendingConfig {
+                network: self_.get(0).cst_decode(),
+                allow_mainnet: self_.get(1).cst_decode(),
+                indexer_base_url: self_.get(2).cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::indexer::LendingIndexer>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::indexer::LendingIndexer {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                0,
+                "Expected 0 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::indexer::LendingIndexer {}
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferDetails>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferDetails {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                16,
+                "Expected 16 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::LendingOfferDetails {
+                id: self_.get(0).cst_decode(),
+                issuance_factory_id: self_.get(1).cst_decode(),
+                status: self_.get(2).cst_decode(),
+                collateral_asset: self_.get(3).cst_decode(),
+                principal_asset: self_.get(4).cst_decode(),
+                collateral_amount: self_.get(5).cst_decode(),
+                principal_amount: self_.get(6).cst_decode(),
+                interest_rate: self_.get(7).cst_decode(),
+                loan_expiration_height: self_.get(8).cst_decode(),
+                created_at_height: self_.get(9).cst_decode(),
+                created_at_txid: self_.get(10).cst_decode(),
+                borrower_nft_asset: self_.get(11).cst_decode(),
+                lender_nft_asset: self_.get(12).cst_decode(),
+                protocol_fee_keeper_asset: self_.get(13).cst_decode(),
+                participants: self_.get(14).cst_decode(),
+                utxos: self_.get(15).cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferListItem>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferListItem {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                13,
+                "Expected 13 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::LendingOfferListItem {
+                id: self_.get(0).cst_decode(),
+                issuance_factory_id: self_.get(1).cst_decode(),
+                status: self_.get(2).cst_decode(),
+                collateral_asset: self_.get(3).cst_decode(),
+                principal_asset: self_.get(4).cst_decode(),
+                collateral_amount: self_.get(5).cst_decode(),
+                principal_amount: self_.get(6).cst_decode(),
+                interest_rate: self_.get(7).cst_decode(),
+                loan_expiration_height: self_.get(8).cst_decode(),
+                created_at_height: self_.get(9).cst_decode(),
+                created_at_txid: self_.get(10).cst_decode(),
+                participants: self_.get(11).cst_decode(),
+                borrower_principal_utxo: self_.get(12).cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferListQuery>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferListQuery {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                8,
+                "Expected 8 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::LendingOfferListQuery {
+                status: self_.get(0).cst_decode(),
+                collateral_asset: self_.get(1).cst_decode(),
+                principal_asset: self_.get(2).cst_decode(),
+                factory_id: self_.get(3).cst_decode(),
+                limit: self_.get(4).cst_decode(),
+                offset: self_.get(5).cst_decode(),
+                sort_by: self_.get(6).cst_decode(),
+                sort_dir: self_.get(7).cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferListResponse>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferListResponse {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                4,
+                "Expected 4 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::LendingOfferListResponse {
+                items: self_.get(0).cst_decode(),
+                total: self_.get(1).cst_decode(),
+                limit: self_.get(2).cst_decode(),
+                offset: self_.get(3).cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferUtxoDto>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferUtxoDto {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                7,
+                "Expected 7 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::LendingOfferUtxoDto {
+                offer_id: self_.get(0).cst_decode(),
+                txid: self_.get(1).cst_decode(),
+                vout: self_.get(2).cst_decode(),
+                utxo_type: self_.get(3).cst_decode(),
+                created_at_height: self_.get(4).cst_decode(),
+                spent_txid: self_.get(5).cst_decode(),
+                spent_at_height: self_.get(6).cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferUtxoOutpointShort>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferUtxoOutpointShort {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                2,
+                "Expected 2 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::LendingOfferUtxoOutpointShort {
+                txid: self_.get(0).cst_decode(),
+                vout: self_.get(1).cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOffersOverview>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOffersOverview {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                3,
+                "Expected 3 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::LendingOffersOverview {
+                collateral_locked: self_.get(0).cst_decode(),
+                active_loan_principal: self_.get(1).cst_decode(),
+                active_loans_count: self_.get(2).cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingParticipantDto>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingParticipantDto {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                8,
+                "Expected 8 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::LendingParticipantDto {
+                offer_id: self_.get(0).cst_decode(),
+                participant_type: self_.get(1).cst_decode(),
+                script_pubkey: self_.get(2).cst_decode(),
+                txid: self_.get(3).cst_decode(),
+                vout: self_.get(4).cst_decode(),
+                created_at_height: self_.get(5).cst_decode(),
+                spent_txid: self_.get(6).cst_decode(),
+                spent_at_height: self_.get(7).cst_decode(),
+            }
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingParticipantShort>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingParticipantShort {
+            let self_ = self
+                .dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap();
+            assert_eq!(
+                self_.length(),
+                2,
+                "Expected 2 elements, got {}",
+                self_.length()
+            );
+            crate::api::lending::types::LendingParticipantShort {
+                participant_type: self_.get(0).cst_decode(),
+                script_pubkey: self_.get(1).cst_decode(),
+            }
+        }
+    }
     impl CstDecode<Vec<String>> for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> Vec<String> {
@@ -5503,6 +8033,78 @@ mod web {
     {
         // Codec=Cst (C-struct based), see doc to use other codecs
         fn cst_decode(self) -> Vec<crate::api::types::Balance> {
+            self.dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap()
+                .iter()
+                .map(CstDecode::cst_decode)
+                .collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::lending::types::LendingAssetAmount>>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::lending::types::LendingAssetAmount> {
+            self.dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap()
+                .iter()
+                .map(CstDecode::cst_decode)
+                .collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::lending::types::LendingOfferListItem>>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::lending::types::LendingOfferListItem> {
+            self.dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap()
+                .iter()
+                .map(CstDecode::cst_decode)
+                .collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::lending::types::LendingOfferStatus>>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::lending::types::LendingOfferStatus> {
+            self.dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap()
+                .iter()
+                .map(CstDecode::cst_decode)
+                .collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::lending::types::LendingOfferUtxoDto>>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::lending::types::LendingOfferUtxoDto> {
+            self.dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap()
+                .iter()
+                .map(CstDecode::cst_decode)
+                .collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::lending::types::LendingParticipantDto>>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::lending::types::LendingParticipantDto> {
+            self.dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
+                .unwrap()
+                .iter()
+                .map(CstDecode::cst_decode)
+                .collect()
+        }
+    }
+    impl CstDecode<Vec<crate::api::lending::types::LendingParticipantShort>>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> Vec<crate::api::lending::types::LendingParticipantShort> {
             self.dyn_into::<flutter_rust_bridge::for_generated::js_sys::Array>()
                 .unwrap()
                 .iter()
@@ -6003,6 +8605,46 @@ mod web {
             ::std::convert::TryInto::<i64>::try_into(self).unwrap() as _
         }
     }
+    impl CstDecode<crate::api::lending::types::LendingOfferSortBy>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferSortBy {
+            (self.unchecked_into_f64() as i32).cst_decode()
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingOfferStatus>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingOfferStatus {
+            (self.unchecked_into_f64() as i32).cst_decode()
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingParticipantType>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingParticipantType {
+            (self.unchecked_into_f64() as i32).cst_decode()
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingSortDir>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingSortDir {
+            (self.unchecked_into_f64() as i32).cst_decode()
+        }
+    }
+    impl CstDecode<crate::api::lending::types::LendingUtxoType>
+        for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
+    {
+        // Codec=Cst (C-struct based), see doc to use other codecs
+        fn cst_decode(self) -> crate::api::lending::types::LendingUtxoType {
+            (self.unchecked_into_f64() as i32).cst_decode()
+        }
+    }
     impl CstDecode<crate::api::types::LiquidNetwork>
         for flutter_rust_bridge::for_generated::wasm_bindgen::JsValue
     {
@@ -6451,6 +9093,81 @@ mod web {
         pset: String,
     ) {
         wire__crate__api__transaction__get_size_and_absolute_fees_impl(port_, pset)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__indexer__lending_indexer_get_details(
+        port_: flutter_rust_bridge::for_generated::MessagePort,
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        id: String,
+    ) {
+        wire__crate__api__lending__indexer__lending_indexer_get_details_impl(port_, that, id)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script(
+        port_: flutter_rust_bridge::for_generated::MessagePort,
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        script_pubkey: String,
+    ) {
+        wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script_impl(
+            port_,
+            that,
+            script_pubkey,
+        )
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__indexer__lending_indexer_get_overview(
+        port_: flutter_rust_bridge::for_generated::MessagePort,
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) {
+        wire__crate__api__lending__indexer__lending_indexer_get_overview_impl(port_, that)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__indexer__lending_indexer_list_offers(
+        port_: flutter_rust_bridge::for_generated::MessagePort,
+        that: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+        query: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) {
+        wire__crate__api__lending__indexer__lending_indexer_list_offers_impl(port_, that, query)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__indexer__lending_indexer_new(
+        port_: flutter_rust_bridge::for_generated::MessagePort,
+    ) {
+        wire__crate__api__lending__indexer__lending_indexer_new_impl(port_)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__config__lending_init(
+        port_: flutter_rust_bridge::for_generated::MessagePort,
+        config: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
+    ) {
+        wire__crate__api__lending__config__lending_init_impl(port_, config)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__types__lending_offer_list_query_default(
+        port_: flutter_rust_bridge::for_generated::MessagePort,
+    ) {
+        wire__crate__api__lending__types__lending_offer_list_query_default_impl(port_)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__types__lending_offer_sort_by_default(
+        port_: flutter_rust_bridge::for_generated::MessagePort,
+    ) {
+        wire__crate__api__lending__types__lending_offer_sort_by_default_impl(port_)
+    }
+
+    #[wasm_bindgen]
+    pub fn wire__crate__api__lending__types__lending_sort_dir_default(
+        port_: flutter_rust_bridge::for_generated::MessagePort,
+    ) {
+        wire__crate__api__lending__types__lending_sort_dir_default_impl(port_)
     }
 
     #[wasm_bindgen]

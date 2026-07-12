@@ -38,6 +38,32 @@ typedef struct wire_cst_list_balance {
   int32_t len;
 } wire_cst_list_balance;
 
+typedef struct wire_cst_lending_indexer {
+
+} wire_cst_lending_indexer;
+
+typedef struct wire_cst_list_lending_offer_status {
+  int32_t *ptr;
+  int32_t len;
+} wire_cst_list_lending_offer_status;
+
+typedef struct wire_cst_lending_offer_list_query {
+  struct wire_cst_list_lending_offer_status *status;
+  struct wire_cst_list_prim_u_8_strict *collateral_asset;
+  struct wire_cst_list_prim_u_8_strict *principal_asset;
+  struct wire_cst_list_prim_u_8_strict *factory_id;
+  uint64_t *limit;
+  uint64_t *offset;
+  int32_t sort_by;
+  int32_t sort_dir;
+} wire_cst_lending_offer_list_query;
+
+typedef struct wire_cst_lending_config {
+  int32_t network;
+  bool allow_mainnet;
+  struct wire_cst_list_prim_u_8_strict *indexer_base_url;
+} wire_cst_lending_config;
+
 typedef struct wire_cst_wallet {
   uintptr_t inner;
 } wire_cst_wallet;
@@ -45,6 +71,11 @@ typedef struct wire_cst_wallet {
 typedef struct wire_cst_descriptor {
   struct wire_cst_list_prim_u_8_strict *ct_descriptor;
 } wire_cst_descriptor;
+
+typedef struct wire_cst_lending_offer_utxo_outpoint_short {
+  struct wire_cst_list_prim_u_8_strict *txid;
+  uint32_t vout;
+} wire_cst_lending_offer_utxo_outpoint_short;
 
 typedef struct wire_cst_pset_input {
   struct wire_cst_list_prim_u_8_strict *witness_utxo_script;
@@ -79,6 +110,78 @@ typedef struct wire_cst_tx_output {
   uint64_t *value;
   struct wire_cst_list_prim_u_8_strict *nonce;
 } wire_cst_tx_output;
+
+typedef struct wire_cst_lending_asset_amount {
+  struct wire_cst_list_prim_u_8_strict *asset;
+  struct wire_cst_list_prim_u_8_strict *amount;
+} wire_cst_lending_asset_amount;
+
+typedef struct wire_cst_list_lending_asset_amount {
+  struct wire_cst_lending_asset_amount *ptr;
+  int32_t len;
+} wire_cst_list_lending_asset_amount;
+
+typedef struct wire_cst_lending_participant_short {
+  int32_t participant_type;
+  struct wire_cst_list_prim_u_8_strict *script_pubkey;
+} wire_cst_lending_participant_short;
+
+typedef struct wire_cst_list_lending_participant_short {
+  struct wire_cst_lending_participant_short *ptr;
+  int32_t len;
+} wire_cst_list_lending_participant_short;
+
+typedef struct wire_cst_lending_offer_list_item {
+  struct wire_cst_list_prim_u_8_strict *id;
+  struct wire_cst_list_prim_u_8_strict *issuance_factory_id;
+  int32_t status;
+  struct wire_cst_list_prim_u_8_strict *collateral_asset;
+  struct wire_cst_list_prim_u_8_strict *principal_asset;
+  struct wire_cst_list_prim_u_8_strict *collateral_amount;
+  struct wire_cst_list_prim_u_8_strict *principal_amount;
+  uint32_t interest_rate;
+  uint32_t loan_expiration_height;
+  uint64_t created_at_height;
+  struct wire_cst_list_prim_u_8_strict *created_at_txid;
+  struct wire_cst_list_lending_participant_short *participants;
+  struct wire_cst_lending_offer_utxo_outpoint_short *borrower_principal_utxo;
+} wire_cst_lending_offer_list_item;
+
+typedef struct wire_cst_list_lending_offer_list_item {
+  struct wire_cst_lending_offer_list_item *ptr;
+  int32_t len;
+} wire_cst_list_lending_offer_list_item;
+
+typedef struct wire_cst_lending_offer_utxo_dto {
+  struct wire_cst_list_prim_u_8_strict *offer_id;
+  struct wire_cst_list_prim_u_8_strict *txid;
+  uint32_t vout;
+  int32_t utxo_type;
+  uint64_t created_at_height;
+  struct wire_cst_list_prim_u_8_strict *spent_txid;
+  uint64_t *spent_at_height;
+} wire_cst_lending_offer_utxo_dto;
+
+typedef struct wire_cst_list_lending_offer_utxo_dto {
+  struct wire_cst_lending_offer_utxo_dto *ptr;
+  int32_t len;
+} wire_cst_list_lending_offer_utxo_dto;
+
+typedef struct wire_cst_lending_participant_dto {
+  struct wire_cst_list_prim_u_8_strict *offer_id;
+  int32_t participant_type;
+  struct wire_cst_list_prim_u_8_strict *script_pubkey;
+  struct wire_cst_list_prim_u_8_strict *txid;
+  uint32_t vout;
+  uint64_t created_at_height;
+  struct wire_cst_list_prim_u_8_strict *spent_txid;
+  uint64_t *spent_at_height;
+} wire_cst_lending_participant_dto;
+
+typedef struct wire_cst_list_lending_participant_dto {
+  struct wire_cst_lending_participant_dto *ptr;
+  int32_t len;
+} wire_cst_list_lending_participant_dto;
 
 typedef struct wire_cst_list_pset_input {
   struct wire_cst_pset_input *ptr;
@@ -155,6 +258,38 @@ typedef struct wire_cst_list_tx_output {
   struct wire_cst_tx_output *ptr;
   int32_t len;
 } wire_cst_list_tx_output;
+
+typedef struct wire_cst_lending_offer_details {
+  struct wire_cst_list_prim_u_8_strict *id;
+  struct wire_cst_list_prim_u_8_strict *issuance_factory_id;
+  int32_t status;
+  struct wire_cst_list_prim_u_8_strict *collateral_asset;
+  struct wire_cst_list_prim_u_8_strict *principal_asset;
+  struct wire_cst_list_prim_u_8_strict *collateral_amount;
+  struct wire_cst_list_prim_u_8_strict *principal_amount;
+  uint32_t interest_rate;
+  uint32_t loan_expiration_height;
+  uint64_t created_at_height;
+  struct wire_cst_list_prim_u_8_strict *created_at_txid;
+  struct wire_cst_list_prim_u_8_strict *borrower_nft_asset;
+  struct wire_cst_list_prim_u_8_strict *lender_nft_asset;
+  struct wire_cst_list_prim_u_8_strict *protocol_fee_keeper_asset;
+  struct wire_cst_list_lending_participant_dto *participants;
+  struct wire_cst_list_lending_offer_utxo_dto *utxos;
+} wire_cst_lending_offer_details;
+
+typedef struct wire_cst_lending_offer_list_response {
+  struct wire_cst_list_lending_offer_list_item *items;
+  uint64_t total;
+  uint64_t limit;
+  uint64_t offset;
+} wire_cst_lending_offer_list_response;
+
+typedef struct wire_cst_lending_offers_overview {
+  struct wire_cst_list_lending_asset_amount *collateral_locked;
+  struct wire_cst_list_lending_asset_amount *active_loan_principal;
+  uint64_t active_loans_count;
+} wire_cst_lending_offers_overview;
 
 typedef struct wire_cst_lwk_error {
   struct wire_cst_list_prim_u_8_strict *msg;
@@ -308,6 +443,32 @@ WireSyncRust2DartDco frbgen_lwk_wire__crate__api__types__get_ltest_balance(struc
 void frbgen_lwk_wire__crate__api__transaction__get_size_and_absolute_fees(int64_t port_,
                                                                           struct wire_cst_list_prim_u_8_strict *pset);
 
+void frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_get_details(int64_t port_,
+                                                                                struct wire_cst_lending_indexer *that,
+                                                                                struct wire_cst_list_prim_u_8_strict *id);
+
+void frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script(int64_t port_,
+                                                                                      struct wire_cst_lending_indexer *that,
+                                                                                      struct wire_cst_list_prim_u_8_strict *script_pubkey);
+
+void frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_get_overview(int64_t port_,
+                                                                                 struct wire_cst_lending_indexer *that);
+
+void frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_list_offers(int64_t port_,
+                                                                                struct wire_cst_lending_indexer *that,
+                                                                                struct wire_cst_lending_offer_list_query *query);
+
+void frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_new(int64_t port_);
+
+void frbgen_lwk_wire__crate__api__lending__config__lending_init(int64_t port_,
+                                                                struct wire_cst_lending_config *config);
+
+void frbgen_lwk_wire__crate__api__lending__types__lending_offer_list_query_default(int64_t port_);
+
+void frbgen_lwk_wire__crate__api__lending__types__lending_offer_sort_by_default(int64_t port_);
+
+void frbgen_lwk_wire__crate__api__lending__types__lending_sort_dir_default(int64_t port_);
+
 void frbgen_lwk_wire__crate__api__wallet__wallet_address(int64_t port_,
                                                          struct wire_cst_wallet *that,
                                                          uint32_t index);
@@ -395,6 +556,14 @@ struct wire_cst_blockchain *frbgen_lwk_cst_new_box_autoadd_blockchain(void);
 
 struct wire_cst_descriptor *frbgen_lwk_cst_new_box_autoadd_descriptor(void);
 
+struct wire_cst_lending_config *frbgen_lwk_cst_new_box_autoadd_lending_config(void);
+
+struct wire_cst_lending_indexer *frbgen_lwk_cst_new_box_autoadd_lending_indexer(void);
+
+struct wire_cst_lending_offer_list_query *frbgen_lwk_cst_new_box_autoadd_lending_offer_list_query(void);
+
+struct wire_cst_lending_offer_utxo_outpoint_short *frbgen_lwk_cst_new_box_autoadd_lending_offer_utxo_outpoint_short(void);
+
 struct wire_cst_pset_input *frbgen_lwk_cst_new_box_autoadd_pset_input(void);
 
 struct wire_cst_pset_output *frbgen_lwk_cst_new_box_autoadd_pset_output(void);
@@ -414,6 +583,18 @@ struct wire_cst_wallet *frbgen_lwk_cst_new_box_autoadd_wallet(void);
 struct wire_cst_list_String *frbgen_lwk_cst_new_list_String(int32_t len);
 
 struct wire_cst_list_balance *frbgen_lwk_cst_new_list_balance(int32_t len);
+
+struct wire_cst_list_lending_asset_amount *frbgen_lwk_cst_new_list_lending_asset_amount(int32_t len);
+
+struct wire_cst_list_lending_offer_list_item *frbgen_lwk_cst_new_list_lending_offer_list_item(int32_t len);
+
+struct wire_cst_list_lending_offer_status *frbgen_lwk_cst_new_list_lending_offer_status(int32_t len);
+
+struct wire_cst_list_lending_offer_utxo_dto *frbgen_lwk_cst_new_list_lending_offer_utxo_dto(int32_t len);
+
+struct wire_cst_list_lending_participant_dto *frbgen_lwk_cst_new_list_lending_participant_dto(int32_t len);
+
+struct wire_cst_list_lending_participant_short *frbgen_lwk_cst_new_list_lending_participant_short(int32_t len);
 
 struct wire_cst_list_prim_u_8_loose *frbgen_lwk_cst_new_list_prim_u_8_loose(int32_t len);
 
@@ -436,6 +617,10 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     int64_t dummy_var = 0;
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_blockchain);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_descriptor);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_lending_config);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_lending_indexer);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_lending_offer_list_query);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_lending_offer_utxo_outpoint_short);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_pset_input);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_pset_output);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_tx_input);
@@ -446,6 +631,12 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_box_autoadd_wallet);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_list_String);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_list_balance);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_list_lending_asset_amount);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_list_lending_offer_list_item);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_list_lending_offer_status);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_list_lending_offer_utxo_dto);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_list_lending_participant_dto);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_list_lending_participant_short);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_list_prim_u_8_loose);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_list_prim_u_8_strict);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_cst_new_list_pset_input);
@@ -465,6 +656,15 @@ static int64_t dummy_method_to_enforce_bundling(void) {
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__blockchain__blockchain_broadcast_tx_bytes);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__blockchain__blockchain_test);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__descriptor__descriptor_new_confidential);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__config__lending_init);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_get_details);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_get_overview);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_list_offers);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__indexer__lending_indexer_new);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__types__lending_offer_list_query_default);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__types__lending_offer_sort_by_default);
+    dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__lending__types__lending_sort_dir_default);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__transaction__LiquidTransaction_fee);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__transaction__LiquidTransaction_from_bytes);
     dummy_var ^= ((int64_t) (void*) frbgen_lwk_wire__crate__api__transaction__LiquidTransaction_from_pset);
