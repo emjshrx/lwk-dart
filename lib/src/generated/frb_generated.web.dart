@@ -9,6 +9,9 @@
 import 'api/blockchain.dart';
 import 'api/descriptor.dart';
 import 'api/error.dart';
+import 'api/lending/factory.dart';
+import 'api/lending/transaction.dart';
+import 'api/lending/types.dart';
 import 'api/transaction.dart';
 import 'api/types.dart';
 import 'api/wallet.dart';
@@ -30,12 +33,34 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
           wire.rust_arc_decrement_strong_count_RustOpaque_Mutexlwk_wolletWollet;
 
   CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_IssuanceFactoryPtr => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_LendingTransactionPtr => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction;
+
+  CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_LiquidTransactionPtr => wire
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction;
 
   CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_PartiallySignedElementsTransactionPtr =>
           wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_TryFromIssuanceFactoryResultPtr => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult;
+
+  @protected
+  IssuanceFactory
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          dynamic raw);
+
+  @protected
+  LendingTransaction
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          dynamic raw);
 
   @protected
   LiquidTransaction
@@ -45,6 +70,26 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   @protected
   PartiallySignedElementsTransaction
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
+          dynamic raw);
+
+  @protected
+  TryFromIssuanceFactoryResult
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          dynamic raw);
+
+  @protected
+  LendingTransaction
+      dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          dynamic raw);
+
+  @protected
+  IssuanceFactory
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          dynamic raw);
+
+  @protected
+  LendingTransaction
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
           dynamic raw);
 
   @protected
@@ -58,7 +103,22 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
           dynamic raw);
 
   @protected
+  TryFromIssuanceFactoryResult
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          dynamic raw);
+
+  @protected
   MutexWollet dco_decode_RustOpaque_Mutexlwk_wolletWollet(dynamic raw);
+
+  @protected
+  IssuanceFactory
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          dynamic raw);
+
+  @protected
+  LendingTransaction
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          dynamic raw);
 
   @protected
   LiquidTransaction
@@ -68,6 +128,11 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   @protected
   PartiallySignedElementsTransaction
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
+          dynamic raw);
+
+  @protected
+  TryFromIssuanceFactoryResult
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
           dynamic raw);
 
   @protected
@@ -90,6 +155,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   Descriptor dco_decode_box_autoadd_descriptor(dynamic raw);
+
+  @protected
+  IssuanceFactoryParameters dco_decode_box_autoadd_issuance_factory_parameters(
+      dynamic raw);
 
   @protected
   PsetInput dco_decode_box_autoadd_pset_input(dynamic raw);
@@ -126,6 +195,20 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   PlatformInt64 dco_decode_i_64(dynamic raw);
+
+  @protected
+  IssuanceDetails dco_decode_issuance_details(dynamic raw);
+
+  @protected
+  IssuanceFactoryParameters dco_decode_issuance_factory_parameters(dynamic raw);
+
+  @protected
+  IssuanceFactoryWitnessBranch dco_decode_issuance_factory_witness_branch(
+      dynamic raw);
+
+  @protected
+  IssuanceFactoryWitnessBranchKind
+      dco_decode_issuance_factory_witness_branch_kind(dynamic raw);
 
   @protected
   LiquidNetwork dco_decode_liquid_network(dynamic raw);
@@ -239,7 +322,20 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   BigInt dco_decode_usize(dynamic raw);
 
   @protected
+  UtilityNftIssuanceResult dco_decode_utility_nft_issuance_result(dynamic raw);
+
+  @protected
   Wallet dco_decode_wallet(dynamic raw);
+
+  @protected
+  IssuanceFactory
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          SseDeserializer deserializer);
+
+  @protected
+  LendingTransaction
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          SseDeserializer deserializer);
 
   @protected
   LiquidTransaction
@@ -249,6 +345,26 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   @protected
   PartiallySignedElementsTransaction
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
+          SseDeserializer deserializer);
+
+  @protected
+  TryFromIssuanceFactoryResult
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          SseDeserializer deserializer);
+
+  @protected
+  LendingTransaction
+      sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          SseDeserializer deserializer);
+
+  @protected
+  IssuanceFactory
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          SseDeserializer deserializer);
+
+  @protected
+  LendingTransaction
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
           SseDeserializer deserializer);
 
   @protected
@@ -262,8 +378,23 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
           SseDeserializer deserializer);
 
   @protected
+  TryFromIssuanceFactoryResult
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          SseDeserializer deserializer);
+
+  @protected
   MutexWollet sse_decode_RustOpaque_Mutexlwk_wolletWollet(
       SseDeserializer deserializer);
+
+  @protected
+  IssuanceFactory
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          SseDeserializer deserializer);
+
+  @protected
+  LendingTransaction
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          SseDeserializer deserializer);
 
   @protected
   LiquidTransaction
@@ -273,6 +404,11 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   @protected
   PartiallySignedElementsTransaction
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
+          SseDeserializer deserializer);
+
+  @protected
+  TryFromIssuanceFactoryResult
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
           SseDeserializer deserializer);
 
   @protected
@@ -295,6 +431,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   Descriptor sse_decode_box_autoadd_descriptor(SseDeserializer deserializer);
+
+  @protected
+  IssuanceFactoryParameters sse_decode_box_autoadd_issuance_factory_parameters(
+      SseDeserializer deserializer);
 
   @protected
   PsetInput sse_decode_box_autoadd_pset_input(SseDeserializer deserializer);
@@ -331,6 +471,22 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   PlatformInt64 sse_decode_i_64(SseDeserializer deserializer);
+
+  @protected
+  IssuanceDetails sse_decode_issuance_details(SseDeserializer deserializer);
+
+  @protected
+  IssuanceFactoryParameters sse_decode_issuance_factory_parameters(
+      SseDeserializer deserializer);
+
+  @protected
+  IssuanceFactoryWitnessBranch sse_decode_issuance_factory_witness_branch(
+      SseDeserializer deserializer);
+
+  @protected
+  IssuanceFactoryWitnessBranchKind
+      sse_decode_issuance_factory_witness_branch_kind(
+          SseDeserializer deserializer);
 
   @protected
   LiquidNetwork sse_decode_liquid_network(SseDeserializer deserializer);
@@ -447,6 +603,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   BigInt sse_decode_usize(SseDeserializer deserializer);
 
   @protected
+  UtilityNftIssuanceResult sse_decode_utility_nft_issuance_result(
+      SseDeserializer deserializer);
+
+  @protected
   Wallet sse_decode_wallet(SseDeserializer deserializer);
 
   @protected
@@ -489,6 +649,13 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   JSAny cst_encode_box_autoadd_descriptor(Descriptor raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return cst_encode_descriptor(raw);
+  }
+
+  @protected
+  JSAny cst_encode_box_autoadd_issuance_factory_parameters(
+      IssuanceFactoryParameters raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_issuance_factory_parameters(raw);
   }
 
   @protected
@@ -549,6 +716,35 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   JSAny cst_encode_i_64(PlatformInt64 raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return castNativeBigInt(raw);
+  }
+
+  @protected
+  JSAny cst_encode_issuance_details(IssuanceDetails raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_String(raw.assetId),
+      cst_encode_String(raw.reissuanceTokenId)
+    ].jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_issuance_factory_parameters(IssuanceFactoryParameters raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_u_8(raw.issuingUtxosCount),
+      cst_encode_u_64(raw.reissuanceFlags),
+      cst_encode_liquid_network(raw.network)
+    ].jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_issuance_factory_witness_branch(
+      IssuanceFactoryWitnessBranch raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_issuance_factory_witness_branch_kind(raw.kind),
+      cst_encode_u_32(raw.outputIndex)
+    ].jsify()!;
   }
 
   @protected
@@ -806,10 +1002,27 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   }
 
   @protected
+  JSAny cst_encode_utility_nft_issuance_result(UtilityNftIssuanceResult raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_String(raw.borrowerNftAssetId),
+      cst_encode_String(raw.policyAssetId)
+    ].jsify()!;
+  }
+
+  @protected
   JSAny cst_encode_wallet(Wallet raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return [cst_encode_RustOpaque_Mutexlwk_wolletWollet(raw.inner)].jsify()!;
   }
+
+  @protected
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+      IssuanceFactory raw);
+
+  @protected
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      LendingTransaction raw);
 
   @protected
   int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
@@ -820,6 +1033,22 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
       PartiallySignedElementsTransaction raw);
 
   @protected
+  int cst_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+      TryFromIssuanceFactoryResult raw);
+
+  @protected
+  int cst_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      LendingTransaction raw);
+
+  @protected
+  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+      IssuanceFactory raw);
+
+  @protected
+  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      LendingTransaction raw);
+
+  @protected
   int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
       LiquidTransaction raw);
 
@@ -828,7 +1057,19 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
       PartiallySignedElementsTransaction raw);
 
   @protected
+  int cst_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+      TryFromIssuanceFactoryResult raw);
+
+  @protected
   int cst_encode_RustOpaque_Mutexlwk_wolletWollet(MutexWollet raw);
+
+  @protected
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+      IssuanceFactory raw);
+
+  @protected
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+      LendingTransaction raw);
 
   @protected
   int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
@@ -839,6 +1080,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
       PartiallySignedElementsTransaction raw);
 
   @protected
+  int cst_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+      TryFromIssuanceFactoryResult raw);
+
+  @protected
   bool cst_encode_bool(bool raw);
 
   @protected
@@ -846,6 +1091,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   int cst_encode_i_32(int raw);
+
+  @protected
+  int cst_encode_issuance_factory_witness_branch_kind(
+      IssuanceFactoryWitnessBranchKind raw);
 
   @protected
   int cst_encode_liquid_network(LiquidNetwork raw);
@@ -861,6 +1110,16 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          IssuanceFactory self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          LendingTransaction self, SseSerializer serializer);
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
           LiquidTransaction self, SseSerializer serializer);
 
@@ -868,6 +1127,26 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
           PartiallySignedElementsTransaction self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          TryFromIssuanceFactoryResult self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          LendingTransaction self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          IssuanceFactory self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          LendingTransaction self, SseSerializer serializer);
 
   @protected
   void
@@ -880,8 +1159,23 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
           PartiallySignedElementsTransaction self, SseSerializer serializer);
 
   @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          TryFromIssuanceFactoryResult self, SseSerializer serializer);
+
+  @protected
   void sse_encode_RustOpaque_Mutexlwk_wolletWollet(
       MutexWollet self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          IssuanceFactory self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          LendingTransaction self, SseSerializer serializer);
 
   @protected
   void
@@ -892,6 +1186,11 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
           PartiallySignedElementsTransaction self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          TryFromIssuanceFactoryResult self, SseSerializer serializer);
 
   @protected
   void sse_encode_String(String self, SseSerializer serializer);
@@ -915,6 +1214,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   @protected
   void sse_encode_box_autoadd_descriptor(
       Descriptor self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_issuance_factory_parameters(
+      IssuanceFactoryParameters self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_pset_input(
@@ -954,6 +1257,22 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_issuance_details(
+      IssuanceDetails self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_issuance_factory_parameters(
+      IssuanceFactoryParameters self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_issuance_factory_witness_branch(
+      IssuanceFactoryWitnessBranch self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_issuance_factory_witness_branch_kind(
+      IssuanceFactoryWitnessBranchKind self, SseSerializer serializer);
 
   @protected
   void sse_encode_liquid_network(LiquidNetwork self, SseSerializer serializer);
@@ -1075,6 +1394,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   void sse_encode_usize(BigInt self, SseSerializer serializer);
 
   @protected
+  void sse_encode_utility_nft_issuance_result(
+      UtilityNftIssuanceResult self, SseSerializer serializer);
+
+  @protected
   void sse_encode_wallet(Wallet self, SseSerializer serializer);
 }
 
@@ -1082,6 +1405,185 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
 class LwkCoreWire implements BaseWire {
   LwkCoreWire.fromExternalLibrary(ExternalLibrary lib);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_attach_creation(
+              int that,
+              int tx,
+              String factory_asset_id,
+              JSAny factory_asset_amount,
+              String policy_asset_id) =>
+          wasmModule
+              .wire__crate__api__lending__factory__IssuanceFactory_attach_creation(
+                  that,
+                  tx,
+                  factory_asset_id,
+                  factory_asset_amount,
+                  policy_asset_id);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing(
+              int that,
+              int tx,
+              String program_utxo_txid,
+              int program_utxo_vout,
+              String program_utxo_script_hex,
+              String program_utxo_asset_id,
+              JSAny program_utxo_amount,
+              String policy_asset_id) =>
+          wasmModule
+              .wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing(
+                  that,
+                  tx,
+                  program_utxo_txid,
+                  program_utxo_vout,
+                  program_utxo_script_hex,
+                  program_utxo_asset_id,
+                  program_utxo_amount,
+                  policy_asset_id);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance(
+              int that,
+              int tx,
+              String factory_utxo_txid,
+              int factory_utxo_vout,
+              String factory_utxo_script_hex,
+              String factory_utxo_asset_id,
+              JSAny factory_utxo_amount,
+              JSAny asset_entropy,
+              String policy_asset_id) =>
+          wasmModule
+              .wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance(
+                  that,
+                  tx,
+                  factory_utxo_txid,
+                  factory_utxo_vout,
+                  factory_utxo_script_hex,
+                  factory_utxo_asset_id,
+                  factory_utxo_amount,
+                  asset_entropy,
+                  policy_asset_id);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count(
+              int that) =>
+          wasmModule
+              .wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count(
+                  that);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_new(
+              JSAny parameters) =>
+          wasmModule.wire__crate__api__lending__factory__IssuanceFactory_new(
+              parameters);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_program_id_hex(
+              int that) =>
+          wasmModule
+              .wire__crate__api__lending__factory__IssuanceFactory_program_id_hex(
+                  that);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags(
+              int that) =>
+          wasmModule
+              .wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags(
+                  that);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex(
+              int that) =>
+          wasmModule
+              .wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex(
+                  that);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_try_from_tx(
+              JSAny tx_bytes, int network) =>
+          wasmModule
+              .wire__crate__api__lending__factory__IssuanceFactory_try_from_tx(
+                  tx_bytes, network);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output(
+              int that, String script_hex, JSAny satoshi, String asset_id) =>
+          wasmModule
+              .wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output(
+                  that, script_hex, satoshi, asset_id);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input(
+              int that,
+              String txid,
+              int vout,
+              String witness_utxo_script_hex,
+              String witness_utxo_asset_id,
+              JSAny witness_utxo_amount,
+              JSAny issuance_amount,
+              JSAny inflation_amount,
+              JSAny asset_entropy) =>
+          wasmModule
+              .wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input(
+                  that,
+                  txid,
+                  vout,
+                  witness_utxo_script_hex,
+                  witness_utxo_asset_id,
+                  witness_utxo_amount,
+                  issuance_amount,
+                  inflation_amount,
+                  asset_entropy);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input(
+              int that,
+              String txid,
+              int vout,
+              String witness_utxo_script_hex,
+              String witness_utxo_asset_id,
+              JSAny witness_utxo_amount) =>
+          wasmModule
+              .wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input(
+                  that,
+                  txid,
+                  vout,
+                  witness_utxo_script_hex,
+                  witness_utxo_asset_id,
+                  witness_utxo_amount);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_build(
+              int that) =>
+          wasmModule
+              .wire__crate__api__lending__transaction__LendingTransaction_build(
+                  that);
+
+  void wire__crate__api__lending__transaction__LendingTransaction_default(
+          NativePortType port_) =>
+      wasmModule
+          .wire__crate__api__lending__transaction__LendingTransaction_default(
+              port_);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_n_inputs(
+              int that) =>
+          wasmModule
+              .wire__crate__api__lending__transaction__LendingTransaction_n_inputs(
+                  that);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_n_outputs(
+              int that) =>
+          wasmModule
+              .wire__crate__api__lending__transaction__LendingTransaction_n_outputs(
+                  that);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_new() =>
+          wasmModule
+              .wire__crate__api__lending__transaction__LendingTransaction_new();
 
   JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
       wire__crate__api__transaction__LiquidTransaction_fee(int that) =>
@@ -1320,6 +1822,20 @@ class LwkCoreWire implements BaseWire {
               .wire__crate__api__transaction__PartiallySignedElementsTransaction_to_string(
                   that);
 
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory(
+              int that) =>
+          wasmModule
+              .wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory(
+                  that);
+
+  JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id(
+              int that) =>
+          wasmModule
+              .wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id(
+                  that);
+
   void wire__crate__api__types__address_address_from_script(
           NativePortType port_,
           int network,
@@ -1490,6 +2006,30 @@ class LwkCoreWire implements BaseWire {
           .rust_arc_decrement_strong_count_RustOpaque_Mutexlwk_wolletWollet(
               ptr);
 
+  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          int ptr) =>
+      wasmModule
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+              ptr);
+
+  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          int ptr) =>
+      wasmModule
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+              ptr);
+
+  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          int ptr) =>
+      wasmModule
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+              ptr);
+
+  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          int ptr) =>
+      wasmModule
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+              ptr);
+
   void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
           int ptr) =>
       wasmModule
@@ -1513,6 +2053,18 @@ class LwkCoreWire implements BaseWire {
       wasmModule
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
               ptr);
+
+  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          int ptr) =>
+      wasmModule
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+              ptr);
+
+  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          int ptr) =>
+      wasmModule
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+              ptr);
 }
 
 @JS('wasm_bindgen')
@@ -1521,6 +2073,104 @@ external LwkCoreWasmModule get wasmModule;
 @JS()
 @anonymous
 extension type LwkCoreWasmModule._(JSObject _) implements JSObject {
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_attach_creation(
+          int that,
+          int tx,
+          String factory_asset_id,
+          JSAny factory_asset_amount,
+          String policy_asset_id);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_attach_factory_removing(
+          int that,
+          int tx,
+          String program_utxo_txid,
+          int program_utxo_vout,
+          String program_utxo_script_hex,
+          String program_utxo_asset_id,
+          JSAny program_utxo_amount,
+          String policy_asset_id);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_attach_utility_nft_issuance(
+          int that,
+          int tx,
+          String factory_utxo_txid,
+          int factory_utxo_vout,
+          String factory_utxo_script_hex,
+          String factory_utxo_asset_id,
+          JSAny factory_utxo_amount,
+          JSAny asset_entropy,
+          String policy_asset_id);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_issuing_utxos_count(
+          int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_new(JSAny parameters);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_program_id_hex(
+          int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_reissuance_flags(
+          int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_script_pubkey_hex(
+          int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__factory__IssuanceFactory_try_from_tx(
+          JSAny tx_bytes, int network);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_add_explicit_output(
+          int that, String script_hex, JSAny satoshi, String asset_id);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_add_issuance_input(
+          int that,
+          String txid,
+          int vout,
+          String witness_utxo_script_hex,
+          String witness_utxo_asset_id,
+          JSAny witness_utxo_amount,
+          JSAny issuance_amount,
+          JSAny inflation_amount,
+          JSAny asset_entropy);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_add_wallet_input(
+          int that,
+          String txid,
+          int vout,
+          String witness_utxo_script_hex,
+          String witness_utxo_asset_id,
+          JSAny witness_utxo_amount);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_build(
+          int that);
+
+  external void
+      wire__crate__api__lending__transaction__LendingTransaction_default(
+          NativePortType port_);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_n_inputs(
+          int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_n_outputs(
+          int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__transaction__LendingTransaction_new();
+
   external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
       wire__crate__api__transaction__LiquidTransaction_fee(int that);
 
@@ -1657,6 +2307,14 @@ extension type LwkCoreWasmModule._(JSObject _) implements JSObject {
       wire__crate__api__transaction__PartiallySignedElementsTransaction_to_string(
           int that);
 
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory(
+          int that);
+
+  external JSAny? /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
+      wire__crate__api__lending__types__TryFromIssuanceFactoryResult_factory_asset_id(
+          int that);
+
   external void wire__crate__api__types__address_address_from_script(
       NativePortType port_, int network, String script, String? blinding_key);
 
@@ -1775,6 +2433,22 @@ extension type LwkCoreWasmModule._(JSObject _) implements JSObject {
       rust_arc_decrement_strong_count_RustOpaque_Mutexlwk_wolletWollet(int ptr);
 
   external void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          int ptr);
+
+  external void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerIssuanceFactory(
+          int ptr);
+
+  external void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          int ptr);
+
+  external void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLendingTransaction(
+          int ptr);
+
+  external void
       rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLiquidTransaction(
           int ptr);
 
@@ -1788,5 +2462,13 @@ extension type LwkCoreWasmModule._(JSObject _) implements JSObject {
 
   external void
       rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPartiallySignedElementsTransaction(
+          int ptr);
+
+  external void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
+          int ptr);
+
+  external void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerTryFromIssuanceFactoryResult(
           int ptr);
 }

@@ -104,6 +104,13 @@ impl PsetBuilder {
     }
 }
 
+/// Asset identifiers derived from an issuance input.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub(crate) struct IssuanceDetails {
+    pub asset_id: String,
+    pub reissuance_token_id: String,
+}
+
 /// PSET input for covenant transaction building.
 #[derive(Clone)]
 pub struct CovenantPsetInput {
@@ -144,6 +151,35 @@ impl PsetInputBuilder {
         })?;
         inner.sequence = Some(elements::Sequence::from_consensus(sequence));
         Ok(())
+    }
+
+    pub fn explicit_issuance(
+        &self,
+        issuance_amount: u64,
+        inflation_amount: u64,
+        asset_entropy: [u8; 32],
+    ) -> anyhow::Result<(), LwkError> {
+        let mut lock = self.inner.lock()?;
+        let inner = lock.as_mut().ok_or_else(|| LwkError {
+            msg: "PsetInputBuilder already consumed".into(),
+        })?;
+        inner.issuance_value_amount = Some(issuance_amount);
+        inner.issuance_inflation_keys = Some(inflation_amount);
+        inner.issuance_asset_entropy = Some(asset_entropy);
+        inner.blinded_issuance = Some(0x00);
+        Ok(())
+    }
+
+    pub fn issuance_details(&self) -> anyhow::Result<IssuanceDetails, LwkError> {
+        let lock = self.inner.lock()?;
+        let inner = lock.as_ref().ok_or_else(|| LwkError {
+            msg: "PsetInputBuilder already consumed".into(),
+        })?;
+        let (asset_id, token_id) = inner.issuance_ids();
+        Ok(IssuanceDetails {
+            asset_id: asset_id.to_string(),
+            reissuance_token_id: token_id.to_string(),
+        })
     }
 
     pub fn build(&self) -> anyhow::Result<CovenantPsetInput, LwkError> {

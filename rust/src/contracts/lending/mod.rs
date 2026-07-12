@@ -8,17 +8,22 @@ mod asset_auth;
 mod asset_auth_vault;
 mod factory;
 mod offer;
+mod program;
 mod script_auth;
 mod transaction;
+mod utility_nft;
 
 pub(crate) mod simf;
 
 pub(crate) use asset_auth::AssetAuth;
 pub(crate) use asset_auth_vault::AssetAuthVault;
-pub(crate) use factory::IssuanceFactory;
+pub(crate) use factory::{
+    IssuanceFactory, IssuanceFactoryError, IssuanceFactoryParameters, IssuanceFactoryWitnessBranch,
+};
 pub(crate) use offer::LendingOffer;
 pub(crate) use script_auth::ScriptAuth;
 pub(crate) use transaction::LendingTransaction;
+pub(crate) use utility_nft::{attach_utility_nft_issuance, UtilityNftIssuanceResult};
 
 #[cfg(test)]
 mod tests {
@@ -46,5 +51,13 @@ mod tests {
             SimplicityTypedValue::u256(vec![0u8; 32]).unwrap(),
         );
         SimplicityProgram::load_with_arguments(simf::SCRIPT_AUTH.to_string(), &args).unwrap();
+    }
+
+    #[test]
+    fn issuance_factory_simf_compiles() {
+        let args = SimplicityArguments::new()
+            .add_value("ISSUING_UTXOS_COUNT".into(), SimplicityTypedValue::u8(2))
+            .add_value("REISSUANCE_FLAGS".into(), SimplicityTypedValue::u64(0));
+        SimplicityProgram::load_with_arguments(simf::ISSUANCE_FACTORY.to_string(), &args).unwrap();
     }
 }
