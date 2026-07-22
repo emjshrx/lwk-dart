@@ -88,6 +88,15 @@ impl LendingTransaction {
         Ok(output_index)
     }
 
+    /// OP_RETURN metadata output (amount 0, zero asset id).
+    pub fn add_metadata_output(&mut self, data: Vec<u8>) -> anyhow::Result<u32, LwkError> {
+        let output_index = self.n_outputs;
+        let script = Script::new_op_return(data);
+        let output = PsetOutputBuilder::new_explicit(&script, 0, zero_asset_id())?.build()?;
+        self.add_output(&output)?;
+        Ok(output_index)
+    }
+
     pub fn add_output(&mut self, output: &CovenantPsetOutput) -> anyhow::Result<(), LwkError> {
         self.builder.add_output(output)?;
         self.n_outputs += 1;
@@ -117,6 +126,10 @@ impl Default for LendingTransaction {
     fn default() -> Self {
         Self::new()
     }
+}
+
+fn zero_asset_id() -> String {
+    "0".repeat(64)
 }
 
 #[cfg(test)]
