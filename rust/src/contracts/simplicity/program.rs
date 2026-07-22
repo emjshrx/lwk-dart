@@ -18,12 +18,10 @@ use crate::contracts::simplicity::SimplicityRunResult;
 use super::utils::{parse_utxos_hex, parse_xonly_pubkey_hex, to_lwk_common_network, xonly_to_simplicityhl};
 
 /// A compiled Simplicity program ready for covenant transactions.
-#[allow(dead_code)] // Internal API surface; not all methods are exercised by current tests.
 pub struct SimplicityProgram {
     inner: CompiledProgram,
 }
 
-#[allow(dead_code)] // Internal API surface; not all methods are exercised by current tests.
 impl SimplicityProgram {
     /// Compile a SimplicityHL program from source and typed arguments.
     pub fn load_with_arguments(

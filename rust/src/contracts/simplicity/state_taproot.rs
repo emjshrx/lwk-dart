@@ -64,12 +64,10 @@ impl StateTaprootBuilder {
 }
 
 /// Taproot spending information for a Simplicity covenant address.
-#[allow(dead_code)] // Internal API surface; not all getters are used by current tests.
 pub struct StateTaprootSpendInfo {
     pub(crate) inner: taproot::TaprootSpendInfo,
 }
 
-#[allow(dead_code)] // Internal API surface; not all getters are used by current tests.
 impl StateTaprootSpendInfo {
     pub fn output_key(&self) -> XOnlyPublicKey {
         self.inner.output_key().into_inner()
