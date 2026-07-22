@@ -2,3 +2,5 @@
 
 mod lwk_error;
 pub mod simplicity;
+
+mod lending;
