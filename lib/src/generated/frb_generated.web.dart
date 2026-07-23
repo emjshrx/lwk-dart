@@ -9,6 +9,9 @@
 import 'api/blockchain.dart';
 import 'api/descriptor.dart';
 import 'api/error.dart';
+import 'api/lending/config.dart';
+import 'api/lending/indexer.dart';
+import 'api/lending/types.dart';
 import 'api/transaction.dart';
 import 'api/types.dart';
 import 'api/wallet.dart';
@@ -92,6 +95,20 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   Descriptor dco_decode_box_autoadd_descriptor(dynamic raw);
 
   @protected
+  LendingConfig dco_decode_box_autoadd_lending_config(dynamic raw);
+
+  @protected
+  LendingIndexer dco_decode_box_autoadd_lending_indexer(dynamic raw);
+
+  @protected
+  LendingOfferListQuery dco_decode_box_autoadd_lending_offer_list_query(
+      dynamic raw);
+
+  @protected
+  LendingOfferUtxoOutpointShort
+      dco_decode_box_autoadd_lending_offer_utxo_outpoint_short(dynamic raw);
+
+  @protected
   PsetInput dco_decode_box_autoadd_pset_input(dynamic raw);
 
   @protected
@@ -128,6 +145,58 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   PlatformInt64 dco_decode_i_64(dynamic raw);
 
   @protected
+  LendingAssetAmount dco_decode_lending_asset_amount(dynamic raw);
+
+  @protected
+  LendingConfig dco_decode_lending_config(dynamic raw);
+
+  @protected
+  LendingIndexer dco_decode_lending_indexer(dynamic raw);
+
+  @protected
+  LendingOfferDetails dco_decode_lending_offer_details(dynamic raw);
+
+  @protected
+  LendingOfferListItem dco_decode_lending_offer_list_item(dynamic raw);
+
+  @protected
+  LendingOfferListQuery dco_decode_lending_offer_list_query(dynamic raw);
+
+  @protected
+  LendingOfferListResponse dco_decode_lending_offer_list_response(dynamic raw);
+
+  @protected
+  LendingOfferSortBy dco_decode_lending_offer_sort_by(dynamic raw);
+
+  @protected
+  LendingOfferStatus dco_decode_lending_offer_status(dynamic raw);
+
+  @protected
+  LendingOfferUtxoDto dco_decode_lending_offer_utxo_dto(dynamic raw);
+
+  @protected
+  LendingOfferUtxoOutpointShort dco_decode_lending_offer_utxo_outpoint_short(
+      dynamic raw);
+
+  @protected
+  LendingOffersOverview dco_decode_lending_offers_overview(dynamic raw);
+
+  @protected
+  LendingParticipantDto dco_decode_lending_participant_dto(dynamic raw);
+
+  @protected
+  LendingParticipantShort dco_decode_lending_participant_short(dynamic raw);
+
+  @protected
+  LendingParticipantType dco_decode_lending_participant_type(dynamic raw);
+
+  @protected
+  LendingSortDir dco_decode_lending_sort_dir(dynamic raw);
+
+  @protected
+  LendingUtxoType dco_decode_lending_utxo_type(dynamic raw);
+
+  @protected
   LiquidNetwork dco_decode_liquid_network(dynamic raw);
 
   @protected
@@ -135,6 +204,27 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   List<Balance> dco_decode_list_balance(dynamic raw);
+
+  @protected
+  List<LendingAssetAmount> dco_decode_list_lending_asset_amount(dynamic raw);
+
+  @protected
+  List<LendingOfferListItem> dco_decode_list_lending_offer_list_item(
+      dynamic raw);
+
+  @protected
+  List<LendingOfferStatus> dco_decode_list_lending_offer_status(dynamic raw);
+
+  @protected
+  List<LendingOfferUtxoDto> dco_decode_list_lending_offer_utxo_dto(dynamic raw);
+
+  @protected
+  List<LendingParticipantDto> dco_decode_list_lending_participant_dto(
+      dynamic raw);
+
+  @protected
+  List<LendingParticipantShort> dco_decode_list_lending_participant_short(
+      dynamic raw);
 
   @protected
   List<int> dco_decode_list_prim_u_8_loose(dynamic raw);
@@ -170,6 +260,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   String? dco_decode_opt_String(dynamic raw);
 
   @protected
+  LendingOfferUtxoOutpointShort?
+      dco_decode_opt_box_autoadd_lending_offer_utxo_outpoint_short(dynamic raw);
+
+  @protected
   PsetInput? dco_decode_opt_box_autoadd_pset_input(dynamic raw);
 
   @protected
@@ -189,6 +283,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   int? dco_decode_opt_box_autoadd_u_8(dynamic raw);
+
+  @protected
+  List<LendingOfferStatus>? dco_decode_opt_list_lending_offer_status(
+      dynamic raw);
 
   @protected
   OutPoint dco_decode_out_point(dynamic raw);
@@ -297,6 +395,23 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   Descriptor sse_decode_box_autoadd_descriptor(SseDeserializer deserializer);
 
   @protected
+  LendingConfig sse_decode_box_autoadd_lending_config(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingIndexer sse_decode_box_autoadd_lending_indexer(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferListQuery sse_decode_box_autoadd_lending_offer_list_query(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferUtxoOutpointShort
+      sse_decode_box_autoadd_lending_offer_utxo_outpoint_short(
+          SseDeserializer deserializer);
+
+  @protected
   PsetInput sse_decode_box_autoadd_pset_input(SseDeserializer deserializer);
 
   @protected
@@ -333,6 +448,70 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   PlatformInt64 sse_decode_i_64(SseDeserializer deserializer);
 
   @protected
+  LendingAssetAmount sse_decode_lending_asset_amount(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingConfig sse_decode_lending_config(SseDeserializer deserializer);
+
+  @protected
+  LendingIndexer sse_decode_lending_indexer(SseDeserializer deserializer);
+
+  @protected
+  LendingOfferDetails sse_decode_lending_offer_details(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferListItem sse_decode_lending_offer_list_item(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferListQuery sse_decode_lending_offer_list_query(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferListResponse sse_decode_lending_offer_list_response(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferSortBy sse_decode_lending_offer_sort_by(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferStatus sse_decode_lending_offer_status(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferUtxoDto sse_decode_lending_offer_utxo_dto(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOfferUtxoOutpointShort sse_decode_lending_offer_utxo_outpoint_short(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingOffersOverview sse_decode_lending_offers_overview(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingParticipantDto sse_decode_lending_participant_dto(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingParticipantShort sse_decode_lending_participant_short(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingParticipantType sse_decode_lending_participant_type(
+      SseDeserializer deserializer);
+
+  @protected
+  LendingSortDir sse_decode_lending_sort_dir(SseDeserializer deserializer);
+
+  @protected
+  LendingUtxoType sse_decode_lending_utxo_type(SseDeserializer deserializer);
+
+  @protected
   LiquidNetwork sse_decode_liquid_network(SseDeserializer deserializer);
 
   @protected
@@ -340,6 +519,30 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   List<Balance> sse_decode_list_balance(SseDeserializer deserializer);
+
+  @protected
+  List<LendingAssetAmount> sse_decode_list_lending_asset_amount(
+      SseDeserializer deserializer);
+
+  @protected
+  List<LendingOfferListItem> sse_decode_list_lending_offer_list_item(
+      SseDeserializer deserializer);
+
+  @protected
+  List<LendingOfferStatus> sse_decode_list_lending_offer_status(
+      SseDeserializer deserializer);
+
+  @protected
+  List<LendingOfferUtxoDto> sse_decode_list_lending_offer_utxo_dto(
+      SseDeserializer deserializer);
+
+  @protected
+  List<LendingParticipantDto> sse_decode_list_lending_participant_dto(
+      SseDeserializer deserializer);
+
+  @protected
+  List<LendingParticipantShort> sse_decode_list_lending_participant_short(
+      SseDeserializer deserializer);
 
   @protected
   List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer);
@@ -376,6 +579,11 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   String? sse_decode_opt_String(SseDeserializer deserializer);
 
   @protected
+  LendingOfferUtxoOutpointShort?
+      sse_decode_opt_box_autoadd_lending_offer_utxo_outpoint_short(
+          SseDeserializer deserializer);
+
+  @protected
   PsetInput? sse_decode_opt_box_autoadd_pset_input(
       SseDeserializer deserializer);
 
@@ -397,6 +605,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   int? sse_decode_opt_box_autoadd_u_8(SseDeserializer deserializer);
+
+  @protected
+  List<LendingOfferStatus>? sse_decode_opt_list_lending_offer_status(
+      SseDeserializer deserializer);
 
   @protected
   OutPoint sse_decode_out_point(SseDeserializer deserializer);
@@ -492,6 +704,32 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   }
 
   @protected
+  JSAny cst_encode_box_autoadd_lending_config(LendingConfig raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_lending_config(raw);
+  }
+
+  @protected
+  JSAny cst_encode_box_autoadd_lending_indexer(LendingIndexer raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_lending_indexer(raw);
+  }
+
+  @protected
+  JSAny cst_encode_box_autoadd_lending_offer_list_query(
+      LendingOfferListQuery raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_lending_offer_list_query(raw);
+  }
+
+  @protected
+  JSAny cst_encode_box_autoadd_lending_offer_utxo_outpoint_short(
+      LendingOfferUtxoOutpointShort raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return cst_encode_lending_offer_utxo_outpoint_short(raw);
+  }
+
+  @protected
   JSAny cst_encode_box_autoadd_pset_input(PsetInput raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return cst_encode_pset_input(raw);
@@ -552,6 +790,154 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   }
 
   @protected
+  JSAny cst_encode_lending_asset_amount(LendingAssetAmount raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [cst_encode_String(raw.asset), cst_encode_String(raw.amount)]
+        .jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_lending_config(LendingConfig raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_liquid_network(raw.network),
+      cst_encode_bool(raw.allowMainnet),
+      cst_encode_opt_String(raw.indexerBaseUrl)
+    ].jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_lending_indexer(LendingIndexer raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [].jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_lending_offer_details(LendingOfferDetails raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_String(raw.id),
+      cst_encode_String(raw.issuanceFactoryId),
+      cst_encode_lending_offer_status(raw.status),
+      cst_encode_String(raw.collateralAsset),
+      cst_encode_String(raw.principalAsset),
+      cst_encode_String(raw.collateralAmount),
+      cst_encode_String(raw.principalAmount),
+      cst_encode_u_32(raw.interestRate),
+      cst_encode_u_32(raw.loanExpirationHeight),
+      cst_encode_u_64(raw.createdAtHeight),
+      cst_encode_String(raw.createdAtTxid),
+      cst_encode_String(raw.borrowerNftAsset),
+      cst_encode_String(raw.lenderNftAsset),
+      cst_encode_String(raw.protocolFeeKeeperAsset),
+      cst_encode_list_lending_participant_dto(raw.participants),
+      cst_encode_list_lending_offer_utxo_dto(raw.utxos)
+    ].jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_lending_offer_list_item(LendingOfferListItem raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_String(raw.id),
+      cst_encode_String(raw.issuanceFactoryId),
+      cst_encode_lending_offer_status(raw.status),
+      cst_encode_String(raw.collateralAsset),
+      cst_encode_String(raw.principalAsset),
+      cst_encode_String(raw.collateralAmount),
+      cst_encode_String(raw.principalAmount),
+      cst_encode_u_32(raw.interestRate),
+      cst_encode_u_32(raw.loanExpirationHeight),
+      cst_encode_u_64(raw.createdAtHeight),
+      cst_encode_String(raw.createdAtTxid),
+      cst_encode_list_lending_participant_short(raw.participants),
+      cst_encode_opt_box_autoadd_lending_offer_utxo_outpoint_short(
+          raw.borrowerPrincipalUtxo)
+    ].jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_lending_offer_list_query(LendingOfferListQuery raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_opt_list_lending_offer_status(raw.status),
+      cst_encode_opt_String(raw.collateralAsset),
+      cst_encode_opt_String(raw.principalAsset),
+      cst_encode_opt_String(raw.factoryId),
+      cst_encode_opt_box_autoadd_u_64(raw.limit),
+      cst_encode_opt_box_autoadd_u_64(raw.offset),
+      cst_encode_lending_offer_sort_by(raw.sortBy),
+      cst_encode_lending_sort_dir(raw.sortDir)
+    ].jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_lending_offer_list_response(LendingOfferListResponse raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_list_lending_offer_list_item(raw.items),
+      cst_encode_u_64(raw.total),
+      cst_encode_u_64(raw.limit),
+      cst_encode_u_64(raw.offset)
+    ].jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_lending_offer_utxo_dto(LendingOfferUtxoDto raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_String(raw.offerId),
+      cst_encode_String(raw.txid),
+      cst_encode_u_32(raw.vout),
+      cst_encode_lending_utxo_type(raw.utxoType),
+      cst_encode_u_64(raw.createdAtHeight),
+      cst_encode_opt_String(raw.spentTxid),
+      cst_encode_opt_box_autoadd_u_64(raw.spentAtHeight)
+    ].jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_lending_offer_utxo_outpoint_short(
+      LendingOfferUtxoOutpointShort raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [cst_encode_String(raw.txid), cst_encode_u_32(raw.vout)].jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_lending_offers_overview(LendingOffersOverview raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_list_lending_asset_amount(raw.collateralLocked),
+      cst_encode_list_lending_asset_amount(raw.activeLoanPrincipal),
+      cst_encode_u_64(raw.activeLoansCount)
+    ].jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_lending_participant_dto(LendingParticipantDto raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_String(raw.offerId),
+      cst_encode_lending_participant_type(raw.participantType),
+      cst_encode_String(raw.scriptPubkey),
+      cst_encode_String(raw.txid),
+      cst_encode_u_32(raw.vout),
+      cst_encode_u_64(raw.createdAtHeight),
+      cst_encode_opt_String(raw.spentTxid),
+      cst_encode_opt_box_autoadd_u_64(raw.spentAtHeight)
+    ].jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_lending_participant_short(LendingParticipantShort raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return [
+      cst_encode_lending_participant_type(raw.participantType),
+      cst_encode_String(raw.scriptPubkey)
+    ].jsify()!;
+  }
+
+  @protected
   JSAny cst_encode_list_String(List<String> raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return raw.map(cst_encode_String).toList().jsify()!;
@@ -561,6 +947,45 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   JSAny cst_encode_list_balance(List<Balance> raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return raw.map(cst_encode_balance).toList().jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_list_lending_asset_amount(List<LendingAssetAmount> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw.map(cst_encode_lending_asset_amount).toList().jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_list_lending_offer_list_item(
+      List<LendingOfferListItem> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw.map(cst_encode_lending_offer_list_item).toList().jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_list_lending_offer_status(List<LendingOfferStatus> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw.map(cst_encode_lending_offer_status).toList().jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_list_lending_offer_utxo_dto(List<LendingOfferUtxoDto> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw.map(cst_encode_lending_offer_utxo_dto).toList().jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_list_lending_participant_dto(
+      List<LendingParticipantDto> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw.map(cst_encode_lending_participant_dto).toList().jsify()!;
+  }
+
+  @protected
+  JSAny cst_encode_list_lending_participant_short(
+      List<LendingParticipantShort> raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw.map(cst_encode_lending_participant_short).toList().jsify()!;
   }
 
   @protected
@@ -630,6 +1055,15 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   }
 
   @protected
+  JSAny? cst_encode_opt_box_autoadd_lending_offer_utxo_outpoint_short(
+      LendingOfferUtxoOutpointShort? raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw == null
+        ? null
+        : cst_encode_box_autoadd_lending_offer_utxo_outpoint_short(raw);
+  }
+
+  @protected
   JSAny? cst_encode_opt_box_autoadd_pset_input(PsetInput? raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return raw == null ? null : cst_encode_box_autoadd_pset_input(raw);
@@ -669,6 +1103,13 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   int? cst_encode_opt_box_autoadd_u_8(int? raw) {
     // Codec=Cst (C-struct based), see doc to use other codecs
     return raw == null ? null : cst_encode_box_autoadd_u_8(raw);
+  }
+
+  @protected
+  JSAny? cst_encode_opt_list_lending_offer_status(
+      List<LendingOfferStatus>? raw) {
+    // Codec=Cst (C-struct based), see doc to use other codecs
+    return raw == null ? null : cst_encode_list_lending_offer_status(raw);
   }
 
   @protected
@@ -848,6 +1289,21 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   int cst_encode_i_32(int raw);
 
   @protected
+  int cst_encode_lending_offer_sort_by(LendingOfferSortBy raw);
+
+  @protected
+  int cst_encode_lending_offer_status(LendingOfferStatus raw);
+
+  @protected
+  int cst_encode_lending_participant_type(LendingParticipantType raw);
+
+  @protected
+  int cst_encode_lending_sort_dir(LendingSortDir raw);
+
+  @protected
+  int cst_encode_lending_utxo_type(LendingUtxoType raw);
+
+  @protected
   int cst_encode_liquid_network(LiquidNetwork raw);
 
   @protected
@@ -917,6 +1373,22 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
       Descriptor self, SseSerializer serializer);
 
   @protected
+  void sse_encode_box_autoadd_lending_config(
+      LendingConfig self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_lending_indexer(
+      LendingIndexer self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_lending_offer_list_query(
+      LendingOfferListQuery self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_lending_offer_utxo_outpoint_short(
+      LendingOfferUtxoOutpointShort self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_pset_input(
       PsetInput self, SseSerializer serializer);
 
@@ -956,6 +1428,73 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   void sse_encode_i_64(PlatformInt64 self, SseSerializer serializer);
 
   @protected
+  void sse_encode_lending_asset_amount(
+      LendingAssetAmount self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_config(LendingConfig self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_indexer(
+      LendingIndexer self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_details(
+      LendingOfferDetails self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_list_item(
+      LendingOfferListItem self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_list_query(
+      LendingOfferListQuery self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_list_response(
+      LendingOfferListResponse self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_sort_by(
+      LendingOfferSortBy self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_status(
+      LendingOfferStatus self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_utxo_dto(
+      LendingOfferUtxoDto self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offer_utxo_outpoint_short(
+      LendingOfferUtxoOutpointShort self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_offers_overview(
+      LendingOffersOverview self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_participant_dto(
+      LendingParticipantDto self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_participant_short(
+      LendingParticipantShort self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_participant_type(
+      LendingParticipantType self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_sort_dir(
+      LendingSortDir self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_lending_utxo_type(
+      LendingUtxoType self, SseSerializer serializer);
+
+  @protected
   void sse_encode_liquid_network(LiquidNetwork self, SseSerializer serializer);
 
   @protected
@@ -963,6 +1502,30 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   void sse_encode_list_balance(List<Balance> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_lending_asset_amount(
+      List<LendingAssetAmount> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_lending_offer_list_item(
+      List<LendingOfferListItem> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_lending_offer_status(
+      List<LendingOfferStatus> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_lending_offer_utxo_dto(
+      List<LendingOfferUtxoDto> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_lending_participant_dto(
+      List<LendingParticipantDto> self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_list_lending_participant_short(
+      List<LendingParticipantShort> self, SseSerializer serializer);
 
   @protected
   void sse_encode_list_prim_u_8_loose(List<int> self, SseSerializer serializer);
@@ -1002,6 +1565,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
   void sse_encode_opt_String(String? self, SseSerializer serializer);
 
   @protected
+  void sse_encode_opt_box_autoadd_lending_offer_utxo_outpoint_short(
+      LendingOfferUtxoOutpointShort? self, SseSerializer serializer);
+
+  @protected
   void sse_encode_opt_box_autoadd_pset_input(
       PsetInput? self, SseSerializer serializer);
 
@@ -1025,6 +1592,10 @@ abstract class LwkCoreApiImplPlatform extends BaseApiImpl<LwkCoreWire> {
 
   @protected
   void sse_encode_opt_box_autoadd_u_8(int? self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_opt_list_lending_offer_status(
+      List<LendingOfferStatus>? self, SseSerializer serializer);
 
   @protected
   void sse_encode_out_point(OutPoint self, SseSerializer serializer);
@@ -1384,6 +1955,55 @@ class LwkCoreWire implements BaseWire {
       wasmModule.wire__crate__api__transaction__get_size_and_absolute_fees(
           port_, pset);
 
+  void wire__crate__api__lending__indexer__lending_indexer_get_details(
+          NativePortType port_, JSAny that, String id) =>
+      wasmModule
+          .wire__crate__api__lending__indexer__lending_indexer_get_details(
+              port_, that, id);
+
+  void wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script(
+          NativePortType port_, JSAny that, String script_pubkey) =>
+      wasmModule
+          .wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script(
+              port_, that, script_pubkey);
+
+  void wire__crate__api__lending__indexer__lending_indexer_get_overview(
+          NativePortType port_, JSAny that) =>
+      wasmModule
+          .wire__crate__api__lending__indexer__lending_indexer_get_overview(
+              port_, that);
+
+  void wire__crate__api__lending__indexer__lending_indexer_list_offers(
+          NativePortType port_, JSAny that, JSAny query) =>
+      wasmModule
+          .wire__crate__api__lending__indexer__lending_indexer_list_offers(
+              port_, that, query);
+
+  void wire__crate__api__lending__indexer__lending_indexer_new(
+          NativePortType port_) =>
+      wasmModule.wire__crate__api__lending__indexer__lending_indexer_new(port_);
+
+  void wire__crate__api__lending__config__lending_init(
+          NativePortType port_, JSAny config) =>
+      wasmModule.wire__crate__api__lending__config__lending_init(port_, config);
+
+  void wire__crate__api__lending__types__lending_offer_list_query_default(
+          NativePortType port_) =>
+      wasmModule
+          .wire__crate__api__lending__types__lending_offer_list_query_default(
+              port_);
+
+  void wire__crate__api__lending__types__lending_offer_sort_by_default(
+          NativePortType port_) =>
+      wasmModule
+          .wire__crate__api__lending__types__lending_offer_sort_by_default(
+              port_);
+
+  void wire__crate__api__lending__types__lending_sort_dir_default(
+          NativePortType port_) =>
+      wasmModule
+          .wire__crate__api__lending__types__lending_sort_dir_default(port_);
+
   void wire__crate__api__wallet__wallet_address(
           NativePortType port_, JSAny that, int index) =>
       wasmModule.wire__crate__api__wallet__wallet_address(port_, that, index);
@@ -1696,6 +2316,36 @@ extension type LwkCoreWasmModule._(JSObject _) implements JSObject {
 
   external void wire__crate__api__transaction__get_size_and_absolute_fees(
       NativePortType port_, String pset);
+
+  external void wire__crate__api__lending__indexer__lending_indexer_get_details(
+      NativePortType port_, JSAny that, String id);
+
+  external void
+      wire__crate__api__lending__indexer__lending_indexer_get_ids_by_script(
+          NativePortType port_, JSAny that, String script_pubkey);
+
+  external void
+      wire__crate__api__lending__indexer__lending_indexer_get_overview(
+          NativePortType port_, JSAny that);
+
+  external void wire__crate__api__lending__indexer__lending_indexer_list_offers(
+      NativePortType port_, JSAny that, JSAny query);
+
+  external void wire__crate__api__lending__indexer__lending_indexer_new(
+      NativePortType port_);
+
+  external void wire__crate__api__lending__config__lending_init(
+      NativePortType port_, JSAny config);
+
+  external void
+      wire__crate__api__lending__types__lending_offer_list_query_default(
+          NativePortType port_);
+
+  external void wire__crate__api__lending__types__lending_offer_sort_by_default(
+      NativePortType port_);
+
+  external void wire__crate__api__lending__types__lending_sort_dir_default(
+      NativePortType port_);
 
   external void wire__crate__api__wallet__wallet_address(
       NativePortType port_, JSAny that, int index);
